@@ -4,4 +4,4 @@ In this repository, you will find a collection of my data science projects. I've
 
 # Table of Contents
 
-- RAG Architectures to Query my Grandfather's Memoir
+- RAG (Retrieval-Augmented Generation) to Query my Grandfather's Memoir
