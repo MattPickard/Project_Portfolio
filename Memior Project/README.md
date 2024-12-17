@@ -1,8 +1,8 @@
 # RAG Techniques to Query my Grandfather's Memoir
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 50%; margin-bottom: 0px;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 50%; margin: 0; padding: 0;">
 </p>
-<p align="center" style="margin-top: 0px;">
+<p align="center" style="margin: 0; padding: 0;">
   <em>A family photo of me being held by my grandfather.</em>
 </p>
 
