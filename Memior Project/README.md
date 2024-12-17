@@ -6,14 +6,17 @@
   <em>A family photo of me being held by my grandfather.</em>
 </p>
 
-## Table of Contents
+<details>
+<summary>Table of Contents</summary>
 
 1. [Introduction](#introduction)
 2. [The Data](#data)
 3. [RAG Architectures](#rag-architectures)
 
+</details>
+
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 50%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 75%;">
 </p>
 <p align="center">
   <em>The success rate of each pipeline.</em>
@@ -22,7 +25,14 @@
 <a name="introduction"></a>
 ## Introduction
 
-This project is a exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset that is particularly meaningful to me - a memoir written by my grandfather. My goal was to improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline. I then built two versions of enseble pipelines which feature **reranking**, **content enrichment window**, and **query rewriting** techniques. Finally, I implimented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture. 
+This project is an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset that is particularly meaningful to me - a memoir written by my grandfather. The hope is to show off and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an enseble of techniques including **reranking**, **content enrichment window**, and **query rewriting**. Finally, I implimented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
+
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 50%;">
+</p>
+<p align="center">
+  <em>The success rate of each pipeline.</em>
+</p>
 
 <a name="data"></a>
 ## The Data
