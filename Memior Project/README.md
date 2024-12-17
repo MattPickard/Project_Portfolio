@@ -3,7 +3,7 @@ This is a md write up of a portfolio project to show off my data science skills.
 # RAG Architectures to Query my Grandfather's Memoir
 
 <p align="center">
-  <img src="https://github.com/mattg12345/Data-Science-Portfolio/blob/main/Images/family_photo.png" alt="Family Photo">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo">
 </p>
 <p align="center">
   <em>A photo of me being held by my grandfather.</em>
