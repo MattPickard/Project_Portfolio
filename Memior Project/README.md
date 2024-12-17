@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 50%; margin-bottom: 0px;">
 </p>
-<p align="center">
+<p align="center" style="margin-top: 0px;">
   <em>A family photo of me being held by my grandfather.</em>
 </p>
 
@@ -21,7 +21,7 @@ This project is an exploration of various RAG (Retrieval-Augmented Generation) t
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%; margin-bottom: 0px;">
 </p>
-<p align="center">
+<p align="center" style="margin-top: 0px;">
   <em>The success rate of each pipeline.</em>
 </p>
 
