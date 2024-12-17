@@ -1,22 +1,35 @@
-This is a md write up of a portfolio project to show off my data science skills.
-
-# RAG Architectures to Query my Grandfather's Memoir
-
+# RAG Techniques to Query my Grandfather's Memoir
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 50%;">
 </p>
 <p align="center">
-  <em>A photo of me being held by my grandfather.</em>
+  <em>A family photo of me being held by my grandfather.</em>
 </p>
 
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [The Data](#data)
+3. [RAG Architectures](#rag-architectures)
+
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 50%;">
+</p>
+<p align="center">
+  <em>The success rate of each pipeline.</em>
+</p>
+
+<a name="introduction"></a>
 ## Introduction
 
-This project is a demonstration of how to impliment various RAG (Retrieval-Augmented Generation) techniques to query a text dataset, in this case, a memoir written by my grandfather. The goal was to gain better intuition for 
+This project is a exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset that is particularly meaningful to me - a memoir written by my grandfather. My goal was to improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline. I then built two versions of enseble pipelines which feature **reranking**, **content enrichment window**, and **query rewriting** techniques. Finally, I implimented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture. 
 
-## Data
+<a name="data"></a>
+## The Data
 
-The data is a memoir written by my grandfather. The memoir is a collection of his memories and experiences from his life. The memoir is 100,000 words long and contains a lot of information about his life.
+The dataset is a memoir written by my grandfather called "My Life Story." The memoir is about 42,000 words which I split into 10 chapters. Each chapter was saved as a PDF file so I could practice and and impliment pipelines that could preprocess PDF documents.
 
+<a name="rag-architectures"></a>
 ## RAG Architectures
 
 There are two RAG architectures that will be used in this project. The first is a simple RAG architecture that will be used to query the memoir. The second is a more complex RAG architecture that will be used to query the memoir.
