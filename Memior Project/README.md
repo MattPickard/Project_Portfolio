@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 50%; margin: 0; padding: 0;">
 </p>
-<p align="center" style="margin: 0; padding: 0;">
+<p align="center" style="margin: 5; padding: 0;">
   <em>A family photo of me being held by my grandfather.</em>
 </p>
 
@@ -19,9 +19,9 @@
 This project is an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset that is particularly meaningful to me - a memoir written by my grandfather. The hope is to show off and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an enseble of techniques including **reranking**, **content enrichment window**, and **query rewriting**. Finally, I implimented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
 
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%; margin-bottom: 0px;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%; margin: 0; padding: 0;">
 </p>
-<p align="center" style="margin-top: 0px;">
+<p align="center" style="margin: 0; padding: 0;">
   <em>The success rate of each pipeline.</em>
 </p>
 
