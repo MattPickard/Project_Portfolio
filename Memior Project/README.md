@@ -37,7 +37,7 @@ The dataset is a memoir written by my grandfather called "My Life Story". The me
 
 <a name="basic-rag"></a>
 ## Basic RAG  
-Code: [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/basic_rag.ipynb)
+**Code:** [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/basic_rag.ipynb)
 
 This first pipeline, built with LangChain, is an implementation of a simple RAG architecture without any additional techniques. At its core, it consists of storing chunks of the text in a vector database via encodings and then querying the database, retrieving the two most similar chunks to craft a response. To preprocess the text, I used PyPDFLoader to convert the PDF files into text, then used RecursiveCharacterTextSplitter to split the text into 1000 character chunks with 200 character overlaps. I appended the chapter source to the end of each chunk for better retrieval. Each chunk was embedded using the OpenAI Embeddings API and converted into a vector database using FAISS (Facebook AI Similarity Search).
 When queried, the database retrieves the top two most similar chunks and then uses OpenAI's GPT-4o-mini model to generate a response. The following prompt template was provided to the model:
@@ -50,22 +50,22 @@ was unable to provide sufficient context":
     {question}
 ```
 
-**Evaluation and Insights:**
+### Evaluation and Insights:
 
-Success Rate: 60%
+**Success Rate:** 60%
 
-During evaluation, two major issues were identified that were limiting the pipeline's performance:
+During evaluation, two major issues were identified:
 
-1. The chunks did not carry over context across pages, which is a result of PyPDFLoader's default behavior of splitting the documents into pages.
-2. Relying solely on the top two most similar chunks without any other techniques led to many situations where the pipeline was unable to retrieve the proper context to answer the question.
+1. The chunks did not carry over context across pages, which was a result of PyPDFLoader's default behavior of splitting the documents into pages.
+2. Relying solely on the top two most similar chunks without any additional techniques often let to insufficient context retrieval.
 
 I worked to address both of these issues in the following implementation of the RAG Ensemble pipeline. 
 
-During the testing phase, I also observed that OpenAI's GPT-4o-mini model consistently failed to include sources in its responses, despite it being prompted and the sources being present in the provided context. This behavior persisted even after modifying the prompts and positioning the sources within the context. It is possible that this is a characteristic of the model or the model following an OpenAI policy, and it may be beneficial to explore alternative models that are more accommodating to such requests. If I were to continue this project, testing different models would be a logical next step.
+**As additional note:** During the testing phase, I observed that OpenAI's GPT-4o-mini model consistently failed to include sources in its responses, despite it being prompted and the sources being present in the provided context. This behavior persisted even after modifying the prompts and positioning the sources within the context. It is possible that this is a characteristic of the model or the model following an OpenAI policy, and it may be beneficial to explore alternative models that are more accommodating to such requests. If I were to continue this project, testing different models would be a logical next step.
 
 <a name="rag-ensemble"></a>
 ## RAG Ensemble  
-Code: [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)
+**Code:** [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)
 
 
 <a name="evaluation"></a>
