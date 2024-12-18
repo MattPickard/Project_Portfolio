@@ -7,24 +7,21 @@
 </p>
 
 ## Table of Contents  
-* [Implementation Resources](#implementation-resources)
-* [Introduction](#introduction)
+* [Purpose](#purpose)
 * [Data](#data)
 * [Basic RAG](#basic-rag)
 * [RAG Ensemble](#rag-ensemble)
 * [GraphRAG](#graphrag)
 * [Evaluation](#evaluation)
-* [Conclusion](#conclusion)  
 
-<a name="implementation-resources"></a>
 ## Implementation Resources
 * [https://github.com/NirDiamant/RAG_Techniques](https://github.com/NirDiamant/RAG_Techniques)
 * [https://github.com/microsoft/GraphRAG](https://github.com/microsoft/GraphRAG)
 
-<a name="introduction"></a>
-## Introduction
+<a name="purpose"></a>
+## Purpose
 
-This project was an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset that is particularly meaningful to me - a memoir written by my grandfather. The hope was to demonstrate and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an ensemble of techniques including **reranking**, **content enrichment window**, and **query rewriting**. Finally, I implemented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
+This project was an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset of personal significance - a memoir written by my grandfather. The hope was to demonstrate and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an ensemble of techniques including **reranking**, **content enrichment window**, and **query rewriting**. Finally, I implemented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%">
@@ -68,3 +65,11 @@ During the testing phase, I also observed that OpenAI's GPT-4o-mini model consis
 <a name="rag-ensemble"></a>
 ## RAG Ensemble  
 Code: [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)
+
+
+<a name="evaluation"></a>
+## Evaluation
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 70%">
+</p>
+
