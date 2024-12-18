@@ -43,7 +43,8 @@ This first pipeline, built with LangChain, is an implementation of a simple RAG 
 When queried, the database retrieves the top two most similar chunks and then uses OpenAI's GPT-4o-mini model to generate a response. The following prompt template was provided to the model:
 ```
 You are querying a memoir called "My Life Story" written by George Shambaugh.
-    For the question below, provide a concise but sufficient answer. If you don't know, only write "The RAG retrieval was unable to provide sufficient context":
+For the question below, provide a concise but sufficient answer. If you don't know, only write "The RAG retrieval
+was unable to provide sufficient context":
     {context}
     Question
     {question}
@@ -70,6 +71,6 @@ Code: [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data
 <a name="evaluation"></a>
 ## Evaluation
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 50%">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 80%">
 </p>
 
