@@ -3,8 +3,9 @@
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 60%;">
 </p>
 <p align="center">
-<em>My grandfather and I are on the right.</em>
+<em>My grandfather is holding me on the right.</em>
 </p>
+
 ## Table of Contents
 * [Implementation Resources](#implementation-resources)
 * [Introduction](#introduction)
