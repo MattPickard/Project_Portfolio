@@ -70,6 +70,6 @@ Code: [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data
 <a name="evaluation"></a>
 ## Evaluation
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 70%">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 50%">
 </p>
 
