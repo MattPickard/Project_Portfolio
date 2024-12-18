@@ -6,11 +6,15 @@
 <em>My grandfather is holding me on the right.</em>
 </p>
 
-## Table of Contents
+## Table of Contents  
 * [Implementation Resources](#implementation-resources)
 * [Introduction](#introduction)
 * [Data](#data)
 * [Basic RAG](#basic-rag)
+* [RAG Ensemble](#rag-ensemble)
+* [GraphRAG](#graphrag)
+* [Evaluation](#evaluation)
+* [Conclusion](#conclusion)  
 
 <a name="implementation-resources"></a>
 ## Implementation Resources
@@ -48,9 +52,9 @@ You are querying a memoir called "My Life Story" written by George Shambaugh.
     {question}
 ```
 
-Evaluation and Insights:
+**Evaluation and Insights:**
 
-**Success Rate: 60%**
+Success Rate: 60%
 
 During evaluation, two major issues were identified that were limiting the pipeline's performance:
 
