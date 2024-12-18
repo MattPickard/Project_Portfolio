@@ -2,9 +2,6 @@
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 60%;">
 </p>
-<p align="center">
-<em>I am being held by my grandfather on the right.</em>
-</p>
 
 ## Table of Contents
 * [Implementation Resources](#implementation-resources)
