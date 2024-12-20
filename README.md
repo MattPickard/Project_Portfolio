@@ -1,7 +1,7 @@
 # Data-Science-Portfolio
 
-In this repository, you will find a collection of my data science projects. I've tried to include a variety of projects to showcase my skills. I hope you enjoy!
+In this repository, you will find a collection of my data science projects. I hope you find them interesting and enjoyable!
 
 # Table of Contents
 
-- RAG (Retrieval-Augmented Generation) to Query my Grandfather's Memoir
+- [RAG Techniques to Query my Grandfather's Memoir](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20Project)
