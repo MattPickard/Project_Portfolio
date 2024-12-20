@@ -146,8 +146,8 @@ For evaluation, I created a test set of 20 queries spread evenly across the 10 c
 ### Question 10
 Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I attempted to address with query rewriting, even more detrimental to the retrieval of this query was the memoir itself. The first section of the memoir is a an in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.  
 
-## Big Takeaways
-In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific queries, however, GraphRAG's ability to retrieve broader context ended up being very impressive. To me it seems that adding more techniques such as reranking and context enrichment windows can derastically improve the success rate, with a cost of longer wait times and higher computational costs. Complexity and speed seems to be a big trade-off in RAG pipelines.  
+### Evaluation Takeaways
+In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific queries, however, GraphRAG's ability to retrieve broader context ended up being very impressive. This can be seen in how the Basic RAG and GraphRAG pipelines failed on different queries. The ensemble pipeline highlights how adding more techniques such as reranking and context enrichment windows can derastically improve the success rate, but with the cost of longer wait times and higher computational costs. Complexity and speed seems to be a big trade-off in RAG pipelines that should be considered.  
     
 ### Thank you for reading! 
 I had a good time with this project. If you have any questions or comments, feel free to reach out.
