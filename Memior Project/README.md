@@ -142,4 +142,5 @@ For evaluation, I created a set of 20 queries spread evenly across the 10 chapte
 ### Question 10
 Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I attempted to address with query rewriting, even more detrimental to the retrieval of this query was the memoir itself. The first section of the memoir is a an in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.  
   
-Thanks for reading! I had a good time with this project. If you have any questions or comments, feel free to reach out.
+### Thank You for Reading!
+I had a good time with this project. If you have any questions or comments, feel free to reach out.
