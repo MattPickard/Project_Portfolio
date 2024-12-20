@@ -21,7 +21,7 @@
 <a name="purpose"></a>
 ## Purpose
 
-This project was an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset of personal significance - a memoir written by my grandfather. The hope was to demonstrate and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an ensemble of techniques including **reranking**, **content enrichment window**, and **query rewriting**. Finally, I implemented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
+This project was an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset of personal significance - a memoir written by my grandfather. The hope was to demonstrate and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an ensemble of techniques including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I implemented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%">
@@ -52,7 +52,7 @@ was unable to provide sufficient context":
     {question}
 ```
 
-### Insights:
+### Basic RAG Insights:
 
 During the test phase of this pipeline, two major weaknesses were identified:
 
@@ -70,12 +70,12 @@ With a success rate of 60%, it indicates that a basic RAG pipeline is a good sta
 **Version 2 Success Rate:** 95%  
 
 ### Version 1:
-The goal of creating an ensemble pipeline was to improve the success rate of the [Basic RAG Pipeline](#basic-rag) by leveraging additional techniques. I settled on two techniques: **reranking** and **content enrichment windows**. I also fixed the chunking issue caused by PyPDFLoader in the [Basic RAG Pipeline](#basic-rag). This was handled by using Fitz to convert the PDF files into text, then manually splitting the text into chunks. The chapter source was then saved as metadata instead of being appended to the end of each chunk. This pipeline doesn't end up using that metadata, but there are various techniques out there that can leverage such metadata to help improve retrieval and response quality. 
+The goal of creating an ensemble pipeline was to improve the success rate of the [Basic RAG Pipeline](#basic-rag) by leveraging additional techniques. I settled on two techniques: **reranking** and **context enrichment windows**. I also fixed the chunking issue caused by PyPDFLoader in the [Basic RAG Pipeline](#basic-rag). This was handled by using Fitz to convert the PDF files into text, then manually splitting the text into chunks. The chapter source was then saved as metadata instead of being appended to the end of each chunk. This pipeline doesn't end up using that metadata, but there are various techniques out there that can leverage such metadata to help improve retrieval and response quality. 
 
-**Cross-Encoder Reranking**
+**Cross-Encoder Reranking**  
 This first ensemble version leveraged **cross-encoder reranking**, specifically because I was curious about how it would perform. Cross-encoder reranking is a technique that uses a model (in this case, ms-marco-MiniLM-L-6-v2) to compare the retrieved chunks to the query and reorder the chunks based on their relevance scores. I called the top 10 relevant chunks and then used the reranking model to reorder them and passed the top 3 to the context windows enriched.
 
-**Content Enrichment Windows**
+**Context Enrichment Windows**  
 This technique takes a chunk and, taking into account the chunk overlap, appends the context of the previous and next chunk to the chunk for better context. This is incredibly useful and improves performance by allowing you to search smaller chunks which allows for more precise retrieval and reranking, then adding the surrounding context for the model to use while generating a response.
 
 ### Version 1 Insights
@@ -86,34 +86,32 @@ At a success rate of 85%, this pipeline was a significant improvement over the [
 
 Using what I learned from version 1, version 2 of the ensemble pipeline applied the following techniques: LLM-based Reranking (as opposed to cross-encoder reranking), Context Enrichment Window, and Query Rewriting.
 
-**LLM-based Reranking**
+**LLM-based Reranking**  
 After using the cross-encoder reranking model, I wanted to see how an LLM-based reranking model would perform. I used the top 10 chunks to rerank using this prompt:
 ```
-On a scale of 1-10, rate the relevance of the following chunk from 
-    George Shambaugh's memoir to the query. Consider the specific context and intent 
-    of the query, not just keyword matches.
+On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query. Consider the specific context and intent of the query, not just keyword matches.
     Query: {query}
     Document: {doc}
     Relevance Score:
 ```
 I then extracted the score from the model's response and reranked into the top 3 chunks based on their scores. To me, this approach is more intuitive and performed better than the cross-encoder reranking model, but it is also slower and more expensive. 
 
-**Context Enrichment Windows**
+**Context Enrichment Windows**  
 Nothing new here, this is the same technique used in version 1.
 
-**Query Rewriting**
+**Query Rewriting**  
 There were two reasons I wanted to implement query rewriting. First, I wanted to try changing queries to first-person perspective to match the memoir's writing style more accurately for more accurate retrieval. Second, if the queries were rewritten into various versions of the same query while retaining the same meaning, it would aid in semantic retrieval.
-In the end, rewording queries to first-person was not successful as it caused unintended changes to the query semantics. However, rewording the queries into 3 different versions did help! After a bit of prompt engineering, I landed on the following prompt which seemed to work well:
+After a bit of prompt engineering, I landed on the following prompt which seemed to accomplish both of these goals:
 ```
 You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. 
-The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways.
+The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways, using examples of first-person as if George is asking himself and third-person as if someone else is asking about him.
 
     Original query: {original_query}
 
     Rewritten query:
 ```
 
-### Insights:
+### Version 2 Insights:
 
 While there are many more techniques that could improve this pipeline's performance, I feel happy that I was able to demonstrate the power of an ensemble approach to RAG. One thing I'd like to emphasize is the importance of prompt engineering in the success of this pipeline, and likely even more important in more complex pipelines. The quality of both retrieval and response were heavily dependent on the prompt templates used.
 
@@ -123,11 +121,11 @@ While there are many more techniques that could improve this pipeline's performa
 **Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/microsoft_graphrag.ipynb)
 **Success Rate:** 60%  
 
-I was very curious to see how GraphRAG would perform because of its popularity within the RAG community. This implementation was a simple implementation of the architecture, so similar to the [Basic RAG Pipeline](#basic-rag), it leveraged no additional techniques.
+When starting this project, I was very curious to see how GraphRAG would perform because of its popularity within the RAG community. This was a simple implementation of the architecture, similar to the [Basic RAG Pipeline](#basic-rag) and leveraged no additional techniques.
 
 The underlying architecture of GraphRAG is different from the previous pipelines and a bit more complex. A graph is created from nodes that represent chunks of text, and the edges between nodes represent the similarity between those chunks. During the retrieval phase, the relationships between node edges are used to retrieve the most relevant chunks for a given query. Using this approach, GraphRAG can retrieve and put together context that is spread out throughout the documents, which makes it especially powerful for broad queries.
 
-### Insights:
+### GraphRAGInsights:
 
 While testing, I was impressed with GraphRAG's ability to form a "big picture" answer to queries that benefit from broader contexts. However, it became apparent that it really struggles with narrow queries that required retrieving very specific context. It also has a higher computational cost, leading to longer wait times. My intuition tells me that instead of using GraphRAG as a replacement for other architectures, it might be better used to augment pipelines, perhaps as a fallback and or for adding context for broader queries. If you did this, you would need to accept the longer wait times and higher computational costs.
 
@@ -139,6 +137,9 @@ One thing to note is that many online GraphRAG implimentations are out of date w
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 80%">
 </p>
 
-To evaluate the pipelines, I created a test set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific questions, however, GraphRAG's ability to retrieve broader context ended up being very impressive. 
+For evaluation, I created a set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific questions, however, GraphRAG's ability to retrieve broader context ended up being very impressive. One big takeaway is that adding more techniques such as reranking and context enrichment windows can derastically improve the success rate.
+
 ### Question 10
-Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I tried to address with query rewriting (and failed). Even more detrimental to the retrieval was the memoir itself. The first section of the memoir is a very in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.
+Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I attempted to address with query rewriting, even more detrimental to the retrieval of this query was the memoir itself. The first section of the memoir is a an in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.  
+  
+Thanks for reading! I had a good time with this project. If you have any questions or comments, feel free to reach out.
