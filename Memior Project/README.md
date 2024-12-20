@@ -36,7 +36,7 @@ This project was an exploration of various RAG (Retrieval-Augmented Generation) 
 The dataset is a memoir written by my grandfather called "My Life Story". The memoir is about 42,000 words which I split into 10 chapters. Each chapter was saved as a separate PDF file so I could practice implementing pipelines that preprocess PDF documents.
 
 <a name="basic-rag"></a>
-## Basic RAG  
+## Basic RAG Implementation 
 **Code:** [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/basic_rag.ipynb)  
 **Success Rate:** 60%  
 
