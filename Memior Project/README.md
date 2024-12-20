@@ -37,7 +37,7 @@ The dataset is a memoir written by my grandfather called "My Life Story". The me
 
 <a name="basic-rag"></a>
 ## Basic RAG  
-**Code:** [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/basic_rag.ipynb)
+**Code:** [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/basic_rag.ipynb)  
 **Success Rate:** 60%  
 
 
@@ -66,9 +66,10 @@ With a success rate of 60%, it indicates that a basic RAG pipeline is a good sta
 <a name="rag-ensemble"></a>
 ## RAG Ensemble Implementation
 **Code:** [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)  
-**Version 1 Success Rate:** 85%  
-**Version 2 Success Rate:** 95%  
+**[Version 1](#version-1) Success Rate:** 85%  
+**[Version 2](#version-2) Success Rate:** 95%  
 
+<a name ="version-1"></a>
 ### Version 1:
 The goal of creating an ensemble pipeline was to improve the success rate of the [Basic RAG Pipeline](#basic-rag) by leveraging additional techniques. I settled on two techniques: **reranking** and **context enrichment windows**. I also fixed the chunking issue caused by PyPDFLoader in the Basic RAG Pipeline. This was handled by using Fitz to convert the PDF files into text, then manually splitting the text into chunks. The chapter source was then saved as metadata instead of being appended to the end of each chunk. This pipeline doesn't end up using that metadata, but there are various techniques out there that can leverage such metadata to help improve retrieval and response quality. 
 
@@ -82,6 +83,7 @@ This technique takes a chunk and, taking into account the chunk overlap, appends
 
 At a success rate of 85%, this pipeline was a significant improvement over the [Basic RAG Pipeline](#basic-rag). However, during testing, I found that it struggled with queries that used pronouns such as "he" or "his" when referring to my grandfather. My theory was that this was because the memoir was written from a first-person perspective, and such queries cause a semantic similarity mismatch between the query and the context retrieved. To address this, I added a query rewriting step to the pipeline in version 2.
 
+<a name ="version-2"></a>
 ### Version 2:
 
 Using what I learned from version 1, version 2 of the ensemble pipeline applied the following techniques: **LLM-based Reranking** (as opposed to cross-encoder reranking), **Context Enrichment Windows**, and **Query Rewriting**.
@@ -119,7 +121,7 @@ One more thing I'd like to emphasize is the importance of prompt engineering in 
 
 
 <a name ="microsoft-graphrag"></a>
-## Microsoft GraphRAG Implementation
+## Microsoft GraphRAG Implementation  
 **Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/microsoft_graphrag.ipynb)
 **Success Rate:** 60%  
 
