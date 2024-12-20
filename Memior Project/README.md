@@ -122,7 +122,7 @@ One more thing I'd like to emphasize is the importance of prompt engineering in 
 
 <a name ="microsoft-graphrag"></a>
 ## Microsoft GraphRAG Implementation  
-**Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/microsoft_graphrag.ipynb)
+**Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/microsoft_graphrag.ipynb)  
 **Success Rate:** 60%  
 
 When starting this project, I was very curious to see how GraphRAG would perform because of its popularity within the RAG community. This was a simple implementation of the architecture, similar to the [Basic RAG Pipeline](#basic-rag) and leveraged no additional techniques.
@@ -141,13 +141,13 @@ One thing to note is that many online GraphRAG implimentations are out of date w
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 80%">
 </p>
 
-For evaluation, I created a set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. 
+For evaluation, I created a test set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. 
 
 ### Question 10
 Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I attempted to address with query rewriting, even more detrimental to the retrieval of this query was the memoir itself. The first section of the memoir is a an in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.  
 
 ## Big Takeaways
-In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific queries, however, GraphRAG's ability to retrieve broader context ended up being very impressive. To me it seems that adding more techniques such as reranking and context enrichment windows can derastically improve the success rate, with a cost of longer wait times and higher computational costs.  
+In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific queries, however, GraphRAG's ability to retrieve broader context ended up being very impressive. To me it seems that adding more techniques such as reranking and context enrichment windows can derastically improve the success rate, with a cost of longer wait times and higher computational costs. Complexity and speed seems to be a big trade-off in RAG pipelines.  
     
 ### Thank you for reading! 
 I had a good time with this project. If you have any questions or comments, feel free to reach out.
