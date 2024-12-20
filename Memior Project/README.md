@@ -65,12 +65,12 @@ With a success rate of 60%, it indicates that a basic RAG pipeline is a good sta
 
 <a name="rag-ensemble"></a>
 ## RAG Ensemble Implementation
-**Code:** [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)
+**Code:** [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)  
 **Version 1 Success Rate:** 85%  
 **Version 2 Success Rate:** 95%  
 
 ### Version 1:
-The goal of creating an ensemble pipeline was to improve the success rate of the [Basic RAG Pipeline](#basic-rag) by leveraging additional techniques. I settled on two techniques: **reranking** and **context enrichment windows**. I also fixed the chunking issue caused by PyPDFLoader in the [Basic RAG Pipeline](#basic-rag). This was handled by using Fitz to convert the PDF files into text, then manually splitting the text into chunks. The chapter source was then saved as metadata instead of being appended to the end of each chunk. This pipeline doesn't end up using that metadata, but there are various techniques out there that can leverage such metadata to help improve retrieval and response quality. 
+The goal of creating an ensemble pipeline was to improve the success rate of the [Basic RAG Pipeline](#basic-rag) by leveraging additional techniques. I settled on two techniques: **reranking** and **context enrichment windows**. I also fixed the chunking issue caused by PyPDFLoader in the Basic RAG Pipeline. This was handled by using Fitz to convert the PDF files into text, then manually splitting the text into chunks. The chapter source was then saved as metadata instead of being appended to the end of each chunk. This pipeline doesn't end up using that metadata, but there are various techniques out there that can leverage such metadata to help improve retrieval and response quality. 
 
 **Cross-Encoder Reranking**  
 This first ensemble version leveraged **cross-encoder reranking**, specifically because I was curious about how it would perform. Cross-encoder reranking is a technique that uses a model (in this case, ms-marco-MiniLM-L-6-v2) to compare the retrieved chunks to the query and reorder the chunks based on their relevance scores. I called the top 10 relevant chunks and then used the reranking model to reorder them and passed the top 3 to the context windows enriched.
@@ -80,21 +80,21 @@ This technique takes a chunk and, taking into account the chunk overlap, appends
 
 ### Version 1 Insights
 
-At a success rate of 85%, this pipeline was a significant improvement over the [Basic RAG Pipeline](#basic-rag). However, during evaluation, I found that it was struggling with queries that used pronouns such as "he" or "his" when referring to my grandfather. My theory was that this was because the memoir was written from a first-person perspective, and such queries cause a mismatch between the query and the intended context retrieval. To address this, I added a query rewriting step to the pipeline in version 2.
+At a success rate of 85%, this pipeline was a significant improvement over the [Basic RAG Pipeline](#basic-rag). However, during testing, I found that it struggled with queries that used pronouns such as "he" or "his" when referring to my grandfather. My theory was that this was because the memoir was written from a first-person perspective, and such queries cause a semantic similarity mismatch between the query and the context retrieved. To address this, I added a query rewriting step to the pipeline in version 2.
 
 ### Version 2:
 
-Using what I learned from version 1, version 2 of the ensemble pipeline applied the following techniques: LLM-based Reranking (as opposed to cross-encoder reranking), Context Enrichment Window, and Query Rewriting.
+Using what I learned from version 1, version 2 of the ensemble pipeline applied the following techniques: **LLM-based Reranking** (as opposed to cross-encoder reranking), **Context Enrichment Windows**, and **Query Rewriting**.
 
 **LLM-based Reranking**  
-After using the cross-encoder reranking model, I wanted to see how an LLM-based reranking model would perform. I used the top 10 chunks to rerank using this prompt:
+After using the cross-encoder reranking model, I wanted to see how an LLM-based reranking model would perform. I reranked the top 10 chunks retrieved by using this prompt:
 ```
 On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query. Consider the specific context and intent of the query, not just keyword matches.
     Query: {query}
     Document: {doc}
     Relevance Score:
 ```
-I then extracted the score from the model's response and reranked into the top 3 chunks based on their scores. To me, this approach is more intuitive and performed better than the cross-encoder reranking model, but it is also slower and more expensive. 
+The score from the model's response is extracted and the top 3 chunks based on their scores to be passed on. To me, this approach is more intuitive and performed better than the cross-encoder reranking model, but it is also slower and more expensive. 
 
 **Context Enrichment Windows**  
 Nothing new here, this is the same technique used in version 1.
@@ -113,7 +113,9 @@ The following query is a question pertaining to George Shambaugh's life. Reword 
 
 ### Version 2 Insights:
 
-While there are many more techniques that could improve this pipeline's performance, I feel happy that I was able to demonstrate the power of an ensemble approach to RAG. One thing I'd like to emphasize is the importance of prompt engineering in the success of this pipeline, and likely even more important in more complex pipelines. The quality of both retrieval and response were heavily dependent on the prompt templates used.
+While there are many more techniques that could improve this pipeline's performance, I feel happy that I was able to demonstrate the power of an ensemble approach to RAG. With most ensemble designs, it is important to note that by adding more techniques and complexity, the pipeline becomes slower. Personally, the wait times didn't bother me much for my use case, but there are always considerations with regards to other use cases where speed is a priority. There is a clear complexity-speed trade-off in RAG implimentations that should be considered and balanced.
+
+One more thing I'd like to emphasize is the importance of prompt engineering in the success of this pipeline, and likely even more important in more complex pipelines. The quality of both retrieval and response were heavily dependent on the prompt templates used. 
 
 
 <a name ="microsoft-graphrag"></a>
@@ -137,10 +139,13 @@ One thing to note is that many online GraphRAG implimentations are out of date w
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/evaluation_breakdown.png" alt="Evaluation Breakdown" style="width: 80%">
 </p>
 
-For evaluation, I created a set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific questions, however, GraphRAG's ability to retrieve broader context ended up being very impressive. One big takeaway is that adding more techniques such as reranking and context enrichment windows can derastically improve the success rate.
+For evaluation, I created a set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. 
 
 ### Question 10
 Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I attempted to address with query rewriting, even more detrimental to the retrieval of this query was the memoir itself. The first section of the memoir is a an in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.  
-  
-### Thank You for Reading!
+
+## Big Takeaways
+In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific queries, however, GraphRAG's ability to retrieve broader context ended up being very impressive. To me it seems that adding more techniques such as reranking and context enrichment windows can derastically improve the success rate, with a cost of longer wait times and higher computational costs.  
+    
+### Thank you for reading! 
 I had a good time with this project. If you have any questions or comments, feel free to reach out.
