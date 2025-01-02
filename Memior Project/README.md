@@ -21,7 +21,7 @@
 <a name="purpose"></a>
 ## Purpose
 
-This project was an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a dataset of personal significance - a memoir written by my grandfather. The hope was to demonstrate and improve my intuitions and understandings of RAG and NLP (Natural Language Processing) pipelines. In total, I built and evaluated four pipelines with the goal of comparing various techniques and architectures. I started with a simple RAG pipeline to use as a baseline, then worked on an ensemble of techniques including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I implemented and evaluated Microsoft's GraphRAG due to GraphRAG's popularity in the RAG community as an architecture.
+This project serves as an exploration of various RAG (Retrieval-Augmented Generation) techniques, applied to a dataset of personal significance — a memoir written by my grandfather. My objective was not only to demonstrate my understanding of RAG and NLP (Natural Language Processing) pipelines but also to refine my skills in implementing these techniques. RAG techniques have a wide range of potential applications, including but not limited to enhancing search engines, improving customer support systems such as chatbots, generating personalized content, and facilitating knowledge management in organizations. I built and evaluated four distinct pipelines, each designed to compare and contrast various methodologies and architectures and to showcase the importance and power of utilizing ensemble approaches. I began with a foundational RAG pipeline, which provided a baseline for my experiments, and subsequently added on an ensemble of techniques, including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I built and evaluated a simple implementation of Microsoft's GraphRAG, a popular architecture in the RAG community, to assess its performance and capabilities.
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%">
@@ -33,7 +33,7 @@ This project was an exploration of various RAG (Retrieval-Augmented Generation) 
 <a name="data"></a>
 ## Data
 
-The dataset is a memoir written by my grandfather called "My Life Story". The memoir is about 42,000 words which I split into 10 chapters. Each chapter was saved as a separate PDF file so I could practice implementing pipelines that preprocess PDF documents.
+The dataset consists of my grandfather's memoir titled "My Life Story," consisting of approximately 42,000 words, of which I divided into 10 chapters. Each chapter was saved as a separate PDF file, allowing me to practice implementing pipelines that preprocess PDF documents.
 
 <a name="basic-rag"></a>
 ## Basic RAG Implementation 
@@ -41,8 +41,11 @@ The dataset is a memoir written by my grandfather called "My Life Story". The me
 **Success Rate:** 60%  
 
 
-This first pipeline, built with LangChain, is an implementation of a simple RAG architecture without any additional techniques. At its core, it consists of storing chunks the text into a vector database via encodings and then querying the database, retrieving the two most similar chunks to craft a response. To preprocess the text, I used PyPDFLoader to convert the PDF files into text, then used RecursiveCharacterTextSplitter to split the text into 1000 character chunks with 200 character overlaps. I appended the chapter source to the end of each chunk with hopes the language model would later pass it from the context onto its answers (This ended up not being the case, read the "Attitonal Note" below). Each chunk was then embedded using the OpenAI Embeddings API and converted into a vector database using FAISS (Facebook AI Similarity Search).
-When queried, the database retrieves the top two most similar chunks and then uses OpenAI's GPT-4o-mini model to generate a response. The following prompt template was provided to the model:
+This initial pipeline, developed using LangChain, serves as a baseline for evaluation and a foundation for the ensemble pipelines. It implements a straightforward Retrieval-Augmented Generation (RAG) architecture without incorporating any additional techniques. The core functionality involves storing text chunks in a vector database through encoding, followed by querying this database to retrieve the two most similar chunks for response generation. 
+
+To preprocess the text, I utilized PyPDFLoader to convert the PDF files into plain text. I employed RecursiveCharacterTextSplitter to divide the text into chunks of 1000 characters, allowing for 200-character overlaps between chunks. I added the chapter source at the end of each chunk, hoping that the language model would utilize this context in its responses (however, this did not occur, as noted in the "Additional Note" section below). Each chunk was then embedded using the OpenAI Embeddings API and stored in a vector database created with FAISS (Facebook AI Similarity Search).
+
+When a query is made, the database retrieves the top two most similar chunks, which are then processed by OpenAI's GPT-4o-mini model to generate a response. The following template was used to prompt the model:
 ```
 You are querying a memoir called "My Life Story" written by George Shambaugh.
 For the question below, provide a concise but sufficient answer. If you don't know, only write "The RAG retrieval
@@ -54,14 +57,14 @@ was unable to provide sufficient context":
 
 ### Basic RAG Insights:
 
-During the test phase of this pipeline, two major weaknesses were identified:
+During the testing phase of this pipeline, two significant weaknesses were identified:
 
-1. The chunks do not carry over context across pages, which was a result of PyPDFLoader's default behavior of splitting the documents into pages.
-2. Relying solely on the top two most similar chunks without any additional techniques often leads to insufficient context retrieval.
+1. The text chunks do not maintain context across pages. This issue arises from PyPDFLoader's default behavior, which splits documents into separate pages.
+2. Relying exclusively on the top two most similar chunks for context retrieval often results in insufficient information being provided to the model.
 
-With a success rate of 60%, it indicates that a basic RAG pipeline is a good starting point, but is not enough to achieve high success rates by itself. These weaknesses can be addressed by adding on more complexity and techniques. In the following [RAG Ensemble Pipeline](#rag-ensemble) implementation you can see various techniques that effectively improve performance.
+With a success rate of 60%, this indicates that while a basic RAG pipeline serves as a good starting point, it is insufficient for achieving high success rates on its own. These identified weaknesses above can be mitigated by incorporating additional complexity and techniques. In the subsequent [RAG Ensemble Pipeline](#rag-ensemble) implementation, various techniques are demonstrated that effectively enhance performance.
 
-**As additional note:** I observed that OpenAI's GPT-4o-mini model consistently failed to append sources to the end of responses despite it being prompted to do so and the sources being present in the provided context. This behavior persisted even after modifying the prompts and repositioning the sources within the context. It is possible that this is the model conforming to an OpenAI policy. If I were to continue this project, I would be curious to see if other models are more accepting of such requests. To overcome this, one option would be to have a separate step that appends source metadata to the end of the response.
+**Additional Note:** I noticed that OpenAI's GPT-4o-mini model consistently failed to append source information to the end of its responses, even when prompted to do so and when the sources were included in the provided context. This issue persisted despite modifying the prompts and repositioning the sources within the context. It is possible that this behavior is due to the model conforming to an OpenAI policy. If I were to continue this project, one interesting direction to explore would be to see if other models are more flexible. One solution to overcome this hurdle could be to implement a separate step that appends source metadata to the end of the response.
 
 <a name="rag-ensemble"></a>
 ## RAG Ensemble Implementation
@@ -71,39 +74,38 @@ With a success rate of 60%, it indicates that a basic RAG pipeline is a good sta
 
 <a name ="version-1"></a>
 ### Version 1:
-The goal of creating an ensemble pipeline was to improve the success rate of the [Basic RAG Pipeline](#basic-rag) by leveraging additional techniques. I settled on two techniques: **reranking** and **context enrichment windows**. I also fixed the chunking issue caused by PyPDFLoader in the Basic RAG Pipeline. This was handled by using Fitz to convert the PDF files into text, then manually splitting the text into chunks. The chapter source was then saved as metadata instead of being appended to the end of each chunk. This pipeline doesn't end up using that metadata, but there are various techniques out there that can leverage such metadata to help improve retrieval and response quality. 
+The purpose of creating an ensemble pipeline was to demonstrate ways to improve upon a basic RAG pipeline by incorporating additional techniques. First, I focused on two main techniques: **reranking** and **context enrichment windows**. Additionally, I resolved the chunking issue that arose from using PyPDFLoader in the Basic RAG Pipeline. This was accomplished by utilizing Fitz to convert the PDF files into text and then manually splitting the text into manageable chunks. Instead of appending the chapter source to the end of each chunk, I saved it as metadata. Although this pipeline does not utilize that metadata, there are various techniques available that can leverage such metadata to improve both retrieval and response quality.
 
 **Cross-Encoder Reranking**  
-This first ensemble version leveraged **cross-encoder reranking**, specifically because I was curious about how it would perform. Cross-encoder reranking is a technique that uses a model (in this case, ms-marco-MiniLM-L-6-v2) to compare the retrieved chunks to the query and reorder the chunks based on their relevance scores. I called the top 10 relevant chunks and then used the reranking model to reorder them and passed the top 3 to the context windows enriched.
+In this first version of the ensemble pipeline, I implemented **cross-encoder reranking**, as opposed to LLM-based reranking. Cross-encoder reranking is a technique that employs a model (specifically, ms-marco-MiniLM-L-6-v2) to evaluate the retrieved chunks against the query and reorders them based on their relevance scores. I retrieved the top 10 relevant chunks, applied the reranking model to reorder them, and then passed the top 3 chunks to the context enrichment windows.
 
 **Context Enrichment Windows**  
-This technique takes a chunk and, taking into account the chunk overlap, appends the context of the previous and next chunk to the chunk for better context. This is incredibly useful and improves performance by allowing you to search smaller chunks which allows for more precise retrieval and reranking, then adding the surrounding context for the model to use while generating a response.
+This technique enhances each chunk by appending the context from the previous and next chunks, taking into account the overlap between chunks. This approach is highly beneficial as it allows for searching smaller chunks, leading to more precise retrieval and reranking. The added surrounding context significantly aids the model in generating a more informed response.
 
 ### Version 1 Insights
 
-At a success rate of 85%, this pipeline was a significant improvement over the [Basic RAG Pipeline](#basic-rag). However, during testing, I found that it struggled with queries that used pronouns such as "he" or "his" when referring to my grandfather. My theory was that this was because the memoir was written from a first-person perspective, and such queries cause a semantic similarity mismatch between the query and the context retrieved. To address this, I added a query rewriting step to the pipeline in version 2.
+With a success rate of 85%, this pipeline represented a notable improvement over the [Basic RAG Pipeline](#basic-rag). However, during testing, I discovered that it struggled with queries that included pronouns such as "he" or "his" when referring to my grandfather. I believe this issue arises because the memoir is written in the first-person perspective, while queries phrased in the third-person leads to a slight semantic mismatch. To address this challenge, I introduced a query rewriting step in version 2 of the ensemble pipeline.
 
 <a name ="version-2"></a>
 ### Version 2:
 
-Using what I learned from version 1, version 2 of the ensemble pipeline applied the following techniques: **LLM-based Reranking** (as opposed to cross-encoder reranking), **Context Enrichment Windows**, and **Query Rewriting**.
+Building on the insights gained from version 1, version 2 of the ensemble pipeline introduced two new techniques: **LLM-based Reranking** (replacing the previous cross-encoder reranking) and **Query Rewriting**, while keeping the **Context Enrichment Windows** technique.
 
 **LLM-based Reranking**  
-After using the cross-encoder reranking model, I wanted to see how an LLM-based reranking model would perform. I reranked the top 10 chunks retrieved by using this prompt:
+I explored the performance of an LLM-based reranking model after previously using the cross-encoder reranking model. To do this, I called OpenAI's GPT-4o-mini model to rerank the top 10 chunks retrieved using the following prompt:
 ```
 On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query. Consider the specific context and intent of the query, not just keyword matches.
     Query: {query}
     Document: {doc}
     Relevance Score:
 ```
-The score from the model's response is extracted and the top 3 chunks based on their scores to be passed on. To me, this approach is more intuitive and performed better than the cross-encoder reranking model, but it is also slower and more expensive. 
+The score from the model's response is extracted, and the top 3 chunks are selected based on their scores to be passed on for further processing. I find this approach to be more intuitive and it has shown better performance compared to the cross-encoder reranking model; however, it does come with increased processing time and cost.
 
 **Context Enrichment Windows**  
-Nothing new here, this is the same technique used in version 1.
+This section remains unchanged, as it utilizes the same technique implemented in version 1.
 
 **Query Rewriting**  
-There were two reasons I wanted to implement query rewriting. First, I wanted to try changing queries to first-person perspective to match the memoir's writing style more accurately for more accurate retrieval. Second, if the queries were rewritten into various versions of the same query while retaining the same meaning, it would aid in semantic retrieval.
-After a bit of prompt engineering, I landed on the following prompt which seemed to accomplish both of these goals:
+I had two main objectives for implementing query rewriting. First, I aimed to convert queries into the first-person perspective to better align with the memoir's writing style, which would enhance retrieval accuracy. Second, I wanted to create multiple variations of the same query while preserving its meaning, thereby improving the potential retrieval results. After some prompt engineering, I developed the following prompt that effectively achieves both of these objectives:
 ```
 You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. 
 The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways, using examples of first-person as if George is asking himself and third-person as if someone else is asking about him.
@@ -115,9 +117,9 @@ The following query is a question pertaining to George Shambaugh's life. Reword 
 
 ### Version 2 Insights:
 
-While there are many more techniques that could improve this pipeline's performance, I feel happy that I was able to demonstrate the power of an ensemble approach to RAG. With most ensemble designs, it is important to note that by adding more techniques and complexity, the pipeline becomes slower. Personally, the wait times didn't bother me much for my use case, but there are always considerations with regards to other use cases where speed is a priority. There is a clear complexity-speed trade-off in RAG implimentations that should be considered and balanced.
+While there are numerous additional techniques that could enhance the performance of this pipeline, I am pleased to have demonstrated the effectiveness of an ensemble approach to RAG. It is crucial to understand that incorporating more techniques and complexity into most ensemble designs can lead to slower pipeline performance. In my specific use case, the wait times were acceptable; however, it is important to consider that other use cases may prioritize speed. Therefore, one should recognize and balance the trade-off between complexity and speed in RAG implementations.
 
-One more thing I'd like to emphasize is the importance of prompt engineering in the success of this pipeline, and likely even more important in more complex pipelines. The quality of both retrieval and response were heavily dependent on the prompt templates used. 
+Additionally, I want to highlight the critical role of prompt engineering in the success of this pipeline, which becomes even more vital in more complex systems. The effectiveness of both retrieval and response quality is significantly influenced by the prompt templates utilized.
 
 
 <a name ="microsoft-graphrag"></a>
@@ -125,15 +127,15 @@ One more thing I'd like to emphasize is the importance of prompt engineering in 
 **Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/microsoft_graphrag.ipynb)  
 **Success Rate:** 60%  
 
-When starting this project, I was very curious to see how GraphRAG would perform because of its popularity within the RAG community. This was a simple implementation of the architecture, similar to the [Basic RAG Pipeline](#basic-rag) and leveraged no additional techniques.
+At the beginning of this project, I was interested in evaluating the performance of GraphRAG due to its popularity in the RAG community. This implementation was straightforward, resembling the [Basic RAG Pipeline](#basic-rag), and did not incorporate any additional techniques.
 
-The underlying architecture of GraphRAG is different from the previous pipelines and a bit more complex. A graph is created from nodes that represent chunks of text, and the edges between nodes represent the similarity between those chunks. During the retrieval phase, the relationships between node edges are used to retrieve the most relevant chunks for a given query. Using this approach, GraphRAG can retrieve and put together context that is spread out throughout the documents, which makes it especially powerful for broad queries.
+GraphRAG's architecture differs from the previous pipelines and is somewhat more complex. It constructs a graph where nodes represent chunks of text, and the edges between these nodes indicate the similarity between the chunks. During the retrieval phase, the relationships represented by the edges are utilized to identify the most relevant chunks for a given query. This method allows GraphRAG to effectively "understand" relationships between context chunks that are spread throughout the documents, making it particularly effective for handling broad queries.
 
 ### GraphRAGInsights:
 
-While testing, I was impressed with GraphRAG's ability to form a "big picture" answer to queries that benefit from broader contexts. However, it became apparent that it really struggles with narrow queries that required retrieving very specific context. It also has a higher computational cost, leading to longer wait times. My intuition tells me that instead of using GraphRAG as a replacement for other architectures, it might be better used to augment pipelines, perhaps as a fallback and or for adding context for broader queries. If you did this, you would need to accept the longer wait times and higher computational costs.
+During testing, I was impressed with GraphRAG's ability to generate comprehensive answers to queries that benefit from broader contexts. However, it struggled with narrow queries that required retrieving very specific information. Additionally, GraphRAG incurs a significant higher computational cost, resulting in longer wait times. Based on my observations, rather than using GraphRAG as a direct replacement for other architectures, it may make sense to use it to enhance existing pipelines. For instance, it could serve as a fallback option or provide additional context for broader queries. However, this approach would mean accepting longer wait times and increased computational costs.
 
-One thing to note is that many online GraphRAG implimentations are out of date with the latest Microsoft GraphRAG library, feel free to use this example as reference. 
+One thing to note about Microsoft GraphRAG is that many online implementations I found were out of date with the latest Microsoft GraphRAG library, so feel free to use this example as an up-to-date reference. 
 
 <a name="evaluation"></a>
 ## Evaluation
@@ -144,10 +146,17 @@ One thing to note is that many online GraphRAG implimentations are out of date w
 For evaluation, I created a test set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. 
 
 ### Question 10
-Interestingly, all 4 pipelines failed question 10, which was a rather simple query: "Who was his first-born?" While this was an example of a query that used an unspecific pronoun, an issue that I attempted to address with query rewriting, even more detrimental to the retrieval of this query was the memoir itself. The first section of the memoir is a an in-depth family genealogy, and due to so many examples of family relationships in this section, the retrieval processes became confused by the many semantically similar chunks.  
+Interestingly, all four pipelines failed to answer question 10, which was a seemingly simple query: "Who was his first-born?" This query is an example of the challenge of a user prompting with an unspecific pronoun, an issue I aimed to address through query rewriting. However, even more detrimental to the retrieval of this query was the make-up of the memoir itself. The first section of the memoir is an in-depth family genealogy, which, as you'd expect, contains many examples of family relationships. So when the retrieval process tried to find sementically similar chunks of text to "first-born", it was flooded with the many examples of family relationships in the genealogy section. To add difficulty, the geneology's format relies heavily on diagrams of family trees, which are not semantically seachable.
+
+### Solving Question 10
+A straightforward solution to this problem would be to implement a process that transforms the family tree diagrams into text format. This text would be semantically searchable and comprehensible to the model, allowing for more effective retrieval of information.
+
+A more complex solution worth exploring would be to implement a step into the pipeline that narrows down the retrieval space by first comparing the query to comprehensive summaries of each chapter. For example, when presented with the query "Who was his first-born?", the pipeline would first check which chapters most likely contain information about the birth of his children, then narrow down the search space to the most relevant chapters.
 
 ### Evaluation Takeaways
-In general, the classic RAG architecture was more successful than the GraphRAG architecture for specific queries, however, GraphRAG's ability to retrieve broader context ended up being very impressive. This can be seen in how the Basic RAG and GraphRAG pipelines failed on different queries. The ensemble pipeline highlights how adding more techniques such as reranking and context enrichment windows can derastically improve the success rate, but with the added cost of longer wait times and higher computational costs. Complexity and speed seems to be a big trade-off in RAG pipelines that should be considered.  
-    
+Overall, the classic RAG architecture demonstrated greater success for specific queries compared to the GraphRAG architecture. However, GraphRAG excelled in retrieving broader context, showcasing its unique strengths. This can be seen from the varying performance of the Basic RAG and GraphRAG pipelines on different queries.
+
+The ensemble pipeline approach illustrates how incorporating additional techniques, such as reranking and context enrichment windows, can significantly enhance the success rate of retrieval tasks. Nevertheless, this improvement often comes at the expense of longer wait times and increased computational costs. Therefore, it is essential to carefully balance the trade-off between complexity and speed when designing RAG pipelines. 
+
 ### Thank you for reading! 
-I had a good time with this project. If you have any questions or comments, feel free to reach out.
+I found this project to be a rewarding and enlightening experience in working with NLP and RAG. RAG pipelines are essential in modern-day natural language processing, allowing for the quick retrieval of relevant information from internal and external datasets. Their flexibility and capacity for improvement through various techniques make them an excellent option for boosting information retrieval systems. I highly recommend similar projects to anyone interested in exploring this fascinating field. If you have any questions or comments, please feel free to reach out.
