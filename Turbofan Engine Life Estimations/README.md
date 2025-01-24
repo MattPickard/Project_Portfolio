@@ -18,7 +18,8 @@ These run-to-failure datasets were synthetically generated using NASA's Commerci
 
 Each unit (engine) simulated flights of certain lengths and are categorized into three flight classes: short (1 to 3 hour flights), medium (3 to 5 hour flights), and long (5+ hour flights). I tried to include a variety of flight classes to ensure the models would be able to generalize engines from different flight conditions. Below is a table of the 18 units I used to train the models:
 
-<p align="center">
+<p align="center">  
+
 | Dataset | Unit | Flight Class |
 |--------------|:-------------:|:--------:|
 | DS02-006     | 11 | Short |
@@ -26,7 +27,8 @@ Each unit (engine) simulated flights of certain lengths and are categorized into
 | DS02-006     | 15, 16, 18, 20 | Long |
 | DS03-012     | 1, 5, 9, 12 | Short |
 | DS03-012     | 2, 3, 4, 7 | Medium |
-| DS03-012     | 6, 8, 10, 11 | Long |
+| DS03-012     | 6, 8, 10, 11 | Long |  
+
 </p>
 
 I used units 13 (Long Flight Class), 14 (Short Flight Class), 15 (Medium Flight Class) from DS03-012 to evaluate model performance.
