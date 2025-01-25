@@ -4,6 +4,6 @@ In this repository, you will find a collection of my data science projects. Enjo
 
 # Table of Contents
 
-- [RAG Techniques to Query my Grandfather's Memoir](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20Project)
-- [Turbofan Engine Prognostics Project](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Turbofan%20Engine%20Prognostics%20Project)
+- [RAG Pipeline to Query my Grandfather's Memoir](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20Project)
+- [Turbofan Engine Prognostics](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Turbofan%20Engine%20Prognostics%20Project)
 
