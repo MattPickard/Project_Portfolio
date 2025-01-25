@@ -81,7 +81,7 @@ I used a data generator to feed the models batches of 30-second windows so I cou
 For the optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/custom_loss.png?raw=true" alt="Custom Loss Function">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/custom_loss.png?raw=true" alt="Custom Loss Function" style="width: 50%;">
 </p>
 
 The idea behind the custom loss function stems from NASA's evaluation metric that penalizes overestimations. This makes sense as overestimations may lead to late maintenance and are more dangerous. By penalizing overestimations, the RUL model did better on NASA's evaluation metric however it performed worse on the root mean squared error metric. So I landed on using a small penalty weight of .05 to balance performance of the two metrics.
