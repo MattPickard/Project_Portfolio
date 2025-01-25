@@ -125,7 +125,7 @@ To evaluate the performance of the models, I tested them on three units of diffe
 
 
 ## Unit 13 Evaluation 
-<p style="display: flex; justify-content: space-between;">
+<p style="display: flex; align-items: center; justify-content: space-between;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 48%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 48%;">
 </p>
@@ -138,7 +138,7 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL NASA Evaluation Metric     | 1.79      | 1.68                     |
 
 ## Unit 14 Evaluation 
-<p style="display: flex; justify-content: space-between;">
+<p style="display: flex; align-items: center; justify-content: space-between;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 48%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 48%;">
 </p>
@@ -151,7 +151,7 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL NASA Evaluation Metric     | 1.55      | 1.46                     |
 
 ## Unit 15 Evaluation 
-<p style="display: flex; justify-content: space-between;">
+<p style="display: flex; align-items: center; justify-content: space-between;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 48%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 48%;">
 </p>
