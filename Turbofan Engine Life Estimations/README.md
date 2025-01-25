@@ -5,8 +5,10 @@ Welcome to my turbofan engine life estimations project! I will show you how I bu
 
 <p align="center" style="width: 80%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 80%;">
+  <div style="width: 80%;">
   <br>
   <em>A depiction showing high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.</em>
+  </div>
 </p>
 
 
