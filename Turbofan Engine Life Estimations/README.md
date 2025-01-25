@@ -3,9 +3,11 @@
 
 Welcome to my turbofan engine life estimations project! I will show you how I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These types of predictions can be used for scheduling proactive maintenance and ensuring the safety and reliability of the engines. To accomplish this, I utilized run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of systems. My models predict RUL and health status of an engine based on 30 seconds of sensor data. RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. Health status is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
 
-<p align="center" style="width: 80%;">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 100%;">
-*A depiction that shows the high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 80%;">
+<p style="width: 60%;">
+  <em>A depiction that shows the high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.</em>
+</p>
 </p>
 
 
