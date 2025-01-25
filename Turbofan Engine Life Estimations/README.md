@@ -3,11 +3,11 @@
 
 Welcome to my turbofan engine life estimations project! I will show you how I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These types of predictions can be used for scheduling proactive maintenance and ensuring the safety and reliability of the engines. To accomplish this, I utilized run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of systems. My models predict RUL and health status of an engine based on 30 seconds of sensor data. RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. Health status is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
 
-<p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 50%;">
-  <br>
-  A depiction that shows the high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.
+<p align="center" style="width: 80%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 100%;">
+*A depiction that shows the high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*
 </p>
+
 
 When it comes to tabular data, traditional machine learning models are usually the first choice. However, these models can struggle to capture temporal patterns in the data. In this case, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. They use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and traditional machine learning models using the raw flattended data. However, I found that these hybrid models performed the best.  
 
