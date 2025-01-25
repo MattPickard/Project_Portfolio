@@ -1,4 +1,4 @@
-# RAG Techniques to Query my Grandfather's Memoir
+# RAG Pipeline to Query my Grandfather's Memoir
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 60%;">
 </p>
@@ -95,8 +95,8 @@ Building on the insights gained from version 1, version 2 of the ensemble pipeli
 **LLM-based Reranking**  
 I explored the performance of an LLM-based reranking model after previously using the cross-encoder reranking model. To do this, I called OpenAI's GPT-4o-mini model to rerank the top 10 chunks retrieved using the following prompt:
 ```
-On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query.
-Consider the specific context and intent of the query, not just keyword matches.
+On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query. Consider the specific
+context and intent of the query, not just keyword matches.
     Query: {query}
     Document: {doc}
     Relevance Score:
@@ -110,8 +110,8 @@ This section remains unchanged, as it utilizes the same technique implemented in
 I had two main objectives for implementing query rewriting. First, I aimed to convert queries into the first-person perspective to better align with the memoir's writing style, which would enhance retrieval accuracy. Second, I wanted to create multiple variations of the same query while preserving its meaning, thereby improving the potential retrieval results. After some prompt engineering, I developed the following prompt that effectively achieves both of these objectives:
 ```
 You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. 
-The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways, 
-using examples of first-person as if George is asking himself and third-person as if someone else is asking about him.
+The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways, using examples 
+of first-person as if George is asking himself and third-person as if someone else is asking about him.
 
     Original query: {original_query}
 
@@ -149,7 +149,7 @@ One thing to note about Microsoft GraphRAG is that many online implementations I
 For evaluation, I created a test set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. 
 
 ### Question 10
-Interestingly, all four pipelines failed to answer question 10, which was a seemingly simple query: "Who was his first-born?" This query is an example a user prompting with an unspecific pronoun, an issue I aimed to address through query rewriting. However, the content and layout of section one poses a major challenge for queries asking about familial relationships. The first section of the memoir is an in-depth family genealogy which contains many examples of family relationships. So when the retrieval process attempts to find sementically similar chunks of text to "first-born", it was flooded with the many examples of family relationships in the genealogy section. To add difficulty to the retrieval process of such queries, the geneology's format relies heavily on diagrams of family trees, which are not semantically seachable.
+Interestingly, all four pipelines failed to answer question 10, which was a seemingly simple query: "Who was his first-born?" This query is an example a user prompting with an unspecific pronoun, an issue I aimed to address through query rewriting. However, the content and layout of section one poses a major challenge for queries asking about familial relationships. The first section of the memoir is an in-depth family genealogy which exclusively contains and breaks down family relationships. So when the retrieval process attempts to find sementically similar chunks of text to "first-born", it was flooded with the many examples of family relationships in the genealogy section, confusing it. To add difficulty to the retrieval process of such queries, the geneology section's formatting relies heavily on diagrams of family trees, which are not semantically seachable.
 
 ### Solving Question 10
 A straightforward solution to this problem would be to implement a process that transforms the family tree diagrams into text format. This text would be semantically searchable and comprehensible to the model, allowing for more effective retrieval of information.
