@@ -3,11 +3,11 @@
 
 Welcome to my turbofan engine life estimations project! I will show you how I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These types of predictions can be used for scheduling proactive maintenance and ensuring the safety and reliability of the engines. To accomplish this, I utilized run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of systems. My models predict RUL and health status of an engine based on 30 seconds of sensor data. RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. Health status is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
 
-
-(Picture of degradation phases)
-
-A depiction that shows an example (variable) of engines, indicating degradation over time. The dashed line indicates the transition from normal to abnormal degradation phases.
-
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 50%;">
+  <br>
+  A depiction that shows the high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.
+</p>
 
 When it comes to tabular data, traditional machine learning models are usually the first choice. However, these models can struggle to capture temporal patterns in the data. In this case, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. They use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and traditional machine learning models using the raw flattended data. However, I found that these hybrid models performed the best.  
 
@@ -59,24 +59,26 @@ The first step in assembling the hybrid models involves building one-dimensional
 
 I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed well, which is as follows:
 
-**Input shape:** (30, 18) - thirty seconds of 18 features
 
-**One-dimensional Convolutional Block**  
-- 1D Convolutional Layer (512 filters, kernel size of 3, strides of 1, relu activation, same padding)  
-- Batch Normalization Layer  
-- Global Average Pooling Layer (I found this worked better than using a flattening layer or incrimental 1D max pooling layers.)  
+    **Input shape:** (30, 18) - thirty seconds of 18 features
 
-**First Dense Block**  
-- Dense Layer (2048 units, relu activation, L2 kernel regularization of 0.025)  
-- Batch Normalization Layer  
+    **One-dimensional Convolutional Block**  
+    - 1D Convolutional Layer (512 filters, kernel size of 3, strides of 1, relu activation, same padding)  
+    - Batch Normalization Layer  
+    - Global Average Pooling Layer (I found this worked better than a flattening layer or incrimental 1D max pooling layers.)  
 
-**Eight Smaller Dense Blocks**  
-- Dense Layer (128 units, relu activation, L2 kernel regularization of 0.025)  
-- Batch Normalization Layer  
+    **First Dense Block**  
+    - Dense Layer (2048 units, relu activation, L2 kernel regularization of 0.025)  
+    - Batch Normalization Layer  
 
-**Output Layers**  
-- Health State uses a sigmoid activation function.  
-- RUL uses a linear activation function.  
+    **Eight Smaller Dense Blocks**  
+    - Dense Layer (128 units, relu activation, L2 kernel regularization of 0.025)  
+    - Batch Normalization Layer  
+
+    **Output Layers**  
+    - Health State uses a sigmoid activation function.  
+    - RUL uses a linear activation function.  
+
 
 For the optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
