@@ -58,7 +58,7 @@ Due to the size of the dataset, you will see that memory was regularly freed up 
 The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional blocks learn low-level features. You can then seperate these blocks from the larger models and use their outputs as feature extractors for traditional machine learning models such as CatBoost. While I was at it, I decided to take the opportunity to optimize the models for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against.
 
 I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed well, which is as follows:
-
+---
 Input shape: (30, 18) - thirty seconds of 18 features
 
 **One-dimensional Convolutional Block**  
@@ -77,6 +77,8 @@ Input shape: (30, 18) - thirty seconds of 18 features
 **Output Layers**  
 - Health State uses a sigmoid activation function.  
 - RUL uses a linear activation function.  
+
+--- 
 
 For the optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
