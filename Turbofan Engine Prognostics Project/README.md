@@ -28,7 +28,7 @@ For these predictions, RUL refers to the number of flight cycles remaining befor
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 50%;">
 </p>  
 
-*A figure that shows high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*  
+*A figure that shows high pressure turbine efficiency over time, indicating engine degradation. The dashed lines show the transition from normal to abnormal degradation phases.*  
 
 ---
 
@@ -70,7 +70,7 @@ I chose to fully preprocess and save the transformed datasets to avoid additiona
 6. Remove the Unit column. (this column was needed for the previous step, so it wasn't removed earlier)
 7. Randomize the training data and split into training and validation sets.
 8. Separate the x features and y labels.
-9. Save each set into compressed h5 files for later use.
+9. Save each dataset as a compressed h5 file for later use.
 
 Due to the size of the dataset, you will see that memory was regularly freed up by deleting variables that were no longer needed after each transformation step. If I had not done this, my computer would have quickly run out of memory.  
 
@@ -202,7 +202,7 @@ The evaluation results demonstrate significant improvements after applying the f
 The purpose of the models built in this project is to aid in scheduling maintenance and monitoring engine health. However, they don't diagnose the causes of failure. For this reason, I suggest building two additional types of models that would aid in engine diagnostics. First, regression prediction models that predict the health parameters (theta), which are also simulated by the C-MAPSS models.
 
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/health_parameters.png?raw=true" alt="Health Parameters" style="width: 50%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/health_parameters.png?raw=true" alt="Health Parameters" style="width: 35%;">
 </p>
 
 Second, create a multi-class classification model that identifies the failure mode. All together, these models would form a diagnostic and prognostic suite that would help engineers diagnose the cause of failure and schedule maintenance.
