@@ -36,8 +36,8 @@ When it comes to tabular data, traditional machine learning models are usually t
 
 ## Data
 <a name="data"></a>
-**NASA's Aircraft Engine Run-to-Failure Dataset under Real Flight Conditions for Prognostics and Diagnostics:** [Click Here!](https://www.mdpi.com/2306-5729/6/1/5)  
-**NASA's Original 2020 Paper:** [Click Here!](https://ntrs.nasa.gov/citations/20205001125)
+[**Link to NASA's Aircraft Engine Run-to-Failure Dataset under Real Flight Conditions for Prognostics and Diagnostics**](https://www.mdpi.com/2306-5729/6/1/5)  
+[**Link to NASA's Original 2020 Paper**](https://ntrs.nasa.gov/citations/20205001125)
 
 These run-to-failure datasets were synthetically generated using NASA's Commercial Modular Aero-Propulsion System Simulation (C-MAPSS), which simulates turbofan engines with high precision as they are fed flight conditions as inputs as recorded by real commercial jets. The variables used to make the predictions include Flight Data (w) and Sensor Measurements (xs). Between these two categories there are 18 features, and each row of data in the dataset represents one second of sensor data.
 
@@ -58,7 +58,7 @@ Due to computational constraints, I limited the scope of the project to a subset
 
 ## Data Preprocessing
 <a name="data-preprocessing"></a>
-**Preprocessing Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/preprocessing.ipynb)
+[**Link to Preprocessing Code**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/preprocessing.ipynb)
 
 I chose to fully preprocess and save the transformed datasets to avoid additional computational overhead during training. To be compatible as input for the neural networks, the y labels were extracted and the x features were reshaped as (# of samples, 30, 18), representing 30 second windows of 18 features. The 30-second windows were created using overlapping segments, a new window starting every 10 seconds, meaning there is a slight overlap between each window. This process converted approximately 11.5 million seconds of data into 1.15 million 30-second time windows. The 30-second training windows were then randomized and split into training and validation sets, with 10% being used for validation. Here is a list of steps taken to preprocess the data:
 
@@ -76,7 +76,7 @@ Due to the size of the dataset, you will see that memory was regularly freed up 
 
 ## Neural Network Models
 <a name="neural-network-models"></a>
-**Neural Networks Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/one_d_conv_models.ipynb)
+[**Link to Neural Networks Code**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/one_d_conv_models.ipynb)
 
 The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional blocks learn low-level features. You can then separate these blocks from the larger models and use their outputs as feature extractors for traditional machine learning models such as CatBoost. While I was at it, I decided to take the opportunity to optimize the models for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against.
 
@@ -115,13 +115,13 @@ While these models were fun to build, I really only needed their trained convolu
 
 ## CatBoost Preprocessing
 <a name="catboost-preprocessing"></a>
-**CatBoost Preprocessing Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_preprocessing.ipynb)
+[**Link to CatBoost Preprocessing Code**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_preprocessing.ipynb)
 
 Once the convolutional blocks learned to interpret low-level features, their outputs were used as inputs for CatBoost models. The neural network's first convolutional block takes a shape of (# of samples, 30, 18) as input and outputs a shape of (# of samples, 512). So, the CatBoost models use those 512 features to make their predictions. To reduce the computational overhead during training and evaluation, I saved the datasets of features produced by the feature extractors for later use.
 
 ## CatBoost Models
 <a name="catboost-models"></a>
-**CatBoost Models Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_models.ipynb)
+[**Link to CatBoost Models Code**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_models.ipynb)
 
 I began by using grid search cross-validation to find the best parameters for the CatBoost models, however the size of the dataset proved a major challenge, both in terms of memory and computational power. My solution was to use a smaller subset of the dataset during the grid search to gain an intuition for possible best parameters for the larger dataset. During cross-validation, it became clear that deeper trees performed well, however to keep the timeline of this project reasonable, I limited the final depth of the trees to 10. To give you an example, going from a depth of 10 to 11 on the full training set would have added an extra 3-4 hours of training on my personal computer. The final parameters and structure of the models are as follows:
 
@@ -141,7 +141,7 @@ I began by using grid search cross-validation to find the best parameters for th
 
 ## Evaluation
 <a name="evaluation"></a>
-**Evaluation Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/evaluation.ipynb)
+[**Link to Evaluation Code**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/evaluation.ipynb)
 
 To create the final predictions from the raw predictions, I applied a running weighted average of 1500 time steps, which is approximately 4 hours. I also applied a threshold of 0.5 to the weighted health state averages to convert the probabilities into a binary classification. Taking these steps make the predictions more robust and accurate.
 
