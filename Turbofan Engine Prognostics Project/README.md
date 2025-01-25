@@ -1,4 +1,4 @@
-# Turbofan Engine Prognostics Project
+# Turbofan Engine Prognostics
 
 <p align="center">
   <img src="https://plus.unsplash.com/premium_photo-1679758629409-83446005843c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWlycGxhbmUlMjB0dXJib2ZhbiUyMGVuZ2luZXxlbnwwfHwwfHx8MA%3D%3D" alt="Turbofan Engine" style="width: 70%;">
@@ -6,27 +6,29 @@
 
 ## Introduction
 
-This project will show you how I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These types of predictions can be used for scheduling proactive maintenance and monitoring engine health. To accomplish this, I utilized run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of such systems. My models make raw predictions of RUL and health status of an engine based on 30 seconds of sensor data, then a running weighted average is applied to make more robust final predictions. RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. Health status is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
+For this project, I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These predictions can be used for scheduling proactive maintenance and monitoring engine health. To accomplish this, I trained the models on run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of such systems. My models make raw predictions based on 30 seconds of sensor data, then a running weighted average is applied to provide a more robust final predictions. 
+
+For these predictions, RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. This is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
 
 ---
 <p align="center">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 70%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 50%;">
 </p>  
 
 *A figure that shows high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*  
 
 ---
 
-When it comes to tabular data, traditional machine learning models are usually the first choice. However, traditional models can struggle to capture temporal patterns in the data. For this project, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. They use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and traditional machine learning models using the raw flattended data. However, I found that these hybrid models performed the best.  
+When it comes to tabular data, traditional machine learning models are usually the first choice. However, traditional models struggle to capture temporal patterns in data. For this project, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. My models use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and using the flattened raw data as input for traditional machine learning models. However, the hybrid models presented in this project performed the best.  
 
 ## Data
 
-**NASA's Aircraft Engine Run-to-Failure Dataset under Real Flight Conditions for Prognostics and Diagnostics:** https://www.mdpi.com/2306-5729/6/1/5
+**NASA's Aircraft Engine Run-to-Failure Dataset under Real Flight Conditions for Prognostics and Diagnostics:** https://www.mdpi.com/2306-5729/6/1/5  
 **NASA's Original 2020 Paper:** https://ntrs.nasa.gov/citations/20205001125
 
 These run-to-failure datasets were synthetically generated using NASA's Commercial Modular Aero-Propulsion System Simulation (C-MAPSS), which simulates turbofan engines with high precision as they are fed flight conditions as inputs as recorded by real comercial jets. The variables used to make the predictions include Flight Data (w) and Sensor Measurments (xs). Between these two categories there are 18 features, and each row of data in the dataset represents one second of sensor data.
 
-(variable names)
+
 
 Each unit (engine) simulated flights of certain lengths and are categorized into three flight classes: short (1 to 3 hour flights), medium (3 to 5 hour flights), and long (5+ hour flights). I tried to include a variety of flight classes to ensure the models would be able to generalize engines from different flight conditions. Below is a table of the 18 units I used to train the models:
 
@@ -68,22 +70,22 @@ The first step in assembling the hybrid models involves building one-dimensional
 I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed the best:
 
 
-    **Input shape:** (30, 18) - thirty seconds of 18 features
+- **Input shape:** (30, 18) Thirty seconds of 18 features
 
-    **One-dimensional Convolutional Block**  
+- **One-dimensional Convolutional Block**  
     - 1D Convolutional Layer (512 filters, kernel size of 3, strides of 1, relu activation, same padding)  
     - Batch Normalization Layer  
     - Global Average Pooling Layer (I found this worked better than a flattening layer or incrimental 1D max pooling layers.)  
 
-    **First Dense Block**  
+- **First Dense Block**  
     - Dense Layer (2048 units, relu activation, L2 kernel regularization of 0.025)  
     - Batch Normalization Layer  
 
-    **Eight Smaller Dense Blocks**  
+- **Eight Smaller Dense Blocks**  
     - Dense Layer (128 units, relu activation, L2 kernel regularization of 0.025)  
     - Batch Normalization Layer  
 
-    **Output Layers**  
+- **Output Layers**  
     - Health State uses a sigmoid activation function.  
     - RUL uses a linear activation function.  
 
