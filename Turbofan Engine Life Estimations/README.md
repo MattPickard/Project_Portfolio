@@ -98,14 +98,14 @@ Once the convolutional blocks learned to interprate low-level features, their ou
 
 I began by using grid search cross-validation to find the best parameters for the CatBoost models, however the size of the dataset proved a major challenge, both in terms of memory and computational power. My solution was to use a smaller subset of the dataset during the grid search to gain an intuition for possible best parameters for the larger dataset. During cross-validation, it became clear that deeper trees performed well, however to keep the timeline of this project reasonable, I limited the final depth of the trees to 10. To give you an example, going from a depth of 10 to 11 on the full training set would have added an extra 3-4 hours of training on my personal computer. The final parameters and structure of the models are as follows:
 
-**Health State:**
+**Health State CatBoost Model:**
 - learning rate: 0.1
 - depth: 10
 - \# of trees: 668
 - loss function: Logloss
 - Approximate size with feature extractor: 11 MB
 
-**RUL:**
+**RUL CatBoost Model:**
 - learning rate: 0.1
 - depth: 10
 - \# of trees: 5000
@@ -124,9 +124,9 @@ To evaluate the performance of the models, I tested them on three units of diffe
 </p>
 
 
-### Unit 13  
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_13.png?raw=true" alt="Unit 13 Evaluation">
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_13.png?raw=true" alt="Unit 13 Evaluation">
+## Unit 13 Evaluation 
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 40%;">
 
 | Metric                        | Raw Predictions  | Final Predictions |
 |-------------------------------|----------------|--------------------------------|
@@ -135,9 +135,9 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL RMSE                      | 8.25      | 7.50                     |
 | RUL NASA Evaluation Metric     | 1.79      | 1.68                     |
 
-### Unit 14  
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_14.png?raw=true" alt="Unit 14 Evaluation">
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_14.png?raw=true" alt="Unit 14 Evaluation">
+## Unit 14 Evaluation 
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 40%;">
 
 | Metric                        | Raw Predictions  | Final Predictions |
 |-------------------------------|----------------|--------------------------------|
@@ -146,9 +146,9 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL RMSE                      | 5.42      | 4.48                     |
 | RUL NASA Evaluation Metric     | 1.55      | 1.46                     |
 
-### Unit 15  
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_15.png?raw=true" alt="Unit 15 Evaluation">
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_15.png?raw=true" alt="Unit 15 Evaluation">
+## Unit 15 Evaluation 
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 40%;">
 
 | Metric                        | Raw Predictions  | Final Predictions |
 |-------------------------------|----------------|--------------------------------|
