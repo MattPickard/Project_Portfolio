@@ -95,7 +95,8 @@ Building on the insights gained from version 1, version 2 of the ensemble pipeli
 **LLM-based Reranking**  
 I explored the performance of an LLM-based reranking model after previously using the cross-encoder reranking model. To do this, I called OpenAI's GPT-4o-mini model to rerank the top 10 chunks retrieved using the following prompt:
 ```
-On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query. Consider the specific context and intent of the query, not just keyword matches.
+On a scale of 1-10, rate the relevance of the following chunk from George Shambaugh's memoir to the query.
+Consider the specific context and intent of the query, not just keyword matches.
     Query: {query}
     Document: {doc}
     Relevance Score:
@@ -109,7 +110,8 @@ This section remains unchanged, as it utilizes the same technique implemented in
 I had two main objectives for implementing query rewriting. First, I aimed to convert queries into the first-person perspective to better align with the memoir's writing style, which would enhance retrieval accuracy. Second, I wanted to create multiple variations of the same query while preserving its meaning, thereby improving the potential retrieval results. After some prompt engineering, I developed the following prompt that effectively achieves both of these objectives:
 ```
 You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. 
-The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways, using examples of first-person as if George is asking himself and third-person as if someone else is asking about him.
+The following query is a question pertaining to George Shambaugh's life. Reword the same question in 3 very concise ways, 
+using examples of first-person as if George is asking himself and third-person as if someone else is asking about him.
 
     Original query: {original_query}
 
@@ -159,5 +161,5 @@ Overall, the classic RAG architecture demonstrated greater success for specific 
 
 The ensemble pipeline approach illustrates how incorporating additional techniques, such as reranking and context enrichment windows, can significantly enhance the success rate of retrieval tasks. Nevertheless, this improvement often comes at the expense of longer wait times and increased computational costs. Therefore, it is essential to balance the trade-off between complexity and speed when designing RAG pipelines. 
 
-### Conclusion
+## Conclusion
 RAG pipelines are essential in modern-day natural language processing, allowing for the quick retrieval of relevant information from internal and external datasets. Their flexibility and capacity for improvement through various techniques make them an excellent option for boosting information retrieval systems. I highly recommend similar projects to anyone interested in exploring this field. If you have any questions or comments, please feel free to reach out.
