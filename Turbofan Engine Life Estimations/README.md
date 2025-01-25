@@ -1,18 +1,18 @@
-# Turbofan Engine Prognostics
+# Turbofan Engine Life Estimations Project
 ## Introduction
 
-Welcome to my turbofan engine life estimations project! I will show you how I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These types of predictions can be used for scheduling proactive maintenance and ensuring the safety and reliability of the engines. To accomplish this, I utilized run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of systems. My models predict RUL and health status of an engine based on 30 seconds of sensor data. RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. Health status is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
+This project will show you how I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These types of predictions can be used for scheduling proactive maintenance and monitoring engine health. To accomplish this, I utilized run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of such systems. My models make raw predictions of RUL and health status of an engine based on 30 seconds of sensor data, then a running weighted average is applied to make more robust final predictions. RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. Health status is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
 
 ---
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 70%;">
 </p>  
 
-A depiction of high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.  
+*A figure that shows high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*  
 
 ---
 
-When it comes to tabular data, traditional machine learning models are usually the first choice. However, these models can struggle to capture temporal patterns in the data. In this case, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. They use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and traditional machine learning models using the raw flattended data. However, I found that these hybrid models performed the best.  
+When it comes to tabular data, traditional machine learning models are usually the first choice. However, traditional models can struggle to capture temporal patterns in the data. For this project, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. They use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and traditional machine learning models using the raw flattended data. However, I found that these hybrid models performed the best.  
 
 ## Data
 
@@ -60,7 +60,7 @@ Due to the size of the dataset, you will see that memory was regularly freed up 
 
 The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional blocks learn low-level features. You can then seperate these blocks from the larger models and use their outputs as feature extractors for traditional machine learning models such as CatBoost. While I was at it, I decided to take the opportunity to optimize the models for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against.
 
-I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed well, which is as follows:
+I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed the best:
 
 
     **Input shape:** (30, 18) - thirty seconds of 18 features
@@ -83,13 +83,13 @@ I used a data generator to feed the models batches of 30-second windows so I cou
     - RUL uses a linear activation function.  
 
 
-For the optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
+For optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/custom_loss.png?raw=true" alt="Custom Loss Function" style="width: 50%;">
 </p>
 
-The idea behind the custom loss function stems from NASA's evaluation metric that penalizes overestimations. This makes sense as overestimations may lead to late maintenance and are more dangerous. By penalizing overestimations, the RUL model did better on NASA's evaluation metric however it performed worse on the root mean squared error metric. So I landed on using a small penalty weight of .05 to balance performance of the two metrics.
+The idea behind the custom loss function stems from NASA's evaluation metric that slightly penalizes overestimations more than underestimations. This makes sense as overestimations may lead to delayed maintenance. By using this loss function, the RUL model did better on NASA's evaluation metric, however, it performed worse on the root mean squared error metric. So I used a small penalty weight of .05 to balance performance of the two metrics.
 
 While these models were fun to build, I really only needed their trained convolutional blocks to serve as feature extractors for the CatBoost models. So, let's go to the next step!
 
@@ -108,31 +108,32 @@ I began by using grid search cross-validation to find the best parameters for th
 - depth: 10
 - \# of trees: 668
 - loss function: Logloss
-- Approximate size with feature extractor: 11 MB
+- Approximate size: 11 MB
 
 **RUL CatBoost Model:**
 - learning rate: 0.1
 - depth: 10
 - \# of trees: 5000
 - loss function: RMSE
-- Approximate size with feature extractor: 81 MB
+- Approximate size: 81 MB
 
 ## Evaluation
-Evaluation Code: 
+**Evaluation Code:** 
 
-To create the final predictions, I applied a running weighted average with windows of 1500 time steps, which is approximately 4 hours, and a threshold of .5 is applied to the health state predictions. This makes the predictions more robust and accurate.
+To create the final predictions from the raw predictions, I applied a running weighted average of 1500 time steps, which is approximately 4 hours. I also applied a threshold of 0.5 to the weighted health state averages to convert the probabilities into a binary classification. Taking these steps make the predictions more robust and accurate.
 
-To evaluate the performance of the models, I tested them on three units of different flight classes. The three units were 13 (Long Flight Class), 14 (Short Flight Class), and 15 (Medium Flight Class) from DS03-012. For evaluation metrics, I used accuracy for the health state predictions and three seperate metrics for RUL predictions: mean absolute error, root mean squared error, and NASA's custom evaluation metric that penalizes overestimations. NASA's Scoring Function is shown below where delta is the difference between the predicted RUL and the actual RUL and alpha is set to 1/13 if the RUL is an underestimate and to 1/10 if the RUL is an overestimate. I converted it into an evaluation metric by taking the mean instead of the sum:
+To evaluate the performance of the models, I tested them on three units of different flight classes. The three units were 13 (Long Flight Class), 14 (Short Flight Class), and 15 (Medium Flight Class) from DS03-012. For evaluation metrics, I used accuracy for the health state predictions and three seperate metrics for Remaining Useful Life (RUL) predictions: mean absolute error, root mean squared error, and NASA's custom evaluation metric that penalizes overestimations. 
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/nasa_scoring.png?raw=true" alt="NASA's Evaluation Metric" style="width: 30%;">
 </p>
 
+NASA's Scoring Function is shown above where delta is the difference between the predicted RUL and the actual RUL and alpha is set to 1/13 if the RUL is an underestimate and to 1/10 if the RUL is an overestimate. I converted it into an evaluation metric by taking the mean instead of the sum.
 
-## Unit 13 Evaluation 
+## Unit 13 Evaluation (Long Flight Class)
 <p style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 48%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 48%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_13.png?raw=true" alt="Unit 13 Evaluation" style="width: 48%;">
 </p>
 
 | Metric                        | Raw Predictions  | Final Predictions |
@@ -142,10 +143,10 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL RMSE                      | 8.25      | 7.50                     |
 | RUL NASA Evaluation Metric     | 1.79      | 1.68                     |
 
-## Unit 14 Evaluation 
+## Unit 14 Evaluation (Short Flight Class)
 <p style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 48%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 48%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_14.png?raw=true" alt="Unit 14 Evaluation" style="width: 48%;">
 </p>
 
 | Metric                        | Raw Predictions  | Final Predictions |
@@ -155,10 +156,10 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL RMSE                      | 5.42      | 4.48                     |
 | RUL NASA Evaluation Metric     | 1.55      | 1.46                     |
 
-## Unit 15 Evaluation 
+## Unit 15 Evaluation (Medium Flight Class)
 <p style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 48%;">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/rul_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 48%;">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/hs_15.png?raw=true" alt="Unit 15 Evaluation" style="width: 48%;">
 </p>
 
 | Metric                        | Raw Predictions  | Final Predictions |
@@ -168,11 +169,37 @@ To evaluate the performance of the models, I tested them on three units of diffe
 | RUL RMSE                      | 4.07      | 2.77                     |
 | RUL NASA Evaluation Metric     | 1.29      | 1.19                     |
 
+### Evaluation Interpretation
+
+The evaluation results demonstrate significant improvements after applying the final prediction techniques. They also show that the models generalize best to medium flight class engines. Understandable, as the average flight and engine conditions between the three flight classes would most closely resemble the conditions of the medium flight class engines.
 
 
 
 ## Next Steps
 
-More and diverse data, longer time periods, introduce engineered features into the prediction: cycle number, HS prediction, Fc, 5 or 10 minute or flight averages, work with domain experts.  Rolling average of the predictions
-Transformer as a feature extractor. 
-Experiment with deeper trees in the CatBoost models. 
+### Create a Diagnostic and Prognostic Suite
+The purpose of the models built in this project is to aid in scheduling maintenance and monitoring engine health. However, they don't diagnose the causes of failure. For this reason, I suggest building two additional types of models that would aid in engine diagnostics. First, regression prediction models that predict the health parameters (theta), which are also simulated by the C-MAPSS models.
+
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/health_parameters.png?raw=true" alt="Health Parameters" style="width: 50%;">
+</p>
+
+Second, create a multi-class classification model that identifies the failure mode. All together, these models would form a diagnostic and prognostic suite that would help engineers diagnose the cause of failure and schedule maintenance.
+
+
+### Diversify and Scale Up the Data
+
+I limited the scope of this project to a single failure mode, so these models serve as a proof of concept. To make them industry ready, you would need to scale up the training dataset to represent all failure modes. Scaling up the training data would also allow the models to generalize better to the different flight classes. I would expect to see improvments to the long flight and short flight class metrics if the training dataset were larger. 
+
+### Model Improvements
+
+There are multiple approaches still worth exploring to improve the models' performance: 
+
+- Using deeper trees in the CatBoost models.
+- Feature engineering using domain expertise or traditional feature selection techniques. For example using rolling averages or lag features and using the HS model prediction as a feature for the RUL model and vice versa.
+- Trying different architectures, such as using transformers as feature extractors.
+- Larger training datasets.
+
+## Conclusion
+
+I hope this project highlights the potential of machine learning in the field of predictive maintenance and diagnostics. With the correct sensor data and by integrating one-dimensional convolutional neural networks with traditional machine learning models like CatBoost, it's possible to create models that can predict the health and RUL of mechanical systems. I hope you enjoyed, please reach out if you have any questions or comments!
