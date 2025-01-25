@@ -7,7 +7,7 @@ Welcome to my turbofan engine life estimations project! I will show you how I bu
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/high_pressure_turbine_efficiency.png?raw=true" alt="High Pressure Turbine Efficiency" style="width: 70%;">
 </p>
-*A depiction of high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*
+*A depiction of high pressure turbine efficiency over time, indicating engine degradation. The dashed line shows the transition from normal to abnormal degradation phases.*  
 ---
 
 When it comes to tabular data, traditional machine learning models are usually the first choice. However, these models can struggle to capture temporal patterns in the data. In this case, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. They use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and traditional machine learning models using the raw flattended data. However, I found that these hybrid models performed the best.  
