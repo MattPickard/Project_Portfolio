@@ -59,8 +59,7 @@ The first step in assembling the hybrid models involves building one-dimensional
 
 I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed well, which is as follows:
 
----
-Input shape: (30, 18) - thirty seconds of 18 features
+**Input shape:** (30, 18) - thirty seconds of 18 features
 
 **One-dimensional Convolutional Block**  
 - 1D Convolutional Layer (512 filters, kernel size of 3, strides of 1, relu activation, same padding)  
@@ -79,11 +78,11 @@ Input shape: (30, 18) - thirty seconds of 18 features
 - Health State uses a sigmoid activation function.  
 - RUL uses a linear activation function.  
 
---- 
-
 For the optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
-(loss function)
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/custom_loss.png?raw=true" alt="Custom Loss Function" style="width: 70%;">
+</p>
 
 The idea behind the custom loss function stems from NASA's evaluation metric that penalizes overestimations. This makes sense as overestimations may lead to late maintenance and are more dangerous. By penalizing overestimations, the RUL model did better on NASA's evaluation metric however it performed worse on the root mean squared error metric. So I landed on using a small penalty weight of .05 to balance performance of the two metrics.
 
@@ -120,7 +119,9 @@ To create the final predictions, I applied a running weighted average with windo
 
 To evaluate the performance of the models, I tested them on three units of different flight classes. The three units were 13 (Long Flight Class), 14 (Short Flight Class), and 15 (Medium Flight Class) from DS03-012. For evaluation metrics, I used accuracy for the health state predictions and three seperate metrics for RUL predictions: mean absolute error, root mean squared error, and NASA's custom evaluation metric that penalizes overestimations. NASA's Scoring Function is shown below where delta is the difference between the predicted RUL and the actual RUL and alpha is set to 1/13 if the RUL is an underestimate and to 1/10 if the RUL is an overestimate. I converted it into an evaluation metric by taking the mean instead of the sum:
 
-(NASA's Evaluation Metric)
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/nasa_scoring.png?raw=true" alt="NASA's Evaluation Metric" style="width: 70%;">
+</p>
 
 
 ### Unit 13  
