@@ -1,7 +1,9 @@
 # Data-Science-Portfolio
 
-In this repository, you will find a collection of my data science projects. I hope you find them interesting and enjoyable!
+In this repository, you will find a collection of my data science projects. Enjoy!
 
 # Table of Contents
 
 - [RAG Techniques to Query my Grandfather's Memoir](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20Project)
+- [Turbofan Engine Prognostics Project](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Turbofan%20Engine%20Prognostics%20Project)
+
