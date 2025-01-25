@@ -24,11 +24,11 @@ Each unit (engine) simulated flights of certain lengths and are categorized into
 | Dataset | Unit | Flight Class |
 |--------------|:-------------:|:--------:|
 | DS02-006     | 11 | Short |
-| DS02-006     | 14 | Medium |
-| DS02-006     | 15, 16, 18, 20 | Long |
+|              | 14 | Medium |
+|              | 15, 16, 18, 20 | Long |
 | DS03-012     | 1, 5, 9, 12 | Short |
-| DS03-012     | 2, 3, 4, 7 | Medium |
-| DS03-012     | 6, 8, 10, 11 | Long |  
+|              | 2, 3, 4, 7 | Medium |
+|              | 6, 8, 10, 11 | Long |  
 
 For evaluation, I used units 13 (Long Flight Class), 14 (Short Flight Class), 15 (Medium Flight Class) from DS03-012.
 
@@ -115,25 +115,32 @@ NASA's Evaluation Metric is as follows where delta is the difference between the
 
 (NASA's Evaluation Metric)
 
-## Unit 13:
-Health State Accuracy: 93.31%
-RUL RMSE: 8.25
-RUL MAE: 6.18
-RUL NASA Evaluation Metric: 197966.61
+## Unit 13  
 
+| Metric                        | Raw Data  | Running Weighted Average |
+|-------------------------------|-----------|--------------------------|
+| Health State Accuracy          | 93.31%    | 97.00%                   |
+| RUL MAE                       | 6.18      | 5.68                     |
+| RUL RMSE                      | 8.25      | 7.50                     |
+| RUL NASA Evaluation Metric     | 1.79      | 1.68                     |
 
-## Unit 14:
-Health State Accuracy: 93.04%
-RUL RMSE: 5.42
-RUL MAE: 3.73
-RUL NASA Evaluation Metric: 53383.08
+## Unit 14  
 
+| Metric                        | Raw Data  | Running Weighted Average |
+|-------------------------------|-----------|--------------------------|
+| Health State Accuracy          | 93.04%    | 98.96%                   |
+| RUL MAE                       | 3.73      | 3.46                     |
+| RUL RMSE                      | 5.42      | 4.48                     |
+| RUL NASA Evaluation Metric     | 1.55      | 1.46                     |
 
-## Unit 15:
-Health State Accuracy: 95.80%
-RUL RMSE: 4.07
-RUL MAE: 2.55
-RUL NASA Evaluation Metric: 79995.86
+## Unit 15  
+
+| Metric                        | Raw Data  | Running Weighted Average |
+|-------------------------------|-----------|--------------------------|
+| Health State Accuracy          | 95.80%    | 99.56%                   |
+| RUL MAE                       | 2.55      | 1.90                     |
+| RUL RMSE                      | 4.07      | 2.77                     |
+| RUL NASA Evaluation Metric     | 1.29      | 1.19                     |
 
 
 After implementing running averages for the predictions, the NASA evaluation metric for Unit 15 improved to 79995.86.
