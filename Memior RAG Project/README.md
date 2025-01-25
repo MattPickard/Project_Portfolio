@@ -13,6 +13,7 @@
 * [RAG Ensemble](#rag-ensemble)
 * [Microsoft GraphRAG](#microsoft-graphrag)
 * [Evaluation](#evaluation)
+* [Conclusion](#conclusion)
 
 ## Implementation Resources
 * [https://github.com/NirDiamant/RAG_Techniques](https://github.com/NirDiamant/RAG_Techniques)
@@ -21,7 +22,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-This project serves as an exploration of various RAG (Retrieval-Augmented Generation) techniques, applied to a memoir written by my grandfather. RAG techniques have a wide range of potential applications, including enhancing search engines, improving customer support systems and chatbots, generating personalized content, and facilitating knowledge management within organizations. In this project, I built and evaluated four distinct pipelines, each designed to compare and contrast various methodologies and architectures and to showcase the importance and power of utilizing ensemble approaches. I began with a foundational RAG pipeline, which provided a baseline for my experiments, and subsequently added on an ensemble of techniques, including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I built and evaluated a simple implementation of Microsoft's GraphRAG, a popular architecture in the RAG community, to assess its performance and capabilities.
+This project serves as an exploration of various RAG (Retrieval-Augmented Generation) techniques applied to a memoir written by my grandfather. RAG techniques have a wide range of potential applications, including enhancing search engines, improving customer support systems and chatbots, generating personalized content, and facilitating knowledge management within organizations. In this project, I built and evaluated four distinct pipelines, each designed to compare and contrast various methodologies and architectures and to showcase the importance and power of utilizing ensemble approaches. I began with a foundational RAG pipeline, which provided a baseline for my experiments, and subsequently added on an ensemble of techniques, including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I built and evaluated a simple implementation of Microsoft's GraphRAG, a popular architecture in the RAG community, to assess its performance and capabilities.
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%">
@@ -62,7 +63,7 @@ During the testing phase of this pipeline, two significant weaknesses were ident
 1. The text chunks do not maintain context across pages. This issue arises from PyPDFLoader's default behavior, which splits documents into separate pages.
 2. Relying exclusively on the top two most similar chunks for context retrieval often results in insufficient information being provided to the model.
 
-With a success rate of 60%, this indicates that while a basic RAG pipeline serves as a good starting point, it is insufficient for achieving high success rates on its own. These identified weaknesses above can be mitigated by incorporating additional complexity and techniques. In the subsequent [RAG Ensemble Pipeline](#rag-ensemble) implementation, various techniques are demonstrated that effectively enhance performance.
+A success rate of 60% indicates that while a basic RAG pipeline serves as a good starting point, it is insufficient for achieving high success rates on its own. The identified weaknesses above can be mitigated by incorporating additional techniques. In the subsequent [RAG Ensemble Pipeline](#rag-ensemble) implementation, I apply various techniques that effectively address these weaknesses and enhance the pipeline's performance.
 
 **Additional Note:** I noticed that OpenAI's GPT-4o-mini model consistently failed to append source information to the end of its responses, even when prompted to do so and when the sources were included in the provided context. This issue persisted despite modifying the prompts and repositioning the sources within the context. It is possible that this behavior is due to the model conforming to an OpenAI policy. If I were to continue this project, one interesting direction to explore would be to see if other models are more flexible. One solution to overcome this hurdle could be to implement a separate step that appends source metadata to the end of the response.
 
@@ -80,7 +81,7 @@ The purpose of creating an ensemble pipeline was to demonstrate ways to improve 
 In this first version of the ensemble pipeline, I implemented **cross-encoder reranking**, as opposed to LLM-based reranking. Cross-encoder reranking is a technique that employs a model (specifically, ms-marco-MiniLM-L-6-v2) to evaluate the retrieved chunks against the query and reorders them based on their relevance scores. I retrieved the top 10 relevant chunks, applied the reranking model to reorder them, and then passed the top 3 chunks to the context enrichment windows.
 
 **Context Enrichment Windows**  
-This technique enhances each chunk by appending the context from the previous and next chunks, taking into account the overlap between chunks. This approach is highly beneficial as it allows for searching smaller chunks, leading to more precise retrieval and reranking. The added surrounding context significantly aids the model in generating a more informed response.
+This technique enhances retrieved chunks by appending the context from the previous and following sections, while also taking into account the overlap. This approach is highly beneficial as it allows for searching smaller chunks, leading to more precise retrieval and reranking. The added surrounding context significantly aids the model in generating a more informed response.
 
 ### Version 1 Insights
 
@@ -135,7 +136,7 @@ GraphRAG's architecture differs from the previous pipelines and is somewhat more
 
 During testing, I was impressed with GraphRAG's ability to generate comprehensive answers to queries that benefit from broader contexts. However, it struggled with narrow queries that required retrieving very specific information. Additionally, GraphRAG incurs a significant higher computational cost, resulting in longer wait times. Based on my observations, rather than using GraphRAG as a direct replacement for other architectures, it may make sense to use it to enhance existing pipelines. For instance, it could serve as a fallback option or provide additional context for broader queries. However, this approach would mean accepting longer wait times and increased computational costs.
 
-One thing to note about Microsoft GraphRAG is that many online implementations I found were out of date with the latest Microsoft GraphRAG library, so feel free to use this example as an up-to-date reference. 
+One thing to note about Microsoft GraphRAG is that many online implementations I found were out-of-date with the latest Microsoft GraphRAG library, so feel free to use this example as an up-to-date reference. 
 
 <a name="evaluation"></a>
 ## Evaluation
@@ -146,7 +147,7 @@ One thing to note about Microsoft GraphRAG is that many online implementations I
 For evaluation, I created a test set of 20 queries spread evenly across the 10 chapters of the memoir. A correct answer was defined as a response that matched the ground truth answer. 
 
 ### Question 10
-Interestingly, all four pipelines failed to answer question 10, which was a seemingly simple query: "Who was his first-born?" This query is an example of the challenge of a user prompting with an unspecific pronoun, an issue I aimed to address through query rewriting. However, even more detrimental to the retrieval of this query was the make-up of the memoir itself. The first section of the memoir is an in-depth family genealogy, which, as you'd expect, contains many examples of family relationships. So when the retrieval process tried to find sementically similar chunks of text to "first-born", it was flooded with the many examples of family relationships in the genealogy section. To add difficulty, the geneology's format relies heavily on diagrams of family trees, which are not semantically seachable.
+Interestingly, all four pipelines failed to answer question 10, which was a seemingly simple query: "Who was his first-born?" This query is an example a user prompting with an unspecific pronoun, an issue I aimed to address through query rewriting. However, the content and layout of section one poses a major challenge for queries asking about familial relationships. The first section of the memoir is an in-depth family genealogy which contains many examples of family relationships. So when the retrieval process attempts to find sementically similar chunks of text to "first-born", it was flooded with the many examples of family relationships in the genealogy section. To add difficulty to the retrieval process of such queries, the geneology's format relies heavily on diagrams of family trees, which are not semantically seachable.
 
 ### Solving Question 10
 A straightforward solution to this problem would be to implement a process that transforms the family tree diagrams into text format. This text would be semantically searchable and comprehensible to the model, allowing for more effective retrieval of information.
@@ -154,9 +155,9 @@ A straightforward solution to this problem would be to implement a process that 
 A more complex solution worth exploring would be to implement a step into the pipeline that narrows down the retrieval space by first comparing the query to comprehensive summaries of each chapter. For example, when presented with the query "Who was his first-born?", the pipeline would first check which chapters most likely contain information about the birth of his children, then narrow down the search space to the most relevant chapters.
 
 ### Evaluation Takeaways
-Overall, the classic RAG architecture demonstrated greater success for specific queries compared to the GraphRAG architecture. However, GraphRAG excelled in retrieving broader context, showcasing its unique strengths. This can be seen from the varying performance of the Basic RAG and GraphRAG pipelines on different queries.
+Overall, the classic RAG architecture demonstrated greater success for specific queries compared to the GraphRAG architecture. However, GraphRAG excelled in retrieving broader context, showcasing its unique strengths. This can be seen from the varying performance of the two basic pipelines on different queries.
 
-The ensemble pipeline approach illustrates how incorporating additional techniques, such as reranking and context enrichment windows, can significantly enhance the success rate of retrieval tasks. Nevertheless, this improvement often comes at the expense of longer wait times and increased computational costs. Therefore, it is essential to carefully balance the trade-off between complexity and speed when designing RAG pipelines. 
+The ensemble pipeline approach illustrates how incorporating additional techniques, such as reranking and context enrichment windows, can significantly enhance the success rate of retrieval tasks. Nevertheless, this improvement often comes at the expense of longer wait times and increased computational costs. Therefore, it is essential to balance the trade-off between complexity and speed when designing RAG pipelines. 
 
-### Thank you for reading! 
-I found this project to be a rewarding and enlightening experience in working with NLP and RAG. RAG pipelines are essential in modern-day natural language processing, allowing for the quick retrieval of relevant information from internal and external datasets. Their flexibility and capacity for improvement through various techniques make them an excellent option for boosting information retrieval systems. I highly recommend similar projects to anyone interested in exploring this fascinating field. If you have any questions or comments, please feel free to reach out.
+### Conclusion
+RAG pipelines are essential in modern-day natural language processing, allowing for the quick retrieval of relevant information from internal and external datasets. Their flexibility and capacity for improvement through various techniques make them an excellent option for boosting information retrieval systems. I highly recommend similar projects to anyone interested in exploring this field. If you have any questions or comments, please feel free to reach out.
