@@ -7,7 +7,7 @@
 </p>
 
 ## Table of Contents  
-* [Purpose](#purpose)
+* [Introduction](#introduction)
 * [Data](#data)
 * [Basic RAG](#basic-rag)
 * [RAG Ensemble](#rag-ensemble)
@@ -18,10 +18,10 @@
 * [https://github.com/NirDiamant/RAG_Techniques](https://github.com/NirDiamant/RAG_Techniques)
 * [https://github.com/microsoft/GraphRAG](https://github.com/microsoft/GraphRAG)
 
-<a name="purpose"></a>
-## Purpose
+<a name="introduction"></a>
+## Introduction
 
-This project serves as an exploration of various RAG (Retrieval-Augmented Generation) techniques, applied to a dataset of personal significance — a memoir written by my grandfather. My objective was not only to demonstrate my understanding of RAG and NLP (Natural Language Processing) pipelines but also to refine my skills in implementing these techniques. RAG techniques have a wide range of potential applications, including but not limited to enhancing search engines, improving customer support systems such as chatbots, generating personalized content, and facilitating knowledge management in organizations. I built and evaluated four distinct pipelines, each designed to compare and contrast various methodologies and architectures and to showcase the importance and power of utilizing ensemble approaches. I began with a foundational RAG pipeline, which provided a baseline for my experiments, and subsequently added on an ensemble of techniques, including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I built and evaluated a simple implementation of Microsoft's GraphRAG, a popular architecture in the RAG community, to assess its performance and capabilities.
+This project serves as an exploration of various RAG (Retrieval-Augmented Generation) techniques, applied to a memoir written by my grandfather. RAG techniques have a wide range of potential applications, including enhancing search engines, improving customer support systems and chatbots, generating personalized content, and facilitating knowledge management within organizations. In this project, I built and evaluated four distinct pipelines, each designed to compare and contrast various methodologies and architectures and to showcase the importance and power of utilizing ensemble approaches. I began with a foundational RAG pipeline, which provided a baseline for my experiments, and subsequently added on an ensemble of techniques, including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I built and evaluated a simple implementation of Microsoft's GraphRAG, a popular architecture in the RAG community, to assess its performance and capabilities.
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%">

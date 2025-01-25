@@ -4,7 +4,20 @@
   <img src="https://plus.unsplash.com/premium_photo-1679758629409-83446005843c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWlycGxhbmUlMjB0dXJib2ZhbiUyMGVuZ2luZXxlbnwwfHwwfHx8MA%3D%3D" alt="Turbofan Engine" style="width: 40%;">
 </p>  
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Data](#data)
+- [Data Preprocessing](#data-preprocessing)
+- [Neural Network Models](#neural-network-models)
+- [CatBoost Preprocessing](#catboost-preprocessing)
+- [CatBoost Models](#catboost-models)
+- [Evaluation](#evaluation)
+- [Next Steps](#next-steps)
+- [Conclusion](#conclusion)
+
 ## Introduction
+<a name="introduction"></a>
 
 For this project, I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These predictions can be used for scheduling proactive maintenance and monitoring engine health. To accomplish this, I trained the models on run-to-failure engine sensor datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can monitor and predict the failure of such systems. My models make raw predictions based on 30 seconds of sensor data, then a running weighted average is applied to provide a more robust final predictions. 
 
@@ -22,13 +35,11 @@ For these predictions, RUL refers to the number of flight cycles remaining befor
 When it comes to tabular data, traditional machine learning models are usually the first choice. However, traditional models struggle to capture temporal patterns in data. For this project, I needed models that could extract short-term temporal patterns from 30 seconds of sensor data. To do this, I built hybrid models that combined the strengths of both traditional machine learning models and neural networks. My models use one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then used those features as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and using the flattened raw data as input for traditional machine learning models. However, the hybrid models presented in this project performed the best.  
 
 ## Data
-
+<a name="data"></a>
 **NASA's Aircraft Engine Run-to-Failure Dataset under Real Flight Conditions for Prognostics and Diagnostics:** [Click Here!](https://www.mdpi.com/2306-5729/6/1/5)  
 **NASA's Original 2020 Paper:** [Click Here!](https://ntrs.nasa.gov/citations/20205001125)
 
-These run-to-failure datasets were synthetically generated using NASA's Commercial Modular Aero-Propulsion System Simulation (C-MAPSS), which simulates turbofan engines with high precision as they are fed flight conditions as inputs as recorded by real comercial jets. The variables used to make the predictions include Flight Data (w) and Sensor Measurments (xs). Between these two categories there are 18 features, and each row of data in the dataset represents one second of sensor data.
-
-
+These run-to-failure datasets were synthetically generated using NASA's Commercial Modular Aero-Propulsion System Simulation (C-MAPSS), which simulates turbofan engines with high precision as they are fed flight conditions as inputs as recorded by real commercial jets. The variables used to make the predictions include Flight Data (w) and Sensor Measurements (xs). Between these two categories there are 18 features, and each row of data in the dataset represents one second of sensor data.
 
 Each unit (engine) simulated flights of certain lengths and are categorized into three flight classes: short (1 to 3 hour flights), medium (3 to 5 hour flights), and long (5+ hour flights). I tried to include a variety of flight classes to ensure the models would be able to generalize engines from different flight conditions. Below is a table of the 18 units I used to train the models:
 
@@ -46,9 +57,10 @@ For evaluation, I used units 13 (Long Flight Class), 14 (Short Flight Class), 15
 Due to computational constraints, I limited the scope of the project to a subset of engines that experienced a failure mode that affects both the low pressure turbine and the high pressure turbine efficiency. All of the units used in my project experience this specific type of failure mode. With the 18 engines I used for training, it contained over 11 million rows of sensor and flight condition data.  
 
 ## Data Preprocessing
+<a name="data-preprocessing"></a>
 **Preprocessing Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/preprocessing.ipynb)
 
-I chose to fully preprocess and save the transformed datasets to avoid additional computational overhead during training. To be compatible as input for the neural networks, the y labels were extracted and the x features were reshaped as (# of samples, 30, 18), representing 30 second windows of 18 features. The 30-second windows were created using overlapping segments, a new window starting every 10 seconds, meaning there is a slight overlap between each windows. This process converted approximatly 11.5 million seconds of data into 1.15 million 30-second time windows. The 30-second training windows were then randomized and split into training and validation sets, with 10% being used for validation. Here is a list of steps taken to preprocess the data:
+I chose to fully preprocess and save the transformed datasets to avoid additional computational overhead during training. To be compatible as input for the neural networks, the y labels were extracted and the x features were reshaped as (# of samples, 30, 18), representing 30 second windows of 18 features. The 30-second windows were created using overlapping segments, a new window starting every 10 seconds, meaning there is a slight overlap between each window. This process converted approximately 11.5 million seconds of data into 1.15 million 30-second time windows. The 30-second training windows were then randomized and split into training and validation sets, with 10% being used for validation. Here is a list of steps taken to preprocess the data:
 
 1. Extract the correct y labels and x features from the DS02-006 and DS03-012 h5 files and combine them into one dataframe.
 2. Split into training and testing sets. (units 13, 14, 15 from DS03-012)
@@ -63,9 +75,10 @@ I chose to fully preprocess and save the transformed datasets to avoid additiona
 Due to the size of the dataset, you will see that memory was regularly freed up by deleting variables that were no longer needed after each transformation step. If I had not done this, my computer would have quickly run out of memory.  
 
 ## Neural Network Models
+<a name="neural-network-models"></a>
 **Neural Networks Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/one_d_conv_models.ipynb)
 
-The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional blocks learn low-level features. You can then seperate these blocks from the larger models and use their outputs as feature extractors for traditional machine learning models such as CatBoost. While I was at it, I decided to take the opportunity to optimize the models for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against.
+The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional blocks learn low-level features. You can then separate these blocks from the larger models and use their outputs as feature extractors for traditional machine learning models such as CatBoost. While I was at it, I decided to take the opportunity to optimize the models for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against.
 
 I used a data generator to feed the models batches of 30-second windows so I could set custom epoch sizes. With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, so I lowered the epoch size to check against the validation set more often. Both neural networks shared a similar structure which I found performed the best:
 
@@ -75,7 +88,7 @@ I used a data generator to feed the models batches of 30-second windows so I cou
 - **One-dimensional Convolutional Block**  
     - 1D Convolutional Layer (512 filters, kernel size of 3, strides of 1, relu activation, same padding)  
     - Batch Normalization Layer  
-    - Global Average Pooling Layer (I found this worked better than a flattening layer or incrimental 1D max pooling layers.)  
+    - Global Average Pooling Layer (I found this worked better than a flattening layer or incremental 1D max pooling layers.)  
 
 - **First Dense Block**  
     - Dense Layer (2048 units, relu activation, L2 kernel regularization of 0.025)  
@@ -101,11 +114,13 @@ The idea behind the custom loss function stems from NASA's evaluation metric tha
 While these models were fun to build, I really only needed their trained convolutional blocks to serve as feature extractors for the CatBoost models. So, let's go to the next step!
 
 ## CatBoost Preprocessing
+<a name="catboost-preprocessing"></a>
 **CatBoost Preprocessing Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_preprocessing.ipynb)
 
-Once the convolutional blocks learned to interprate low-level features, their outputs were used as inputs for CatBoost models. The neural network's first convolutional block takes a shape of (# of samples, 30, 18) as input and outputs a shape of (# of samples, 512). So, the CatBoost models use those 512 features to make their predictions. To reduce the computational overhead during training and evaluation, I saved the datasets of features produced by the feature extractors for later use.
+Once the convolutional blocks learned to interpret low-level features, their outputs were used as inputs for CatBoost models. The neural network's first convolutional block takes a shape of (# of samples, 30, 18) as input and outputs a shape of (# of samples, 512). So, the CatBoost models use those 512 features to make their predictions. To reduce the computational overhead during training and evaluation, I saved the datasets of features produced by the feature extractors for later use.
 
 ## CatBoost Models
+<a name="catboost-models"></a>
 **CatBoost Models Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_models.ipynb)
 
 I began by using grid search cross-validation to find the best parameters for the CatBoost models, however the size of the dataset proved a major challenge, both in terms of memory and computational power. My solution was to use a smaller subset of the dataset during the grid search to gain an intuition for possible best parameters for the larger dataset. During cross-validation, it became clear that deeper trees performed well, however to keep the timeline of this project reasonable, I limited the final depth of the trees to 10. To give you an example, going from a depth of 10 to 11 on the full training set would have added an extra 3-4 hours of training on my personal computer. The final parameters and structure of the models are as follows:
@@ -125,11 +140,12 @@ I began by using grid search cross-validation to find the best parameters for th
 - Approximate size: 81 MB
 
 ## Evaluation
+<a name="evaluation"></a>
 **Evaluation Code:** [Click Here!](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/evaluation.ipynb)
 
 To create the final predictions from the raw predictions, I applied a running weighted average of 1500 time steps, which is approximately 4 hours. I also applied a threshold of 0.5 to the weighted health state averages to convert the probabilities into a binary classification. Taking these steps make the predictions more robust and accurate.
 
-To evaluate the performance of the models, I tested them on three units of different flight classes. The three units were 13 (Long Flight Class), 14 (Short Flight Class), and 15 (Medium Flight Class) from DS03-012. For evaluation metrics, I used accuracy for the health state predictions and three seperate metrics for Remaining Useful Life (RUL) predictions: mean absolute error, root mean squared error, and NASA's custom evaluation metric that penalizes overestimations. 
+To evaluate the performance of the models, I tested them on three units of different flight classes. The three units were 13 (Long Flight Class), 14 (Short Flight Class), and 15 (Medium Flight Class) from DS03-012. For evaluation metrics, I used accuracy for the health state predictions and three separate metrics for Remaining Useful Life (RUL) predictions: mean absolute error, root mean squared error, and NASA's custom evaluation metric that penalizes overestimations. 
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/nasa_scoring.png?raw=true" alt="NASA's Evaluation Metric" style="width: 30%;">
@@ -144,11 +160,11 @@ NASA's Scoring Function is shown above where delta is the difference between the
 </p>
 
 | Metric                        | Raw Predictions  | Final Predictions |
-|-------------------------------|----------------|--------------------------------|
-| Health State Accuracy          | 93.31%    | 97.00%                   |
-| RUL MAE                       | 6.18      | 5.68                     |
-| RUL RMSE                      | 8.25      | 7.50                     |
-| RUL NASA Evaluation Metric     | 1.79      | 1.68                     |
+|-------------------------------|------------------|--------------------|
+| Health State Accuracy         | 93.31%           | 97.00%             |
+| RUL MAE                       | 6.18             | 5.68               |
+| RUL RMSE                      | 8.25             | 7.50               |
+| RUL NASA Evaluation Metric    | 1.79             | 1.68               |
 
 ## Unit 14 Evaluation (Short Flight Class)
 <p style="display: flex; align-items: center; justify-content: space-between;">
@@ -157,11 +173,11 @@ NASA's Scoring Function is shown above where delta is the difference between the
 </p>
 
 | Metric                        | Raw Predictions  | Final Predictions |
-|-------------------------------|----------------|--------------------------------|
-| Health State Accuracy          | 93.04%    | 98.96%                   |
-| RUL MAE                       | 3.73      | 3.46                     |
-| RUL RMSE                      | 5.42      | 4.48                     |
-| RUL NASA Evaluation Metric     | 1.55      | 1.46                     |
+|-------------------------------|------------------|--------------------|
+| Health State Accuracy         | 93.04%           | 98.96%             |
+| RUL MAE                       | 3.73             | 3.46               |
+| RUL RMSE                      | 5.42             | 4.48               |
+| RUL NASA Evaluation Metric    | 1.55             | 1.46               |
 
 ## Unit 15 Evaluation (Medium Flight Class)
 <p style="display: flex; align-items: center; justify-content: space-between;">
@@ -170,20 +186,18 @@ NASA's Scoring Function is shown above where delta is the difference between the
 </p>
 
 | Metric                        | Raw Predictions  | Final Predictions |
-|-------------------------------|----------------|--------------------------------|
-| Health State Accuracy          | 95.80%    | 99.56%                   |
-| RUL MAE                       | 2.55      | 1.90                     |
-| RUL RMSE                      | 4.07      | 2.77                     |
-| RUL NASA Evaluation Metric     | 1.29      | 1.19                     |
+|-------------------------------|------------------|--------------------|
+| Health State Accuracy         | 95.80%           | 99.56%             |
+| RUL MAE                       | 2.55             | 1.90               |
+| RUL RMSE                      | 4.07             | 2.77               |
+| RUL NASA Evaluation Metric    | 1.29             | 1.19               |
 
 ### Evaluation Interpretation
 
 The evaluation results demonstrate significant improvements after applying the final prediction techniques. They also show that the models generalize best to medium flight class engines. Understandable, as the average flight and engine conditions between the three flight classes would most closely resemble the conditions of the medium flight class engines.
 
-
-
 ## Next Steps
-
+<a name="next-steps"></a>
 ### Create a Diagnostic and Prognostic Suite
 The purpose of the models built in this project is to aid in scheduling maintenance and monitoring engine health. However, they don't diagnose the causes of failure. For this reason, I suggest building two additional types of models that would aid in engine diagnostics. First, regression prediction models that predict the health parameters (theta), which are also simulated by the C-MAPSS models.
 
@@ -193,20 +207,19 @@ The purpose of the models built in this project is to aid in scheduling maintena
 
 Second, create a multi-class classification model that identifies the failure mode. All together, these models would form a diagnostic and prognostic suite that would help engineers diagnose the cause of failure and schedule maintenance.
 
-
 ### Diversify and Scale Up the Data
 
-I limited the scope of this project to a single failure mode, so these models serve as a proof of concept. To make them industry ready, you would need to scale up the training dataset to represent all failure modes. Scaling up the training data would also allow the models to generalize better to the different flight classes. I would expect to see improvments to the long flight and short flight class metrics if the training dataset were larger. 
+I limited the scope of this project to a single failure mode, so these models serve as a proof of concept. To make them industry ready, you would need to scale up the training dataset to represent all failure modes. Scaling up the training data would also allow the models to generalize better to the different flight classes. I would expect to see improvements to the long flight and short flight class metrics if the training dataset were larger. 
 
 ### Model Improvements
 
 There are multiple approaches still worth exploring to improve the models' performance: 
 
 - Using deeper trees in the CatBoost models.
-- Feature engineering using domain expertise or traditional feature selection techniques. For example using rolling averages or lag features and using the HS model prediction as a feature for the RUL model and vice versa.
+- Feature engineering using domain expertise or traditional feature selection techniques. For example, using rolling averages or lag features and using the HS model prediction as a feature for the RUL model and vice versa.
 - Trying different architectures, such as using transformers as feature extractors.
 - Larger training datasets.
 
 ## Conclusion
-
+<a name="conclusion"></a>
 I hope this project highlights the potential of machine learning in the field of predictive maintenance and diagnostics. With the correct sensor data and by integrating one-dimensional convolutional neural networks with traditional machine learning models like CatBoost, it's possible to create models that can predict the health and RUL of mechanical systems. I hope you enjoyed, please reach out if you have any questions or comments!
