@@ -64,16 +64,19 @@ Input shape: (30, 18) - thirty seconds of 18 features
 **One-dimensional Convolutional Block**  
 - 1D Convolutional Layer (512 filters, kernel size of 3, strides of 1, relu activation, same padding)  
 - Batch Normalization Layer  
-- Global Average Pooling Layer (I found this worked better than using a flattening layer or incrimental 1D max pooling layers.)
+- Global Average Pooling Layer (I found this worked better than using a flattening layer or incrimental 1D max pooling layers.)  
+
 **First Dense Block**  
 - Dense Layer (2048 units, relu activation, L2 kernel regularization of 0.025)  
 - Batch Normalization Layer  
+
 **Eight Smaller Dense Blocks**  
 - Dense Layer (128 units, relu activation, L2 kernel regularization of 0.025)  
 - Batch Normalization Layer  
+
 **Output Layers**  
-- Health State uses a sigmoid activation function.
-- RUL uses a linear activation function.
+- Health State uses a sigmoid activation function.  
+- RUL uses a linear activation function.  
 
 For the optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary crossentropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
