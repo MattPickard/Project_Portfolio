@@ -5,16 +5,36 @@
 </p>  
 
 ## Table of Contents
-
-- [Introduction](#introduction)
-- [Data](#data)
-- [Data Preprocessing](#data-preprocessing)
-- [Neural Network Models](#neural-network-models)
-- [CatBoost Preprocessing](#catboost-preprocessing)
-- [CatBoost Models](#catboost-models)
-- [Evaluation](#evaluation)
-- [Next Steps](#next-steps)
-- [Conclusion](#conclusion)
+<table>
+  <tr>
+    <td><a href="#introduction">Introduction</a></td>
+  </tr>
+  <tr>
+    <td><a href="#data">Data</a></td>
+  </tr>
+  <tr>
+    <td><a href="#data-preprocessing">Data Preprocessing</a></td>
+  </tr>
+  <tr>
+    <td><a href="#neural-network-models">Neural Network Models</a></td>
+  </tr>
+  <tr>
+    <td><a href="#catboost-preprocessing">CatBoost Preprocessing</a></td>
+  </tr>
+  <tr>
+    <td><a href="#catboost-models">CatBoost Models</a></td>
+  </tr>
+  <tr>
+    <td><a href="#evaluation">Evaluation</a></td>
+  </tr>
+  <tr>
+    <td><a href="#next-steps">Next Steps</a></td>
+  </tr>
+  <tr>
+    <td><a href="#conclusion">Conclusion</a></td>
+  </tr>
+</table>
+<!-- End of Selection -->
 
 ## Introduction
 <a name="introduction"></a>
