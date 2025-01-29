@@ -6,35 +6,16 @@
 
 ## Table of Contents
 <table>
-  <tr>
-    <td><a href="#introduction">Introduction</a></td>
-  </tr>
-  <tr>
-    <td><a href="#data">Data</a></td>
-  </tr>
-  <tr>
-    <td><a href="#data-preprocessing">Data Preprocessing</a></td>
-  </tr>
-  <tr>
-    <td><a href="#neural-network-models">Neural Network Models</a></td>
-  </tr>
-  <tr>
-    <td><a href="#catboost-preprocessing">CatBoost Preprocessing</a></td>
-  </tr>
-  <tr>
-    <td><a href="#catboost-models">CatBoost Models</a></td>
-  </tr>
-  <tr>
-    <td><a href="#evaluation">Evaluation</a></td>
-  </tr>
-  <tr>
-    <td><a href="#next-steps">Next Steps</a></td>
-  </tr>
-  <tr>
-    <td><a href="#conclusion">Conclusion</a></td>
-  </tr>
+  <tr><a href="#introduction">Introduction</a></tr>
+  <tr><a href="#data">Data</a></tr>
+  <tr><a href="#data-preprocessing">Data Preprocessing</a></tr>
+  <tr><a href="#neural-network-models">Neural Network Models</a></tr>
+  <tr><a href="#catboost-preprocessing">CatBoost Preprocessing</a></tr>
+  <tr><a href="#catboost-models">CatBoost Models</a></tr>
+  <tr><a href="#evaluation">Evaluation</a></tr>
+  <tr><a href="#next-steps">Next Steps</a></tr>
+  <tr><a href="#conclusion">Conclusion</a></tr>
 </table>
-<!-- End of Selection -->
 
 ## Introduction
 <a name="introduction"></a>
