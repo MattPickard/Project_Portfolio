@@ -4,7 +4,7 @@ In this repository, you will find a collection of my data science and machine le
 
 ### **RAG Pipelines to Query my Grandfather's Memoir ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
 
-**Tags:** <p style="font-size: 8px;">Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering</p>
+**Tags:** ###### Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering
 
 In this project, I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques that are often used in the information retrieval and response generation applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
 
