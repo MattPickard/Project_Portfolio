@@ -7,13 +7,17 @@
 </p>
 
 ## Table of Contents  
-* [Introduction](#introduction)
-* [Data](#data)
-* [Basic RAG](#basic-rag)
-* [RAG Ensemble](#rag-ensemble)
-* [Microsoft GraphRAG](#microsoft-graphrag)
-* [Evaluation](#evaluation)
-* [Conclusion](#conclusion)
+<table>
+  <tr>
+    <td><a href="#introduction">Introduction</a><br>
+    <a href="#data">Data</a><br>
+    <a href="#basic-rag">Basic RAG</a><br>
+    <a href="#rag-ensemble">RAG Ensemble</a><br>
+    <a href="#microsoft-graphrag">Microsoft GraphRAG</a><br>
+    <a href="#evaluation">Evaluation</a><br>
+    <a href="#conclusion">Conclusion</a></td>
+  </tr>
+</table>
 
 ## Implementation Resources
 * [https://github.com/NirDiamant/RAG_Techniques](https://github.com/NirDiamant/RAG_Techniques)
