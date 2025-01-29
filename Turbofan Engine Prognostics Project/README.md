@@ -6,15 +6,17 @@
 
 ## Table of Contents
 <table>
-  <tr><a href="#introduction">Introduction</a></tr>
-  <tr><a href="#data">Data</a></tr>
-  <tr><a href="#data-preprocessing">Data Preprocessing</a></tr>
-  <tr><a href="#neural-network-models">Neural Network Models</a></tr>
-  <tr><a href="#catboost-preprocessing">CatBoost Preprocessing</a></tr>
-  <tr><a href="#catboost-models">CatBoost Models</a></tr>
-  <tr><a href="#evaluation">Evaluation</a></tr>
-  <tr><a href="#next-steps">Next Steps</a></tr>
-  <tr><a href="#conclusion">Conclusion</a></tr>
+  <tr>
+    <td><a href="#introduction">Introduction</a>
+    <a href="#data">Data</a>
+    <a href="#data-preprocessing">Data Preprocessing</a>
+    <a href="#neural-network-models">Neural Network Models</a>
+    <a href="#catboost-preprocessing">CatBoost Preprocessing</a>
+    <a href="#catboost-models">CatBoost Models</a>
+    <a href="#evaluation">Evaluation</a>
+    <a href="#next-steps">Next Steps</a>
+    <a href="#conclusion">Conclusion</a></td>
+  </tr>
 </table>
 
 ## Introduction
