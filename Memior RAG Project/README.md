@@ -28,11 +28,9 @@
 
 This project serves as an demonstration and exploration of various RAG (Retrieval-Augmented Generation) techniques and apply them to a memoir written by my grandfather for evaluation. RAG is used in a wide range of applications, including enhancing search engines, improving customer support systems and chatbots, generating personalized content, and facilitating knowledge management within organizations. In this project, I built and evaluated four distinct RAG pipelines, each designed to compare and contrast methodologies and architectures and to showcase the importance and power of utilizing an ensemble approach. I began by building a basic RAG pipeline to serve as a baseline, and subsequently added on an ensemble of techniques on top of it, including **reranking**, **context enrichment windows**, and **query rewriting**. Finally, I built and evaluated a simple implementation of Microsoft's GraphRAG, a popular architecture in the RAG community, to assess its baseline performance and capabilities.
 
+
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/success_rates.png" alt="Success Rates" style="width: 70%">
-</p>
-<p align="center">
-  <em>The evaluation success rate of each pipeline.</em>
 </p>
 
 <a name="data"></a>
