@@ -2,15 +2,15 @@ In this repository, you will find a collection of my data science and machine le
 
 # Projects
 
-## **RAG Pipelines to Query my Grandfather's Memoir ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
+## **Querying my Grandfather's Memoir with RAG Pipelines ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
 
 ###### **Tags:** Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering
 
-In this project, I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques that are often used in the information retrieval and response generation applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
+In this project, I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques that are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
 
 
 
-## **Turbofan Engine Prognostics ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Turbofan%20Engine%20Prognostics%20Project))**
+## **Turbofan Engine Prognostics Models ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Turbofan%20Engine%20Prognostics%20Project))**
 
 ###### **Tags:** Convolutional Neural Networks, CatBoost, Big Data, Regression and Binary Classification, Engine Prognostics, TensorFlow/Keras, Preprocessing, Cross-Validation, Feature Extraction, Data Visualization
 
