@@ -1,6 +1,6 @@
-In this repository, you will find a collection of my data science projects that showcase a variety of projects that demonstrate data analysis, machine learning, deep learning, and data visualization. I aim to utilize data to reveal insights and facilitate informed decision-making.
+In this repository, you will find a small collection of my data science and machine learning projects. I hope you find them useful and interesting!
 
-# Data Science Projects
+# Projects
 
 ### **RAG Pipelines to Query my Grandfather's Memoir ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
 
