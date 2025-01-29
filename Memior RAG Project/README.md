@@ -1,4 +1,4 @@
-# RAG Pipeline to Query my Grandfather's Memoir
+# RAG Pipelines to Query my Grandfather's Memoir
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/family_photo.jpg" alt="Family Photo" style="width: 60%;">
 </p>
