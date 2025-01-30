@@ -78,13 +78,13 @@ Steps used to preprocess the data:
 2. Split into training and testing sets. (units 13, 14, 15 from DS03-012)
 3. Remove Flight Class and Cycle columns. (NASA indicated these were not meant to be used for predictions)
 4. Create 30-second windows with 10-second overlaps.
-5. Remove all windows that captured data from multiple units. (engines)
-6. Remove the Unit column. (this column was needed for the previous step, so it wasn't removed earlier)
+5. Remove all windows that captured data from multiple units.
+6. Remove the Unit column.
 7. Randomize the training data and split into training and validation sets.
 8. Separate the x features and y labels.
 9. Save each dataset as a compressed h5 file for later use.
 
-Due to the size of the dataset, memory was regularly freed by deleting variables that were no longer needed after each transformation step. If I had not done this my computer would have quickly run out of memory.  
+Due to the size of the dataset, memory was regularly freed by deleting variables that were no longer needed after each transformation step.
 
 ## Neural Network Models
 <a name="neural-network-models"></a>
@@ -220,18 +220,18 @@ Second, create a multi-class classification model that identifies the failure mo
 
 ### Diversify and Scale Up the Data
 
-As I wrote above, the scope of this project was limited to a single failure mode, so these models serve only as a proof of concept. To ensure the models are industry ready, a scale up of the training dataset would be needed to represent all failure modes. Scaling up the training data would also allow the models to generalize better to the different flight classes. I would expect to see improvements to the long flight and short flight class metrics if the training dataset were larger due to having a wider range of flight and engine conditions to learn from, making the predictions more robust to variations.
+As mentioned above, the scope of this project was limited to a single failure mode, so these models serve only as a proof of concept. To ensure the models are industry ready, a scale up of the training dataset would be needed to represent all failure modes. Scaling up the training data would also allow the models to generalize better to the different flight classes. I would expect to see improvements to the long flight and short flight class metrics if the training dataset were larger due to having a wider range of flight and engine conditions to learn from, making the predictions more robust to variations.
 
 ### Model Improvements
 
 There are multiple approaches still worth exploring to improve the models' performance: 
 
-- Using deeper trees in the CatBoost models. As I mentioned above, I limited the depth of the trees to 10 to keep the timeline of this project reasonable.
-- Feature engineering using domain expertise or traditional feature selection techniques. For example, using rolling averages or lag features and using the HS model prediction as a feature for the RUL model and vice versa. Feature engineering often provides models with quality features that can improve performance.
-- Trying different architectures, such as using transformers as feature extractors or using other gradient boosting machine learning models.
-- Create a larger training dataset to improve generalization.
+- Experiment with cross-validation using deeper trees in the CatBoost models. The depth of the trees were limited to 10 to keep the timeline of this project reasonable.
+- Try feature engineering using domain expertise or traditional feature selection techniques, such as using rolling averages or lag features and using the HS model predictions as a feature for the RUL model and vice versa.
+- Experiment with different architectures, such as using transformers as feature extractors or using other gradient boosting machine learning models.
+- Use a larger training dataset to improve generalization.
 
 ## Conclusion
 <a name="conclusion"></a>
 
-This project highlights the power of machine learning in predictive maintenance and diagnostics. By leveraging sensor data and combining one-dimensional convolutional neural networks with advanced machine learning models like CatBoost, robust models capable of predicting the health and Remaining Useful Life (RUL) of mechanical systems can be built. These predictions allow engineers to proactively identify and address potential issues, reducing unexpected downtime and extending the operational lifespan of engines. This enhances safety and reliability and translates into cost reductions and operational efficiency. I hope you enjoyed, please reach out if you have any questions or comments!
+This project highlights how machine learning can be used to build tools that aid in predictive maintenance and diagnostics. By leveraging sensor data and combining one-dimensional convolutional neural networks with advanced machine learning models like CatBoost, robust models capable of predicting the health and Remaining Useful Life (RUL) of mechanical systems can be built. These predictions allow engineers to proactively identify and address potential issues, reducing unexpected downtime and extending the operational lifespan of engines. This enhances safety and reliability and translates into cost reductions and operational efficiency. I hope you enjoyed, please reach out if you have any questions or comments!
