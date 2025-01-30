@@ -44,6 +44,13 @@ Traditional machine learning models are typically a first choice for tabular dat
 
 These run-to-failure datasets were synthetically generated using NASA's Commercial Modular Aero-Propulsion System Simulation (C-MAPSS), which simulates turbofan engines with high precision as they are fed flight conditions as recorded by real commercial jets. The variables used to make the predictions include Flight Data (w) and Sensor Measurements (xs). Between these two categories there are 18 features, and each row of data in the dataset represents one second of sensor data.
 
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/flight_data.png?raw=true" alt="Flight Data" style="width: 35%;">
+</p>
+<p align="center">
+  <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/measurements.png?raw=true" alt="Sensor Measurements" style="width: 35%;">
+</p>
+
 Each unit (engine) simulated flights of certain lengths and are categorized into three flight classes: short (1 to 3 hour flights), medium (3 to 5 hour flights), and long (5+ hour flights). A variety of flight classes were included to ensure the models would be able to generalize engines from different flight conditions. Below is a table of the 18 units I used to train the models:
 
 | Dataset | Unit | Flight Class |
@@ -221,7 +228,7 @@ There are multiple approaches still worth exploring to improve the models' perfo
 
 - Using deeper trees in the CatBoost models. As I mentioned above, I limited the depth of the trees to 10 to keep the timeline of this project reasonable.
 - Feature engineering using domain expertise or traditional feature selection techniques. For example, using rolling averages or lag features and using the HS model prediction as a feature for the RUL model and vice versa. Feature engineering often provides models with quality features that can improve performance.
-- Trying different architectures, such as using transformers as feature extractors or using other decision tree boosting models.
+- Trying different architectures, such as using transformers as feature extractors or using other gradient boosting machine learning models.
 - Create a larger training dataset to improve generalization.
 
 ## Conclusion
