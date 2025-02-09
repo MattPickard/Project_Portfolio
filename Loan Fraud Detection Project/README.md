@@ -57,8 +57,7 @@ The following steps were taken to prepare the data for training the model:
 5. **Log Scaling**: Log scaling was applied to the `days_since_request`, `zip_count_4w`, and `proposed_credit_limit` features to normalize their skewed distributions. (Refer to the Q-Q plots shown below for visual representation of their skewed distributions.)
 6. **Encoding Categorical Features**: One-hot encoding was performed on categorical features. This approach outperformed ordinal encoding, perhaps due to the small number of categories.
 7. **Memory Optimization**: Numerical columns were downcasted to more efficient data types to optimize memory usage.
-
-<br></br>
+---
 <p align="center">
 <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/q-q_plots.png?raw=true">
 </p>
