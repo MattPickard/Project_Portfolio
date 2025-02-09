@@ -118,7 +118,7 @@ predictions. Below is a list of the top 10 features ranked by their importance. 
 
 The model was evaluated using the following metrics: 
 
-<div style="font-size: 26px; text-decoration: underline;"><strong>1. ROC Curve and AUC Score</strong></div>
+<p style="font-size: 26px; text-decoration: underline;"><strong>1. ROC Curve and AUC Score</strong></p>
 
 <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/roc_curve.png?raw=true" style="width: 50%;">
 
