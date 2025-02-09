@@ -118,11 +118,12 @@ predictions. Below is a list of the top 10 features ranked by their importance. 
 
 The model was evaluated using the following metrics: 
 
-<h1 style="font-size: 1.5em; text-decoration: underline;">1. ROC Curve and AUC Score:</h1>
+<p style="font-size: 16px; text-decoration: underline;">1. ROC Curve and AUC Score:</p>
 
 <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/roc_curve.png?raw=true" style="width: 50%;">
 
 **ROC AUC Score:** 0.890
+
 
 The Receiver Operating Characteristic (ROC) curve displayed above illustrates the trade-off between the true positive rate (TPR) and the false positive rate (FPR). The ROC curve is typically paired with the Area Under the Curve (AUC) score, which measures the classifier's ability to distinguish between positive and negative classes. An AUC score of 0.5 indicates performance equivalent to random guessing, whereas a score of 1.0 signifies a perfect classifier.
 
