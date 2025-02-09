@@ -1,6 +1,6 @@
 # Loan Fraud Detection
 <p align="center">
-<img src="" style="width: 40%;">
+<img src="https://plus.unsplash.com/premium_photo-1661672185492-d07613b7600f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9hbiUyMGZyYXVkfGVufDB8fDB8fHww" style="width: 40%;">
 </p>
 
 ## Table of Contents 
