@@ -35,7 +35,7 @@ The base dataset contains 1 million samples of 32 features capturing 8 months of
 <p align="center">
 <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/fraud_distribution.png?raw=true" style="width: 40%;">
 </p>
- <p align="center">As shown above, the dataset exhibits a significant class imbalance with only 1.10% of samples labeled fraudulent.</p>
+ <p align="center">The dataset exhibits a significant class imbalance with only 1.10% of samples labeled fraudulent.</p>
 
 
 
@@ -56,7 +56,7 @@ The following steps were taken to prepare the data for training:
 
 
 <p align="center">
-<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/q-q_plots.png?raw=true" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/q-q_plots.png?raw=true">
 </p>
 <p align="center">Q-Q plots are used to compare the distribution to a theoretical normal distribution. The closer the points are to the line, the more normal the distribution.</p>
 
