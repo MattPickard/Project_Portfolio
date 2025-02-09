@@ -11,7 +11,7 @@
 <a href="#data">Data</a><br>
 <a href="#data-preprocessing">Data Preprocessing and Feature Engineering</a><br>
 <a href="#sampling">Sampling Strategy</a><br>
-<a href="#model-training">LightGBM Model and Feature Importance</a><br>
+<a href="#model-training">LightGBM Model</a><br>
 <a href="#evaluation">Evaluation</a><br>
 <a href="#next-steps">Next Steps</a><br>
 <a href="#conclusion">Conclusion</a>
@@ -25,7 +25,7 @@ For this project, I developed a machine learning model to detect fraudulent loan
 
 ## Data
 <a name="data"></a>
-**Paper:** [Turning the Tables: Biased, Imbalanced, Dynamic Tabular Datasets for ML Evaluation](https://arxiv.org/abs/2211.13358)
+**Paper:** [Turning the Tables: Biased, Imbalanced, Dynamic Tabular Datasets for ML Evaluation](https://arxiv.org/abs/2211.13358)  
 **Github:** [Bank Account Fraud](https://github.com/feedzai/bank-account-fraud)
 
 The Bank Account Fraud (BAF) suite of datasets, published at NeurIPS 2022, consists of tabular datasets designed for evaluating machine learning methods in fraud detection. Each dataset was synthetically produced by feeding real bank application data into a CTGAN to preserve the privacy and identities of applicants. For this project I use the base dataset which aims to best represent the orginal bank data, however BAF also features datasets that create different biases within the data. The BAF suite serves as a test bed for assessing both novel and existing machine learning methods.
@@ -33,7 +33,7 @@ The Bank Account Fraud (BAF) suite of datasets, published at NeurIPS 2022, consi
 The base dataset contains 1 million samples of 32 features capturing 8 months of synthetic bank application data. The features were purposly selected by the authors for their predictive power in detecting fraud and there are no missing values. Additionally, The authors of the paper indicate that the first 6 months should be used for training and the last 2 months for testing.
 
 <p align="center">
-<img src="" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/fraud_distribution.png?raw=true" style="width: 40%;">
 </p>
  <p align="center">As shown above, the dataset exhibits a significant class imbalance with only 1.10% of samples labeled fraudulent.</p>
 
@@ -56,7 +56,7 @@ The following steps were taken to prepare the data for training:
 
 
 <p align="center">
-<img src="" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/q-q_plots.png?raw=true" style="width: 40%;">
 </p>
 <p align="center">Q-Q plots are used to compare the distribution to a theoretical normal distribution. The closer the points are to the line, the more normal the distribution.</p>
 
@@ -111,7 +111,7 @@ The model was evaluated using the following metrics:
 
 ### ROC Curve and AUC Score:
 
-<img src="" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/roc_curve.png?raw=true" style="width: 40%;">
 
 **ROC AUC Score:** 0.890
 
