@@ -80,7 +80,7 @@ After applying the sampling techniques, the training set, which consists of 57,0
 To maximize the real fraudulent class sample representation within the training set, the validation set was created using synthetic 
 positive samples created using SMOTENC. While this may lead to an overly optimistic assessment of model performance on the validation set, it still provides valuable early stopping feedback to mitigate overfitting during the training process.
 
-## LightGBM Model and Feature Importance
+## LightGBM Model
 <a name="model-training"></a>
 **Code:** [**LightGBM Model**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Loan%20Fraud%20Detection%20Project/lightgbm_model.ipynb)
 
