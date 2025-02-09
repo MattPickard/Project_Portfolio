@@ -43,7 +43,7 @@ For this project, I will utilize the base dataset, which is intended to closely 
 
 ## Preprocessing and Feature Engineering
 <a name="data-preprocessing"></a>
-**Code:** [**Preprocessing**](preprocess.ipynb)
+**Code:** [**Preprocessing**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Loan%20Fraud%20Detection%20Project/preprocess.ipynb)
 
 
 
@@ -67,7 +67,7 @@ The following steps were taken to prepare the data for training the model:
 
 ## Sampling Strategy
 <a name="sampling"></a>
-**Code:** [**Sampling**](sampling.ipynb)
+**Code:** [**Sampling**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Loan%20Fraud%20Detection%20Project/sampling.ipynb)
 
 To tackle the significant class imbalance in the dataset, I employed a mixed sampling strategy of random undersampling and the Synthetic Minority Over-sampling Technique for Nominal and Continuous Features (SMOTENC) to construct a balanced training set. This mixed approach proved to be more effective than simply using LightGBM's class weight training and simple random undersampling. 
 
@@ -83,7 +83,8 @@ positive samples created using SMOTENC. While this may lead to an overly optimis
 
 ## LightGBM Model and Feature Importance
 <a name="model-training"></a>
-Code: **LightGBM Model**
+**Code:** [**LightGBM Model**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Loan%20Fraud%20Detection%20Project/lightgbm_model.ipynb)
+
 
 LightGBM is a powerful gradient boosting framework that utilizes tree-based learning algorithms. I also experimented with CatBoost, another gradient boosting framework, but I found that LightGBM yielded slightly better performance, particularly after implementing a mixed sampling strategy.
 
@@ -114,11 +115,12 @@ predictions. Below is a list of the top 10 features ranked by their importance. 
 
 ## Evaluation
 <a name="evaluation"></a>
-Code: **Evaluation**
+**Code:** [**Evaluation**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Loan%20Fraud%20Detection%20Project/evaluation.ipynb)
 
 The model was evaluated using the following metrics: 
 
-### ROC Curve and AUC Score:
+### 1. ROC Curve and AUC Score:
+
 
 <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/roc_curve.png?raw=true" style="width: 50%;">
 
@@ -126,7 +128,7 @@ The model was evaluated using the following metrics:
 
 The Receiver Operating Characteristic (ROC) curve displayed above illustrates the trade-off between the true positive rate (TPR) and the false positive rate (FPR). The ROC curve is typically paired with the Area Under the Curve (AUC) score, which measures the classifier's ability to distinguish between positive and negative classes. An AUC score of 0.5 indicates performance equivalent to random guessing, whereas a score of 1.0 signifies a perfect classifier.
 
-### True Positive Rate at 5% FPR:
+### 2. True Positive Rate at 5% FPR:
 
 **Global #1 Ranked Model from Academic Literature According to paperswithcode.com:** 54.3% ([Paper Link](https://arxiv.org/abs/2401.05240))  
 **This Model:** 53.93% 
@@ -134,14 +136,14 @@ The Receiver Operating Characteristic (ROC) curve displayed above illustrates th
 Due to the imbalanced nature of the prediction task, accuracy is not an appropriate metric for evaluating the model's
 performance. For example, in a dataset where only 1% of transactions are fraudulent, a model that predicts every transaction as non-fraudulent would still achieve an accuracy of 99%. Therefore, the True Positive Rate (TPR) at a specified False Positive Rate (FPR) can be used as a more meaningful metric. This measures the model's effectiveness in correctly identifying fraudulent transactions while allowing for a controlled rate of false positives. Banks aim to minimize false positives, as it may mean denying a loan to a legitimate customer. The TPR at a 5% FPR is suggested as the primary performance metric in the original BAF paper. 
 
-### True Positive Rate at 1% FPR:
+### 3. True Positive Rate at 1% FPR:
 
 **Global #1 Ranked Model from Academic Literature According to paperswithcode.com:** 25.2% ([Paper Link](https://arxiv.org/abs/2408.12989))  
 **This Model:** 25.57%
 
 Banks may choose to implement a stricter False Positive Rate (FPR) of 1% to reduce the likelihood of legitimate transactions being incorrectly flagged as fraudulent. While this approach may result in identifying fewer fraudulent cases, it enhances customer trust and reduces the resources required for investigating false positives.
 
-### Predictive Equality:
+### 4. Predictive Equality:
 
 **Model's Predictive Equality at 5% FPR:** 99.49%  
 **Model's Predictive Equality at 1% FPR:** 99.71%
