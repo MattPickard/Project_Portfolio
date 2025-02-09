@@ -2,13 +2,6 @@ In this repository, you will find a collection of my data science and machine le
 
 # Projects
 
-## **Querying my Grandfather's Memoir with RAG ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
-
-###### **Tags:** Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering
-
-In this project, I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques, creating a pipeline that answers questions about my grandfather's memoir. These techniques are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
-
-
 ## **Turbofan Engine Prognostics Models ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Turbofan%20Engine%20Prognostics%20Project))**
 
 ###### **Tags:** Convolutional Neural Networks, CatBoost, Big Data, Regression and Binary Classification, Engine Prognostics, TensorFlow/Keras, Preprocessing, Cross-Validation, Feature Extraction, Data Visualization
@@ -21,7 +14,11 @@ This project utilizes a NASA run-to-failure dataset to develop hybrid models tha
 
 This project provides a practical machine learning framework for financial institutions to detect fraudulent loan applications while minimizing false positives that could impact legitimate customers. The solution employs a mixed sampling strategy combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
 
+## **Querying my Grandfather's Memoir with RAG ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
 
+###### **Tags:** Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering
+
+In this project, I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques, creating a pipeline that answers questions about my grandfather's memoir. These techniques are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
 
 
 
