@@ -11,7 +11,7 @@
 <a href="#data">Data</a><br>
 <a href="#data-preprocessing">Data Preprocessing and Feature Engineering</a><br>
 <a href="#sampling">Sampling Strategy</a><br>
-<a href="#model-training">LightGBM Model and Feature Importance</a><br>
+<a href="#model-training">LightGBM Model</a><br>
 <a href="#evaluation">Evaluation</a><br>
 <a href="#next-steps">Next Steps</a><br>
 <a href="#conclusion">Conclusion</a>
@@ -37,13 +37,15 @@ For this project, I will utilize the base dataset, which is intended to closely 
 
 
 <p align="center">
-<img src="" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/fraud_distribution.png?raw=true" style="width: 40%;">
 </p>
-<p align="center">As shown above, the dataset exhibits a significant class imbalance, with only 1.10% of samples labeled fraudulent.</p>
+<p align="center"><i>The dataset exhibits a significant class imbalance, with only 1.10% of samples labeled fraudulent.</i></p>
 
 ## Preprocessing and Feature Engineering
 <a name="data-preprocessing"></a>
 **Code:** [**Preprocessing**](preprocess.ipynb)
+
+
 
 The following steps were taken to prepare the data for training the model:
 
@@ -58,9 +60,10 @@ The following steps were taken to prepare the data for training the model:
 
 
 <p align="center">
-<img src="" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/q-q_plots.png?raw=true">
 </p>
-<p align="center">Q-Q plots are used to compare the distribution to a theoretical normal distribution. The closer the points are to the line, the more normal the distribution.</p>
+<p align="center"><i>Q-Q plots are used to compare the distribution to a theoretical normal distribution. The closer the points are to the line, the more normal the distribution.</i></p>
+
 
 ## Sampling Strategy
 <a name="sampling"></a>
@@ -117,7 +120,7 @@ The model was evaluated using the following metrics:
 
 ### ROC Curve and AUC Score:
 
-<img src="" style="width: 40%;">
+<img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/roc_curve.png?raw=true" style="width: 50%;">
 
 **ROC AUC Score:** 0.890
 
