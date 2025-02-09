@@ -2,7 +2,7 @@ In this repository, you will find a collection of my data science and machine le
 
 # Projects
 
-## **Querying my Grandfather's Memoir with RAG Pipelines ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
+## **Querying my Grandfather's Memoir with RAG ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Memior%20RAG%20Project))**
 
 ###### **Tags:** Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering
 
