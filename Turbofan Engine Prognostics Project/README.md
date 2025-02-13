@@ -72,19 +72,30 @@ Due to computational constraints, I limited the scope of the project to a subset
 
 The datasets were preprocessed and fully transformed to avoid additional computational overhead during training. The y labels were extracted and the x features were reshaped as (# of samples, 30, 18), representing 30 second windows of 18 features. The 30-second windows were created using overlapping segments with a new window starting every 10 seconds. This process converted approximately 11.5 million seconds of data into 1.15 million 30-second time windows. The 30-second training windows were then randomized and split into training and validation sets, with 10% being used for validation.  
 
-Steps used to preprocess the data:
+Data Preprocessing Pipeline:
 
-1. Extract the correct y labels and x features from the DS02-006 and DS03-012 h5 files and combine them into one data frame.
-2. Split into training and testing sets. (units 13, 14, 15 from DS03-012)
-3. Remove Flight Class and Cycle columns. (NASA indicated these were not meant to be used for predictions)
-4. Create 30-second windows with 10-second overlaps.
-5. Remove all windows that captured data from multiple units.
-6. Remove the Unit column.
-7. Randomize the training data and split into training and validation sets.
-8. Separate the x features and y labels.
-9. Save each dataset as a compressed h5 file for later use.
+1. Data Extraction and Integration
+   - Extract relevant columns from DS02-006 and DS03-012 h5 files
+   - Merge into unified dataframe
 
-Due to the size of the dataset, memory was regularly freed by deleting variables that were no longer needed after each transformation step.
+2. Dataset Partitioning
+   - Segregate test units (13, 14, 15 from DS03-012) for final evaluation
+   - Remove non-predictive columns (Flight Class and Cycle) as per NASA's intention for models trained on this dataset
+
+3. Temporal Feature Engineering
+   - Generate overlapping 30-second windows with 10-second strides
+   - Filter out windows spanning multiple units to maintain training integrity
+   - Remove unit column which was used for the previous step
+
+4. Training Data Organization
+   - Implement random shuffling for robust model training
+   - Create training-validation split (90-10)
+   - Separate features (x) and target variables (y)
+
+5. Data Persistence
+   - Save processed datasets as compressed h5 files for efficient storage and retrieval
+
+Due to the size of the dataset, memory was regularly freed by deleting variables after each transformation step.
 
 ## Neural Network Models
 <a name="neural-network-models"></a>
