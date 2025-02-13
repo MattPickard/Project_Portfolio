@@ -10,7 +10,7 @@ This project utilizes a NASA run-to-failure dataset to develop hybrid models tha
 
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Data-Science-Portfolio/tree/main/Loan%20Fraud%20Detection%20Project))**
 
-###### **Tags:** Feature Engineering, Imbalanced Learning, SMOTENC, Optuna Hyperparameter Tuning, Feature Importance, LightGBM
+###### **Tags:** Feature Engineering and Preprocessing, Imbalanced Learning, SMOTENC, Optuna Hyperparameter Tuning, Feature Importance, LightGBM
 
 This project provides a practical machine learning framework for financial institutions to detect fraudulent loan applications while minimizing false positives that could impact legitimate customers. The solution employs a mixed sampling strategy combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
 
