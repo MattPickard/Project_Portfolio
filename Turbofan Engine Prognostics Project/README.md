@@ -204,34 +204,39 @@ NASA's scoring function is shown above where delta is the difference between the
 
 ### Evaluation Interpretation
 
-The evaluation results demonstrate significant improvements after applying the final prediction techniques. They also show that the models generalize best to medium flight class engines. Understandable, as the average flight and engine conditions between the three flight classes would most closely resemble the conditions of the medium flight class engines.
+The evaluation results demonstrate significant improvements after applying the final prediction techniques. They also show that the models generalize best to medium flight class engines. This is understandable, as the average flight and engine conditions between the three flight classes most closely resemble the conditions of the medium flight class engines.
 
 ## Next Steps   
 <a name="next-steps"></a>   
 ### Create a Diagnostic and Prognostic Suite
 
-The models developed in this project would be as tools to monitor engine health and aid in optimizing maintenance scheduling. However, they don't diagnose the causes of failure. For this reason, I suggest building two additional types of models that would aid in engine diagnostics. First, regression prediction models that predict the health parameters (theta), which are also simulated by the C-MAPSS models. This would give engineers insight into the efficiency and health of the engine's various components.
+The models developed in this project would be great tools for monitoring engine health and optimizing maintenance scheduling. However, they don't diagnose the causes of failure. For a complete diagnostics and prognostics package, I suggest building two additional types of models that would aid in engine diagnostics. First, models that predict the health parameters (theta), which are also simulated by the C-MAPSS models. This would give engineers insight into the efficiency and health of the engine's various components. The health parameters are shown below:
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/health_parameters.png?raw=true" alt="Health Parameters" style="width: 35%;">
 </p>
 
-Second, create a multi-class classification model that identifies the failure mode. All together, these models would form a diagnostic and prognostic suite that would help engineers diagnose the causes of failure, perform proper maintenance, and schedule maintenance.
+Second, create a multi-class classification model that identifies the type of failure mode. All together, these models would form a diagnostic and prognostic suite that would help engineers diagnose the causes of failure, perform proper maintenance, and schedule maintenance.
 
 ### Diversify and Scale Up the Data
 
-As mentioned above, the scope of this project was limited to a single failure mode, so these models serve only as a proof of concept. To ensure the models are industry ready, a scale up of the training dataset would be needed to represent all failure modes. Scaling up the training data would also allow the models to generalize better to the different flight classes. I would expect to see improvements to the long flight and short flight class metrics if the training dataset were larger due to having a wider range of flight and engine conditions to learn from, making the predictions more robust to variations.
+While this project demonstrates the potential of machine learning in engine prognostics, it currently focuses on a single failure mode. To achieve industry-ready performance, the models would need to be trained on a comprehensive dataset encompassing all possible failure modes. Additionally, expanding the training dataset would increase the diversity of flight and engine conditions the model has to learn from, likely enhancing the models' ability to generalize across different flight classes.
 
 ### Model Improvements
 
 There are multiple approaches still worth exploring to improve the models' performance: 
 
-- Experiment with cross-validation using deeper trees in the CatBoost models. The depth of the trees were limited to 10 to keep the timeline of this project reasonable.
-- Try feature engineering using domain expertise or traditional feature selection techniques, such as using rolling averages or lag features and using the HS model predictions as a feature for the RUL model and vice versa.
-- Experiment with different architectures, such as using transformers as feature extractors or using other gradient boosting machine learning models.
-- Use a larger training dataset to improve generalization.
+- Explore deeper decision tree architectures in the CatBoost models beyond the current depth limit of 10, which was chosen for computational efficiency during initial development.
+- Implement advanced feature engineering techniques, including:
+  - Domain-specific engineered features
+  - Aggregated features like rolling averages and lag indicators
+  - Cross-model feature integration, using health state predictions to inform RUL predictions and vice versa
+- Investigate alternative architectural approaches:
+  - Transformer-based feature extractors to better capture temporal dependencies
+  - Evaluation of other gradient boosting frameworks to complement or replace CatBoost
+- Scale up training data volume to enhance model generalization capabilities across different flight conditions and engine states
 
 ## Conclusion
 <a name="conclusion"></a>
 
-This project highlights how machine learning can be used to build tools that aid in predictive maintenance and diagnostics. By leveraging sensor data and combining one-dimensional convolutional neural networks with advanced machine learning models like CatBoost, robust models capable of useful predictions and classifications of mechanical systems can be built. These predictions allow engineers to proactively identify and address potential issues, reducing unexpected downtime and extending the operational lifespan of engines. This enhances safety and reliability and translates into cost reductions and operational efficiency. I hope you enjoyed, please reach out if you have any questions or comments!
+This project highlights how tools that aid in predictive maintenance and diagnostics can be built using machine learning. By leveraging sensor data and combining one-dimensional convolutional neural networks with advanced machine learning models like CatBoost, robust models capable of useful predictions and classifications of mechanical systems can be built. These predictions allow engineers to proactively identify and address potential issues, reducing unexpected downtime and extending the operational lifespan of engines. This enhances safety and reliability and translates into cost reductions and operational efficiency. I hope you enjoyed, please reach out if you have any questions or comments!
