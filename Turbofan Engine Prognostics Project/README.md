@@ -142,7 +142,7 @@ Once the convolutional blocks learned to interpret low-level features, their out
 <a name="catboost-models"></a>
 **Code:** [**CatBoost Models**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/catboost_models.ipynb)
 
-I began by using grid search cross-validation to find the best parameters for the CatBoost models, however the size of the dataset proved a major challenge, both in terms of memory and computational power. My solution was to use a smaller subset of the dataset during the grid search to gain an intuition for possible best parameters for the larger dataset. During cross-validation, it became clear that deeper trees performed well, however, to keep the timeline of this project reasonable, I limited the depth of the trees to 10. The final parameters and structure of the models are as follows:
+I began by using grid search cross-validation to find the best parameters for the CatBoost models, however the size of the dataset proved a major challenge, both in terms of memory and computational power. My solution was to use a smaller subset of data during the grid search to gain an intuition for possible best parameters for a model training on the larger dataset. During cross-validation, it became clear that deeper trees performed well, however, to keep the timeline of this project reasonable, I limited the depth of the trees to 10. The final parameters and structure of the models are as follows:
 
 **Health State CatBoost Model:**
 - learning rate: 0.1
