@@ -22,7 +22,7 @@
 ## Introduction
 <a name="introduction"></a>
 
-For this project, I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These predictions are valuable as they enable proactive maintenance scheduling, reducing unexpected downtime and maintenance costs. By monitoring engine health, companies can enhance safety and improve overall fleet reliability, leading to increased customer satisfaction and operational efficiency. I trained these models on run-to-failure datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can help perform prognostics and diagnostics. The models' raw predictions are based on 30 seconds of sensor data, with a running weighted average applied to the raw predictions to provide more accurate and robust final predictions. 
+For this project, I built machine learning models to predict airplane engine RUL (Remaining Useful Life) and health status. These predictions are valuable as they enable proactive maintenance scheduling, reducing unexpected downtime and maintenance costs. By monitoring engine health, companies can enhance safety and improve overall fleet reliability, leading to increased customer satisfaction and operational efficiency. I trained these models on run-to-failure datasets published by NASA. Run-to-failure datasets are useful for studying the degradation processes of mechanical systems and building models that can help perform prognostics and diagnostics. The models' raw predictions are based on 30 seconds of sensor data, then a running weighted average is applied to provide more accurate and robust final predictions. 
 
 For this project, RUL refers to the number of flight cycles remaining before complete failure, posing a regression prediction task. Health status is a binary classification task, predicting whether the engine is within a normal or abnormal degradation state. This is in reference to NASA's observation that all engines experience two phases of degradation, a phase of normal degradation followed by a phase of abnormal degradation before failure.
 
@@ -35,7 +35,7 @@ For this project, RUL refers to the number of flight cycles remaining before com
 
 ---
 
-Traditional machine learning models are typically a first choice for tabular data. However, traditional models tend to be less effective at learning temporal patterns in data. To address the need for models capable of extracting short-term temporal patterns from 30 seconds of sensor data, I developed hybrid models that leverage the strengths of both traditional machine learning techniques and neural networks. The models are built using one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then those features are used as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and using the flattened raw data as input for traditional machine learning models. However, the hybrid models presented in this project performed with higher accuracy.  
+Decision tree models are typically a first choice for tabular data. However, decision tree models tend to be ineffective at learning temporal patterns in data. To extract short-term temporal patterns from 30 seconds of sensor data, I developed hybrid models that leverage the strengths of both decision tree machine learning techniques and neural networks. The models are built using one-dimensional convolutional neural networks (CNNs) to extract features from the sensor data, then those features are used as input for CatBoost models to make their final predictions. I tried various other approaches, such as forms of Long Short-Term Memory (LSTM), residual network inspired architectures, and using the flattened raw data as input for the decision tree model. However, the hybrid models presented in this project performed with the highest accuracy.  
 
 ## Data
 <a name="data"></a>
@@ -70,7 +70,7 @@ Due to computational constraints, I limited the scope of the project to a subset
 <a name="data-preprocessing"></a>
 **Code:** [**Preprocessing**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/preprocessing.ipynb)
 
-The datasets were preprocessed and fully transformed to avoid additional computational overhead during training. To be compatible as input for the neural networks, the y labels were extracted and the x features were reshaped as (# of samples, 30, 18), representing 30 second windows of 18 features. The 30-second windows were created using overlapping segments with a new window starting every 10 seconds. This process converted approximately 11.5 million seconds of data into 1.15 million 30-second time windows. The 30-second training windows were then randomized and split into training and validation sets, with 10% being used for validation.  
+The datasets were preprocessed and fully transformed to avoid additional computational overhead during training. The y labels were extracted and the x features were reshaped as (# of samples, 30, 18), representing 30 second windows of 18 features. The 30-second windows were created using overlapping segments with a new window starting every 10 seconds. This process converted approximately 11.5 million seconds of data into 1.15 million 30-second time windows. The 30-second training windows were then randomized and split into training and validation sets, with 10% being used for validation.  
 
 Steps used to preprocess the data:
 
@@ -90,9 +90,7 @@ Due to the size of the dataset, memory was regularly freed by deleting variables
 <a name="neural-network-models"></a>
 **Code:** [**Neural Networks**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Turbofan%20Engine%20Prognostics%20Project/one_d_conv_models.ipynb)
 
-The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional blocks learn low-level features (one block in this case). These blocks are then separated from the larger models and used as feature extractors for traditional machine learning models such as CatBoost. While I was at it, I optimized the models for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against.
-
-With a dataset so large, using the whole dataset as a single epoch would likely mean learning convergence would occur mid-epoch, to mitigate this, I lowered the epoch size to check against the validation set more often. To set custom epoch sizes, a data generator was used to feed the models batches of the 30-second windows. Both neural networks shared a similar structure which I found performed well:
+The first step in assembling the hybrid models involves building one-dimensional convolutional neural networks. While these neural networks train, the first convolutional block learns low-level features. These blocks are then separated from the larger models and used as feature extractors for decision tree machine learning models such as CatBoost. Although not part of the final product, I attempted to optimize the neural networks for the two prediction tasks. They do not perform as well as the finished hybrid models, but they showed promise and established a solid baseline of scores for my hybrid models to compare against. Both neural networks shared a similar structure which I found performed well:
 
 
 - **Input shape:** (30, 18) Thirty seconds of 18 features
@@ -115,13 +113,13 @@ With a dataset so large, using the whole dataset as a single epoch would likely 
     - RUL uses a linear activation function.  
 
 
-For optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary cross-entropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
+To mitigate the likelyhood of learning converging mid-epoch, I lowered the epoch size to check against the validation set more often. To set custom epoch sizes, a data generator was used to feed the models batches of the 30-second windows. For optimizers I used AdamW with an exponential decay learning rate scheduler. This approach allows the learning rate to decrease as the model trains, which promotes more efficient and stable learning. For losses, I used a binary cross-entropy for the health state prediction and a custom loss function for RUL that functions similarly to mean squared error, but penalizes overestimations:
 
 <p align="center">
   <img src="https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Images/custom_loss.png?raw=true" alt="Custom Loss Function" style="width: 50%;">
 </p>
 
-The idea behind the custom loss function stems from NASA's evaluation scoring function that slightly penalizes overestimations more than underestimations. This makes sense as overestimations may lead to delayed maintenance and increased costs. By using this loss function, the RUL model did better on NASA's scoring function, however, it performed worse on the root mean squared error metric. Therefore, I used a small penalty weight of .05 to balance performance of the two metrics.
+The idea behind the custom loss function stems from NASA's evaluation scoring function that slightly penalizes overestimations more than underestimations. This makes sense as overestimations in engine life may lead to delayed maintenance and increased costs. By using this loss function, the RUL model performed better on NASA's scoring function, however, it performed worse on the root mean squared error metric. Therefore, I balanced the performance of the two metrics by using a small penalty weight of .05.
 
 ## CatBoost Preprocessing
 <a name="catboost-preprocessing"></a>
