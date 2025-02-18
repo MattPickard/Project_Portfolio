@@ -22,7 +22,7 @@
 ## Introduction
 <a name="introduction"></a>
 
-In this project, I developed a machine learning model for detecting fraudulent loan applications. Early detection of fraudulent activity allows financial institutions to mitigate risks, prevent financial losses, and ensure the integrity of their lending processes. The model leverages a combination of applicant information, behavioral data, and derived features to detect potentially fraudulent applications.
+In this project I developed a machine learning model for detecting fraudulent loan applications. Early detection of fraudulent activity allows financial institutions to mitigate risks, prevent financial losses, and ensure the integrity of their lending processes. The model leverages a combination of applicant information, behavioral data, and derived features to detect potentially fraudulent applications.
 
 A significant challenge in fraud detection is achieving high precision while dealing with highly imbalanced datasets, where fraudulent cases represent only a small fraction of the total samples. In the context of loan fraud detection, minimizing false negatives is particularly important, as this can result in legitimate customers being denied credit. Consequently, it is standard business practice to calibrate models to operate below a predetermined False Positive Rate (FPR) and use the True Positive Rate (TPR) as the performance metric. For this project, I used four evaluation metrics: TPR at 5% FPR, TPR at 1% FPR, Receiver Operating Characteristic (ROC) and Area Under the Curve (AUC) score, and a fairness metric called predictive equality.
 
