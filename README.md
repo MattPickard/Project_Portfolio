@@ -18,7 +18,7 @@ This project provides a practical machine learning framework for financial insti
 
 ###### **Tags:** Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Reranking, Context Enrichment, Information Retrieval, LangChain, Microsoft GraphRAG, OpenAI API, Query Rewriting, Prompt Engineering
 
-In this project, I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques, creating a pipeline that answers questions about my grandfather's memoir. These techniques are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
+In this project I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques, creating a pipeline that answers questions about my grandfather's memoir. These techniques are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
 
 
 
