@@ -6,10 +6,10 @@ Welcome! This repository holds a few of my data science and machine learning pro
 
 ###### **Tags:** Feature Engineering, Imbalanced Learning, LightGBM, Optuna Hyperparameter Tuning, Fraud Detection
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="https://plus.unsplash.com/premium_photo-1661672185492-d07613b7600f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9hbiUyMGZyYXVkfGVufDB8fDB8fHww" style="height: 75px; width: auto;"/>
-    <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/roc_curve.png" style="height: 75px; width: auto;"/>
-    <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/fraud_distribution.png"  style="height: 75px; width: auto;"/>
+<div style="display: flex; justify-content: space-around; align-items: center;">
+    <img src="https://plus.unsplash.com/premium_photo-1661672185492-d07613b7600f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9hbiUyMGZyYXVkfGVufDB8fDB8fHww" style="height: 100px; width: auto;"/>
+    <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/roc_curve.png" style="height: 100px; width: auto;"/>
+    <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/fraud_distribution.png"  style="height: 100px; width: auto;"/>
 </div>
 
 This project provides a practical machine learning framework for financial institutions to detect fraudulent loan applications while minimizing false positives that could impact legitimate customers. The solution employs a mixed sampling strategy combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
