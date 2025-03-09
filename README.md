@@ -6,7 +6,7 @@ Welcome! This repository holds a few of my data science and machine learning pro
 
 ###### **Tags:** Feature Engineering, Imbalanced Learning, LightGBM, Optuna Hyperparameter Tuning, Fraud Detection
 
-<div style="display: flex; justify-content: space-around; align-items: center;">
+<div style="display: flex; justify-content: center; align-items: center;">
     <img src="https://plus.unsplash.com/premium_photo-1661672185492-d07613b7600f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9hbiUyMGZyYXVkfGVufDB8fDB8fHww" style="height: 100px; width: auto;"/>
     <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/roc_curve.png" style="height: 100px; width: auto;"/>
     <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/fraud_distribution.png"  style="height: 100px; width: auto;"/>
