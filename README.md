@@ -9,13 +9,19 @@ Welcome! This repository holds a few of my data science and machine learning pro
 <table style="margin: auto;">
     <tr>
         <td style="text-align: center;">
-            <img src="https://plus.unsplash.com/premium_photo-1661672185492-d07613b7600f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9hbiUyMGZyYXVkfGVufDB8fDB8fHww" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/loan_fraud_detection_project">
+                <img src="https://plus.unsplash.com/premium_photo-1661672185492-d07613b7600f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9hbiUyMGZyYXVkfGVufDB8fDB8fHww" style="height: 150px; width: auto;"/>
+            </a>
         </td>
         <td style="text-align: center;">
-            <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/roc_curve.png" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/loan_fraud_detection_project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/roc_curve.png" style="height: 150px; width: auto;"/>
+            </a>
         </td>
         <td style="text-align: center;">
-            <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/fraud_distribution.png" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/loan_fraud_detection_project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/fraud_distribution.png" style="height: 150px; width: auto;"/>
+            </a>
         </td>
     </tr>
 </table>
@@ -29,13 +35,19 @@ This project provides a practical machine learning framework for detecting fraud
 <table style="margin: auto;">
     <tr>
         <td style="text-align: center;">
-            <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/family_photo.jpg" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Memoir_Rag_Project">
+                <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/family_photo.jpg" style="height: 150px; width: auto;"/>
+            </a>
         </td>
         <td style="text-align: center;">
-            <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/success_rates.png" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Memoir_Rag_Project">
+                <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/success_rates.png" style="height: 150px; width: auto;"/>
+            </a>
         </td>
         <td style="text-align: center;">
-            <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/evaluation_breakdown.png" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Memoir_Rag_Project">
+                <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/evaluation_breakdown.png" style="height: 150px; width: auto;"/>
+            </a>
         </td>
     </tr>
 </table>
@@ -50,13 +62,19 @@ In this project I demonstrate the application of various RAG (Retrieval-Augmente
 <table style="margin: auto;">
     <tr>
         <td style="text-align: center;">
-            <img src="https://plus.unsplash.com/premium_photo-1679758629409-83446005843c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWlycGxhbmUlMjB0dXJib2ZhbiUyMGVuZ2luZXxlbnwwfHwwfHx8MA%3D%3D" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/turbofan_engine_prognostics_project">
+                <img src="https://plus.unsplash.com/premium_photo-1679758629409-83446005843c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWlycGxhbmUlMjB0dXJib2ZhbiUyMGVuZ2luZXxlbnwwfHwwfHx8MA%3D%3D" style="height: 150px; width: auto;"/>
+            </a>
         </td>
         <td style="text-align: center;">
-            <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/rul_15.png" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/turbofan_engine_prognostics_project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/rul_15.png" style="height: 150px; width: auto;"/>
+            </a>
         </td>
         <td style="text-align: center;">
-            <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/hs_15.png" style="height: 150px; width: auto;"/>
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/turbofan_engine_prognostics_project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/hs_15.png" style="height: 150px; width: auto;"/>
+            </a>
         </td>
     </tr>
 </table>
