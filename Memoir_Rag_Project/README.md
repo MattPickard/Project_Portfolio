@@ -40,7 +40,7 @@ The dataset consists of my grandfather's memoir titled "My Life Story," consisti
 
 <a name="basic-rag"></a>
 ## Basic RAG Implementation 
-**Code:** [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/basic_rag.ipynb)  
+**Code:** [Basic RAG Pipeline Implementation](https://github.com/MattPickard/Project_Portfolio/blob/main/Memoir_Rag_Project/basic_rag.ipynb)  
 **Success Rate:** 60%  
 
 
@@ -71,7 +71,7 @@ A success rate of 60% indicates that while a basic RAG pipeline is insufficient 
 
 <a name="rag-ensemble"></a>
 ## RAG Ensemble Implementation
-**Code:** [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/rag_ensemble.ipynb)  
+**Code:** [RAG Ensemble Pipeline Implementation](https://github.com/MattPickard/Project_Portfolio/blob/main/Memoir_Rag_Project/rag_ensemble.ipynb)  
 **[Version 1](#version-1) Success Rate:** 85%  
 **[Version 2](#version-2) Success Rate:** 95%  
 
@@ -129,7 +129,7 @@ Additionally, I want to highlight the critical role of prompt engineering in the
 
 <a name ="microsoft-graphrag"></a>
 ## Microsoft GraphRAG Implementation  
-**Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Memior%20Project/microsoft_graphrag.ipynb)  
+**Code:** [Microsoft GraphRAG Pipeline Implementation](https://github.com/MattPickard/Project_Portfolio/blob/main/Memoir_Rag_Project/microsoft_graphrag.ipynb)  
 **Success Rate:** 60%  
 
 I have always been interested in evaluating the performance of GraphRAG due to its popularity in the RAG community. This was a simple implementation, resembling the [Basic RAG Pipeline](#basic-rag), and did not incorporate any additional techniques.
