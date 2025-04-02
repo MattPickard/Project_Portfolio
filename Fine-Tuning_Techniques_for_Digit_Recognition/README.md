@@ -134,7 +134,7 @@ This project demonstrated three different approaches to fine-tuning a pre-traine
 **Key Takeaways:**
 
 - **Experience Replay** provides the best performance by mitigating catastrophic forgetting but requires access to original training data.
-- **Sequential Fine-tuning**, while necessary when old data is unavailable, leads to a noticeable drop in overall accuracy, demonstrating catastrophic forgetting.
+- **Sequential Fine-tuning**, which can be used when old data is unavailable, leads to a noticeable drop in overall accuracy, demonstrating catastrophic forgetting.
 - **LoRA Fine-tuning** offers significant parameter efficiency, drastically reducing the number of trainable weights, and demonstrating the ability to be fine-tuned using only the new class data. Its primary advantage lies in reduced computational cost and storage for a model with many fine-tuned variants. Additionally, the ability to adjust the LoRA strength factor provides the user a unique ability to balance performance on the new and existing classes.
 
 These techniques have broad applications beyond digit recognition, including:
