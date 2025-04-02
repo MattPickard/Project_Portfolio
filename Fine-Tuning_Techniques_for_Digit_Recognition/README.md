@@ -51,12 +51,13 @@ After training, the model achieved an accuracy of 99.25% on the test set contain
 Experience replay is a technique where a model is fine-tuned using both new data and a subset of the original training data. This approach helps prevent catastrophic forgetting, where a model loses performance on previously learned tasks when adapting to new ones.
 For this experiment, I simulated experience replay by fine-tuning the base model on the full MNIST dataset, including both the previously trained digits 1-9 samples and the "new" digit 0. This represents an ideal scenario where historical training data remains available. To account for the potential computational expense of fine-tuning in real-world applications, I froze training on all but the last 2 dense layers and the output layer, reducing the computational cost. This approach relies on the assumption that the early convolutional layers successfully learned representations that are transferable to classifying the new digit 0. This should not always be assumed, especially in cases where the new task differs greatly from previously learned tasks.
 
-<table>
+---
+
 Overall test accuracy: **99.31%**  
 Accuracy for digit 0: **99.69%**  
 
 <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/replay_matrix.png?raw=true" style="width: 40%;">
-</table>
+
 
 This simulation of experience replay proved to be highly effective at mitigating catastrophic forgetting. It preserved model accuracy of the original 1-9 digits while achieving near-perfect accuracy on the new digit 0. This approach is ideal when the original or previous training data is still available. However, the next two approaches will simulate scenarios where the original training data is no longer available.
 
