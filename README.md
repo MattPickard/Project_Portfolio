@@ -106,7 +106,7 @@ This project utilizes a NASA run-to-failure dataset to develop hybrid models tha
     </tr>
 </table>
 
-This project tackles a fundamental challenge in machine learning: how to efficiently adapt pre-trained models to new data without compromising performance on previously learned tasks. Using hand-written digit recognition as a case study, I implemented and compared three distinct fine-tuning approaches—Experience Replay, Sequential Fine-tuning, and LoRA. This work demonstrates practical solutions to common machine learning challenges, such as adapting models when original training data is unavailable or when computational resources are limited.
+This project tackles a fundamental challenge in machine learning: how to efficiently adapt pre-trained models to new data without compromising performance on previously learned tasks. Using hand-written digit recognition as a case study, I implemented and compared three distinct fine-tuning approaches—Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation (LoRA). This work demonstrates practical solutions to common machine learning challenges, such as adapting models when original training data is unavailable or when computational resources are limited.
 
 
 
