@@ -57,7 +57,7 @@ In this project I demonstrate the application of various RAG (Retrieval-Augmente
 
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/turbofan_engine_prognostics_project))**
 
-###### **Tags:** Convolutional Neural Networks, CatBoost, Engine Prognostics, TensorFlow/Keras, Data Visualization
+###### **Tags:** Convolutional Neural Networks (CNNs), CatBoost, Engine Prognostics, TensorFlow/Keras, Feature Extraction
 
 <table style="margin: auto;">
     <tr>
@@ -84,7 +84,7 @@ This project utilizes a NASA run-to-failure dataset to develop hybrid models tha
 
 ## **Fine-Tuning Techniques for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition))**
 
-###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks, Low-Rank Adaptation (LoRA), TensorFlow/Keras
+###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks (CNNs), Low-Rank Adaptation (LoRA), TensorFlow/Keras
 
 <table style="margin: auto;">
     <tr>
