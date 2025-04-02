@@ -75,9 +75,9 @@ Experience replay is a technique where a model is fine-tuned using both new data
 
 For this experiment, I simulated experience replay by fine-tuning the base model on the full MNIST dataset, including both the previously trained digits 1-9 samples and the "new" digit 0. This represents an ideal scenario where historical training data remains available. To account for the potential computational expense of fine-tuning in real-world applications, I froze training on all but the last 2 dense layers and the output layer, reducing the computational cost. This approach relies on the assumption that the early convolutional layers successfully learned representations that are transferable to classifying the new digit 0. This should not always be assumed, especially in cases where the new task differs greatly from previously learned tasks.
 
-### **Results:**
-   Overall test accuracy:  **99.31%**  
-   Accuracy for digit 0:  **99.69%**  
+### **Results:**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overall test accuracy:  **99.31%**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accuracy for digit 0:  **99.69%**  
 
 Experience replay proved to be highly effective at mitigating catastrophic forgetting. It preserved model accuracy of the original 1-9 digits while achieving near-perfect accuracy on the new digit 0. This approach is ideal when the original or previous training data is still available. The next two approaches will simulate scenarios where the original training data is no longer available.
 
@@ -90,8 +90,8 @@ Sequential fine-tuning represents a more challenging scenario where only new tas
 Similar to the experience replay experiment, I froze all but the last 2 dense layers and the output layer. Then hyperparameter optimization was performed using an Optuna study to find the optimal learning rate and number of epochs. It's worth noting that this introduces slight data leakage, as the number of epochs and learning rate were optimized while maximizing the test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can be implemented using the validation set.
 
 ### **Results:**  
-   Overall test accuracy:  **98.22%**  
-   Accuracy for digit 0:  **97.86%**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overall test accuracy:  **98.22%**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accuracy for digit 0:  **97.86%**  
 
 The decrease in overall accuracy compared to the experience replay experiment suggests that the model experienced catastrophic forgetting as a result of only training on the new digit 0. While this approach won't achieve the same level of performance as experience replay, this experiment shows it can be of value when original or comprehensive training data is unavailable and quick adaptation to new classes is needed.
 
@@ -112,8 +112,8 @@ A unique characteristic of LoRA models is that a strength adjuster can be implem
 </p>
 
 ### **Results:**   
-   Overall test accuracy:  **97.74%**  
-   Accuracy for digit 0:  **96.73%**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overall test accuracy:  **97.74%**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accuracy for digit 0:  **96.73%**  
 
 Considering the LoRA was trained using only 0 digit data and utilized significantly fewer trainable parameters, it's not surprising that the performance is lower than the other two experiments. LoRA fine-tuning is a valuable option when training computational resources are limited. It also allows for efficient storage if multiple specialized versions of a model are needed for different tasks by simply swapping the small LoRA weights, as opposed to storing a full separate model for each task. Finally, the ability to adjust the LoRA strength factor provides the user a unique ability to balance performance on the new and existing classes.
 
