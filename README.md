@@ -84,7 +84,7 @@ This project utilizes a NASA run-to-failure dataset to develop hybrid models tha
 
 ## **Fine-Tuning Techniques for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition))**
 
-###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks, LoRA, TensorFlow/Keras
+###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks, Low-Rank Adaptation (LoRA), TensorFlow/Keras
 
 <table style="margin: auto;">
     <tr>
