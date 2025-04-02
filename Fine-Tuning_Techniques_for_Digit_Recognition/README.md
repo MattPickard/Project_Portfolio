@@ -51,17 +51,18 @@ After training, the model achieved an accuracy of 99.25% on the test set contain
 Experience replay is a technique where a model is fine-tuned using both new data and a subset of the original training data. This approach helps prevent catastrophic forgetting, where a model loses performance on previously learned tasks when adapting to new ones.
 For this experiment, I simulated experience replay by fine-tuning the base model on the full MNIST dataset, including both the previously trained digits 1-9 samples and the "new" digit 0. This represents an ideal scenario where historical training data remains available. To account for the potential computational expense of fine-tuning in real-world applications, I froze training on all but the last 2 dense layers and the output layer, reducing the computational cost. This approach relies on the assumption that the early convolutional layers successfully learned representations that are transferable to classifying the new digit 0. This should not always be assumed, especially in cases where the new task differs greatly from previously learned tasks.
 
-The results of the experience replay fine-tuning experiment are as follows:  
+<table>
 Overall test accuracy: **99.31%**  
 Accuracy for digit 0: **99.69%**  
 
 <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/replay_matrix.png?raw=true" style="width: 40%;">
+</table>
 
 This simulation of experience replay proved to be highly effective at mitigating catastrophic forgetting. It preserved model accuracy of the original 1-9 digits while achieving near-perfect accuracy on the new digit 0. This approach is ideal when the original or previous training data is still available. However, the next two approaches will simulate scenarios where the original training data is no longer available.
 
 ## Sequential Fine-tuning
 <a name="sequential-fine-tuning"></a>
-**Code:** [**Sequential Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/sequential_fine-tuning.ipynb)
+**Code:** [**Sequential Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/sequential_fine-tuning.ipynb)  
 Sequential fine-tuning represents a more challenging scenario where only new task data (digit 0) is available for training. This may be used in situations where the original training data is no longer accessible, but you want to preserve the model's performance on the original tasks. Sequential fine-tuning is highly susceptible to catastrophic forgetting, so training only on the new task data like this is not recommended. 
 Similar to the experience replay experiment, I froze all but the last 2 dense layers and the output layer. Then hyperparameter optimization was performed using an Optuna study to find the optimal learning rate and number of epochs. It's worth noting that this introduces slight data leakage, as the number of epochs and learning rate were optimized while maximizing the test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can then be implemented using that validation set instead of hyperparameter tuning these values.
 
@@ -75,7 +76,7 @@ The decrease in overall accuracy compared to the experience replay experiment su
 
 ## LoRA Fine-tuning
 <a name="lora-fine-tuning"></a>
-**Code:** [**LoRA Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/lora_fine-tuning.ipynb)
+**Code:** [**LoRA Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/lora_fine-tuning.ipynb)  
 Low-Rank Adaptation (LoRA) is a fine-tuning technique that introduces small, trainable low-rank matrices (A and B) which are then injected into the output of the original layers. This approach significantly reduces the number of trainable parameters compared to other fine-tuning methods while still allowing the model to adapt to new data. For example, by using LoRA to fine-tune the last two dense layers of this model, the number of trainable parameters compared to the other two experiments was reduced from 90,240 to 2,052, around a ~45x reduction in trainable parameters. 
 
 Similar to the sequential fine-tuning experiment, I limited the LoRA fine-tuning to train only on the 0 digit data. I wanted to see the effects of catastrophic forgetting for a LoRA model, where the underlying pre-trained model parameters are never changed. Similar to the sequential fine-tuning experiment, I hyperparameter tuned the number of epochs and learning rate using an Optuna study maximizing for test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can then be implemented using that validation set instead of hyperparameter tuning these values.
