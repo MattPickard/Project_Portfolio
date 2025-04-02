@@ -53,7 +53,7 @@ These transformations must be made to any data used as input into the model or s
 <a name="cnn-training"></a>
 **Code:** [**Base Model CNN Training**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/cnn_training.ipynb)
 
-The first step was to train a CNN model exclusively on digits 1-9 from the MNIST dataset, excluding digit 0. This model was then treated as the "pre-trained" model for all subsequent fine-tuning experiments.
+For the base model, a CNN was trained exclusively on digits 1-9 from the MNIST dataset, excluding digit 0. This model was then treated as the "pre-trained" model for all subsequent fine-tuning experiments.
 
 The architecture of the CNN model consists of:
 - Three convolutional layers with 32, 64, and 64 filters, respectively
