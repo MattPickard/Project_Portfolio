@@ -82,6 +82,32 @@ In this project I demonstrate the application of various RAG (Retrieval-Augmente
 This project utilizes a NASA run-to-failure dataset to develop hybrid models that predict the Remaining Useful Life (RUL) and health status of turbofan engines. By integrating one-dimensional convolutional neural networks with CatBoost models, this approach effectively captures the temporal patterns present in sensor data. The resulting predictions serve as valuable tools for engineers, enabling proactive maintenance scheduling and monitoring engine health.
 
 
+## **Fine-Tuning Techniques for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition))**
+
+###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks, LoRA, TensorFlow/Keras
+
+<table style="margin: auto;">
+    <tr>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition">
+                <img src="https://awaywithideas.com/assets/images/2020/10/mnist_extended_4_0.png" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition">
+                <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/fine-tuning_comparison.png?raw=true" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition">
+                <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/LoRa_Strength.png?raw=true" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+This project tackles a fundamental challenge in machine learning: how to efficiently adapt pre-trained models to new data without compromising performance on previously learned tasks. Using hand-written digit recognition as a case study, I implemented and compared three distinct fine-tuning approaches—Experience Replay, Sequential Fine-tuning, and LoRA. This work demonstrates practical solutions to common machine learning challenges, such as adapting models when original training data is unavailable or when computational resources are limited.
+
 
 
 
