@@ -57,9 +57,6 @@ For this experiment, I simulated experience replay by fine-tuning the base model
 Overall test accuracy: **99.31%**  
 Accuracy for digit 0: **99.69%**  
 
-<img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/replay_matrix.png?raw=true" style="width: 30%;">
-
-
 Experience replay proved to be highly effective at mitigating catastrophic forgetting. It preserved model accuracy of the original 1-9 digits while achieving near-perfect accuracy on the new digit 0. This approach is ideal when the original or previous training data is still available. However, the next two approaches will simulate scenarios where the original training data is no longer available.
 
 ## Sequential Fine-tuning
@@ -72,8 +69,6 @@ Similar to the experience replay experiment, I froze all but the last 2 dense la
 ### **Results:**  
 Overall test accuracy: **98.22%**  
 Accuracy for digit 0: **97.86%**  
-
-<img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/seq_matrix.png?raw=true" style="width: 30%;">
 
 The decrease in overall accuracy compared to the experience replay experiment suggests that the model experienced catastrophic forgetting as a result of only training on the new digit 0. While this approach won't achieve the same level of performance as experience replay, this experiment shows it can be of value when original or comprehensive training data is unavailable and quick adaptation to new classes is needed.
 
@@ -96,8 +91,6 @@ A unique characteristic of LoRA models is that a strength adjuster can be implem
 ### **Results:**   
 Overall test accuracy: **97.74%**  
 Accuracy for digit 0: **96.73%**  
-
-<img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/LoRA_Matrix.png?raw=true" style="width: 30%;">
 
 Considering the LoRA was trained using only 0 digit data and utilized significantly fewer trainable parameters, it's not surprising that the performance is lower than the other two experiments. LoRA fine-tuning is a valuable option when training computational resources are limited. It also allows for efficient storage if multiple specialized versions of a model are needed for different tasks by simply swapping the small LoRA weights, as opposed to storing a full separate model for each task. Finally, the ability to adjust the LoRA strength factor provides the user a unique ability to balance performance on the new and existing classes.
 
