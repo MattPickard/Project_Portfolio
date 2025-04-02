@@ -20,23 +20,41 @@
 
 ## Introduction
 <a name="introduction"></a>
-In this project, I explored different fine-tuning techniques for adapting a neural network to new data. Using the MNIST dataset of handwritten digits, I first trained a convolutional neural network (CNN) to recognize digits 1-9, then fine-tuned it to recognize the digit 0 using three different approaches: experience replay, sequential fine-tuning, and Low-Rank Adaptation (LoRA). 
+In this project, I explored different fine-tuning techniques for adapting a neural network to new data. Using the MNIST dataset of handwritten digits, I first trained a convolutional neural network (CNN) to recognize digits 1-9, then fine-tuned it to recognize the digit 0 using three different approaches: experience replay, sequential fine-tuning, and Low-Rank Adaptation (LoRA).
+
 This project seeks to simulate a common challenge in machine learning: how to adapt a model to new classes or data distributions without losing performance on previously learned tasks. I was especially curious about the effects of fine-tuning using exclusively new task data, which I simulated in the sequential fine-tuning and LoRA experiments.
+
 Thus, this project attempts to simulate real-world deep learning applications where:
 - The full original training data may no longer be available
 - Retraining from scratch and naive fine-tuning are too computationally expensive
 - New classes or data distributions emerge over time
+
 The MNIST dataset used in this project is a widely used dataset consisting of 70,000 grayscale images of handwritten digits (0-9), each 28x28 pixels. By treating digit 0 as a "new class" that the model learns separately after being trained on digits 1-9, I was able to evaluate different fine-tuning strategies and their performance on both the new and previously learned classes.
 
 <p align="center">
 <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/fine-tuning_comparison.png?raw=true" style="width: 50%;">
 </p>
 
+## Preprocessing
+
+The data is reshaped to be (28,28,1) for input into the neural network. This represents the 28x28 pixel images of 1 channel for grayscale images (RGB would have 3 channels). The values are then normalized to be between 0 and 1 by dividing by the maximum pixel value of 255:
+
+```python
+# Reshape data to be 28x28x1 and normalize pixel values
+train_images = np.array(train_images).reshape((-1, 28, 28, 1)) / 255.0
+train_labels = np.array(train_labels)
+test_images = np.array(test_images).reshape((-1, 28, 28, 1)) / 255.0
+test_labels = np.array(test_labels)
+```
+
+This transformation must be made to any data that will be used as input into the model or subsiquent fine-tuned models.
+
 ## Base Model CNN Training
 <a name="cnn-training"></a>
-**Code:** [**CNN Training**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/cnn_training.ipynb)
+**Code:** [**Base Model CNN Training**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/cnn_training.ipynb)
 
 The first step was to train a CNN model exclusively on digits 1-9 from the MNIST dataset, excluding digit 0. This model was then treated as the "pre-trained" model for all subsequent fine-tuning experiments.
+
 The architecture of the CNN model consists of:
 - Three convolutional layers with 32, 64, and 64 filters, respectively
 - Two max pooling layers for dimensionality reduction
@@ -54,6 +72,7 @@ After training, the model achieved an accuracy of 99.25% on the test set contain
 **Code:** [**Replay Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/replay_fine-tuning.ipynb)  
 
 Experience replay is a technique where a model is fine-tuned using both new data and a subset of the original training data. This approach helps prevent catastrophic forgetting, where a model loses performance on previously learned tasks when adapting to new ones.
+
 For this experiment, I simulated experience replay by fine-tuning the base model on the full MNIST dataset, including both the previously trained digits 1-9 samples and the "new" digit 0. This represents an ideal scenario where historical training data remains available. To account for the potential computational expense of fine-tuning in real-world applications, I froze training on all but the last 2 dense layers and the output layer, reducing the computational cost. This approach relies on the assumption that the early convolutional layers successfully learned representations that are transferable to classifying the new digit 0. This should not always be assumed, especially in cases where the new task differs greatly from previously learned tasks.
 
 ### **Results:**
@@ -61,14 +80,15 @@ For this experiment, I simulated experience replay by fine-tuning the base model
 Overall test accuracy: **99.31%**  
 Accuracy for digit 0: **99.69%**  
 
-Experience replay proved to be highly effective at mitigating catastrophic forgetting. It preserved model accuracy of the original 1-9 digits while achieving near-perfect accuracy on the new digit 0. This approach is ideal when the original or previous training data is still available. However, the next two approaches will simulate scenarios where the original training data is no longer available.
+Experience replay proved to be highly effective at mitigating catastrophic forgetting. It preserved model accuracy of the original 1-9 digits while achieving near-perfect accuracy on the new digit 0. This approach is ideal when the original or previous training data is still available. The next two approaches will simulate scenarios where the original training data is no longer available.
 
 ## Sequential Fine-tuning
 <a name="sequential-fine-tuning"></a>
 **Code:** [**Sequential Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/sequential_fine-tuning.ipynb)  
 
-Sequential fine-tuning represents a more challenging scenario where only new task data (digit 0) is available for training. This may be used in situations where the original training data is no longer accessible, presenting a delicate balance training to maximize performance on the new and old tasks. Sequential fine-tuning is highly susceptible to catastrophic forgetting, so training only on the new task data like this will often result in a drop in performance on the old tasks. 
-Similar to the experience replay experiment, I froze all but the last 2 dense layers and the output layer. Then hyperparameter optimization was performed using an Optuna study to find the optimal learning rate and number of epochs. It's worth noting that this introduces slight data leakage, as the number of epochs and learning rate were optimized while maximizing the test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can then be implemented using that validation set instead of hyperparameter tuning these values.
+Sequential fine-tuning represents a more challenging scenario where only new task data (digit 0) is available for training. This may be used in situations where the original training data is no longer accessible. Sequential fine-tuning is highly susceptible to catastrophic forgetting, so it presents a delicate balance between maximizing performance on the new task and preserving performance on the old tasks. 
+
+Similar to the experience replay experiment, I froze all but the last 2 dense layers and the output layer. Then hyperparameter optimization was performed using an Optuna study to find the optimal learning rate and number of epochs. It's worth noting that this introduces slight data leakage, as the number of epochs and learning rate were optimized while maximizing the test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can be implemented using the validation set.
 
 ### **Results:**  
 Overall test accuracy: **98.22%**  
@@ -82,7 +102,7 @@ The decrease in overall accuracy compared to the experience replay experiment su
 
 Low-Rank Adaptation (LoRA) is a fine-tuning technique that introduces small, trainable low-rank matrices (A and B) which are then injected into the output of the original layers. This approach significantly reduces the number of trainable parameters compared to other fine-tuning methods while still allowing the model to adapt to new data. For example, by using LoRA to fine-tune the last two dense layers of this model, the number of trainable parameters compared to the other two experiments was reduced from 90,240 to 2,052, around a ~45x reduction in trainable parameters. 
 
-Similar to the sequential fine-tuning experiment, I limited the LoRA fine-tuning to train only on the 0 digit data. I wanted to see the effects of catastrophic forgetting for a LoRA model, where the underlying pre-trained model parameters are never changed. Similar to the sequential fine-tuning experiment, I hyperparameter tuned the number of epochs and learning rate using an Optuna study maximizing for test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can then be implemented using that validation set instead of hyperparameter tuning these values.
+Similar to the sequential fine-tuning experiment, I limited the LoRA fine-tuning to train only on the 0 digit data. I wanted to see the effects of catastrophic forgetting for a LoRA model, where the underlying pre-trained model parameters are never changed. Similar to the sequential fine-tuning experiment, I hyperparameter tuned the number of epochs and learning rate using an Optuna study maximizing for test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can be implemented using the validation set.
 
 ### Adjustable LoRA Strength
 
@@ -106,7 +126,7 @@ Considering the LoRA was trained using only 0 digit data and utilized significan
 </p>
 
 This project demonstrated three different approaches to fine-tuning a pre-trained neural network for a new class, each with its own strengths and trade-offs:
-| Method | Overall Accuracy | Digit 0 Accuracy | Trainable Parameters | Original Data Required |
+| Method | Overall Accuracy | Digit 0 Accuracy | Trainable Parameters | Used Historical Data |
 |--------|------------------|------------------|----------------------|------------------------|
 | Experience Replay | 99.31% | 99.69% | 90,240 | Yes |
 | Sequential Fine-tuning | 98.22% | 97.86% | 90,240 | No |
