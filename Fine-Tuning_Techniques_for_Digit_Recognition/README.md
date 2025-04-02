@@ -9,7 +9,7 @@
 <tr>
 <td>
 <a href="#introduction">Introduction</a><br>
-<a href="#cnn-training">CNN Training</a><br>
+<a href="#cnn-training">Base Model CNN Training</a><br>
 <a href="#experience-replay-fine-tuning">Experience Replay Fine-tuning</a><br>
 <a href="#sequential-fine-tuning">Sequential Fine-tuning</a><br>
 <a href="#lora-fine-tuning">LoRA Fine-tuning</a><br>
@@ -28,7 +28,11 @@ Thus, this project attempts to simulate real-world deep learning applications wh
 - New classes or data distributions emerge over time
 The MNIST dataset used in this project is a widely used dataset consisting of 70,000 grayscale images of handwritten digits (0-9), each 28x28 pixels. By treating digit 0 as a "new class" that the model learns separately after being trained on digits 1-9, I was able to evaluate different fine-tuning strategies and their performance on both the new and previously learned classes.
 
-## CNN Training
+<p align="center">
+<img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/fine-tuning_comparison.png?raw=true" style="width: 50%;">
+</p>
+
+## Base Model CNN Training
 <a name="cnn-training"></a>
 **Code:** [**CNN Training**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/cnn_training.ipynb)
 
@@ -63,7 +67,7 @@ Experience replay proved to be highly effective at mitigating catastrophic forge
 <a name="sequential-fine-tuning"></a>
 **Code:** [**Sequential Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/sequential_fine-tuning.ipynb)  
 
-Sequential fine-tuning represents a more challenging scenario where only new task data (digit 0) is available for training. This may be used in situations where the original training data is no longer accessible, but you want to preserve the model's performance on the original tasks. Sequential fine-tuning is highly susceptible to catastrophic forgetting, so training only on the new task data like this is not recommended. 
+Sequential fine-tuning represents a more challenging scenario where only new task data (digit 0) is available for training. This may be used in situations where the original training data is no longer accessible, presenting a delicate balance training to maximize performance on the new and old tasks. Sequential fine-tuning is highly susceptible to catastrophic forgetting, so training only on the new task data like this will often result in a drop in performance on the old tasks. 
 Similar to the experience replay experiment, I froze all but the last 2 dense layers and the output layer. Then hyperparameter optimization was performed using an Optuna study to find the optimal learning rate and number of epochs. It's worth noting that this introduces slight data leakage, as the number of epochs and learning rate were optimized while maximizing the test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can then be implemented using that validation set instead of hyperparameter tuning these values.
 
 ### **Results:**  
