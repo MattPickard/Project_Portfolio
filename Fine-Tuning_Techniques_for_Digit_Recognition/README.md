@@ -106,7 +106,7 @@ For this implementation, I created a custom TensorFlow layer that applies a LoRA
 The matrices Lora_A and Lora_B have shapes (d×r) and (r×k) where:
 - d is the input dimension,
 - k is the output dimension, and
-- r is the LoRA rank (set to 4).
+- r is the LoRA rank (set to 4)
 
 The forward pass computes the output as:
 
@@ -116,7 +116,7 @@ Where:
 - W represents the frozen base weights,
 - x is the input,
 - AB is the low-rank update, and
-- α is a scaling factor, explained in the section Adjustable LoRA Strength below.
+- α is a scaling factor, explained in the section "Adjustable LoRA Strength" below
 
 Similar to the sequential fine-tuning experiment, I restricted LoRA fine-tuning to training only on data from the digit 0. The goal was to see the effects of catastrophic forgetting in a LoRA-based model, where the underlying pre-trained parameters remain unchanged.
 
