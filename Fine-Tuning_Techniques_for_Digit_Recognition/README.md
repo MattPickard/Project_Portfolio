@@ -116,7 +116,7 @@ Where:
 - W represents the frozen base weights,
 - x is the input,
 - AB is the low-rank update, and
-- α is a scaling factor, explained in the section "Adjustable LoRA Strength" below
+- α is a strength scaling factor, explained in the section "Adjustable LoRA Strength" below
 
 Similar to the sequential fine-tuning experiment, I restricted LoRA fine-tuning to training only on data from the digit 0. The goal was to see the effects of catastrophic forgetting in a LoRA-based model, where the underlying pre-trained parameters remain unchanged.
 
