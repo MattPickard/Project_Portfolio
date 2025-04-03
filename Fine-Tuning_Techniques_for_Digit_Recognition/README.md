@@ -99,9 +99,28 @@ The decrease in overall accuracy compared to the experience replay experiment su
 <a name="lora-fine-tuning"></a>
 **Code:** [**LoRA Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/lora_fine-tuning.ipynb)  
 
-Low-Rank Adaptation (LoRA) is a fine-tuning technique that introduces small, trainable low-rank matrices (A and B) which are then injected into the output of the original layers. This approach significantly reduces the number of trainable parameters compared to other fine-tuning methods while still allowing the model to adapt to new data. For example, by using LoRA to fine-tune the last two dense layers of this model, the number of trainable parameters compared to the other two experiments was reduced from 90,240 to 2,052, around a ~45x reduction in trainable parameters. 
+Low-Rank Adaptation (LoRA) is a fine-tuning technique that introduces small, trainable low-rank matrices into the output of the original models layers. This approach significantly reduces the number of trainable parameters compared to other fine-tuning methods while still allowing the model to adapt to new data. For example, by using LoRA to fine-tune the last two dense layers of this model, the number of trainable parameters compared to the other two experiments was reduced from 90,240 to 2,052, around a ~45x reduction in trainable parameters. 
 
-Similar to the sequential fine-tuning experiment, I limited the LoRA fine-tuning to train only on the 0 digit data. I wanted to see the effects of catastrophic forgetting for a LoRA model, where the underlying pre-trained model parameters are never changed. Similar to the sequential fine-tuning experiment, I hyperparameter tuned the number of epochs and learning rate using an Optuna study maximizing for test set accuracy. In a real-world scenario, a separate validation set should be used, and early stopping can be implemented using the validation set.
+For this implementation, I created a custom TensorFlow layer that applies a LoRA update to the weights of a frozen layer. Specifically, it adds the product of two low-rank matrices (A and B) to the frozen layer’s weight parameters, and disables the original bias parameters.
+
+The matrices Lora_A and Lora_B have shapes (d×r) and (r×k) where:
+- d is the input dimension,
+- k is the output dimension, and
+- r is the LoRA rank (set to 4).
+
+The forward pass computes the output as:
+
+    y=Wx+αABx
+
+Where:
+- W represents the frozen base weights,
+- x is the input,
+- AB is the low-rank update, and
+- α is a scaling factor, explained in the section Adjustable LoRA Strength below.
+
+Similar to the sequential fine-tuning experiment, I restricted LoRA fine-tuning to training only on data from the digit 0. The goal was to see the effects of catastrophic forgetting in a LoRA-based model, where the underlying pre-trained parameters remain unchanged.
+
+As in the previous experiment, I performed hyperparameter tuning using an Optuna study to optimize the number of epochs and learning rate, maximizing test set accuracy. In a real-world scenario, a separate validation set should be used for tuning, and early stopping can be applied based on validation performance.
 
 ### Adjustable LoRA Strength
 
