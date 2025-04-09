@@ -82,7 +82,7 @@ In this project I demonstrate the application of various RAG (Retrieval-Augmente
 This project utilizes a NASA run-to-failure dataset to develop hybrid models that predict the Remaining Useful Life (RUL) and health status of turbofan engines. By integrating one-dimensional convolutional neural networks with CatBoost models, this approach effectively captures the temporal patterns present in sensor data. The resulting predictions serve as valuable tools for engineers, enabling proactive maintenance scheduling and monitoring engine health.
 
 
-## **Fine-Tuning Techniques for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition))**
+## **Adapting Neural Networks: Fine-Tuning for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_Techniques_for_Digit_Recognition))**
 
 ###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks (CNNs), Low-Rank Adaptation (LoRA), TensorFlow/Keras
 
