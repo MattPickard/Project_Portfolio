@@ -42,7 +42,7 @@ The base dataset used for this project, which is intended to closely represent t
 
 ## Preprocessing and Feature Engineering
 <a name="data-preprocessing"></a>
-**Code:** [**Preprocessing**](https://github.com/MattPickard/Data-Science-Portfolio/blob/main/Loan%20Fraud%20Detection%20Project/preprocess.ipynb)
+**Code:** [**Preprocessing**](https://github.com/MattPickard/Project_Portfolio/blob/main/Loan_Fraud_Detection_Project/preprocess.ipynb)
 
 The following steps were taken to prepare the data for training the model:
 
@@ -62,7 +62,7 @@ The following steps were taken to prepare the data for training the model:
 
 ## Sampling Strategy
 <a name="sampling"></a>
-**Code:** [**Sampling**](https://github.com/MattPickard/Project_Portfolio/blob/main/loan_fraud_detection_project/sampling.ipynb)
+**Code:** [**Sampling**](https://github.com/MattPickard/Project_Portfolio/blob/main/Loan_Fraud_Detection_Project/sampling.ipynb)
 
 To tackle the significant class imbalance in the dataset, I employed a mixed sampling strategy of random undersampling and the Synthetic Minority Over-sampling Technique for Nominal and Continuous Features (SMOTENC) to construct a balanced training set. This mixed approach proved to be more effective than simply using LightGBM's class weight training and simple random undersampling. 
 
@@ -76,7 +76,7 @@ To maximize the real fraudulent class sample representation within the training 
 
 ## LightGBM Model
 <a name="model-training"></a>
-**Code:** [**LightGBM Model**](https://github.com/MattPickard/Project_Portfolio/blob/main/loan_fraud_detection_project/lightgbm_model.ipynb)
+**Code:** [**LightGBM Model**](https://github.com/MattPickard/Project_Portfolio/blob/main/Loan_Fraud_Detection_Project/lightgbm_model.ipynb)
 
 LightGBM is a powerful gradient boosting framework that utilizes tree-based learning algorithms. I also experimented with CatBoost, another gradient boosting framework, but I found that LightGBM yielded slightly better performance, particularly after implementing a mixed sampling strategy.
 
@@ -106,7 +106,7 @@ After training, in-built feature importance metrics can be called to see which f
 
 ## Evaluation
 <a name="evaluation"></a>
-**Code:** [**Evaluation**](https://github.com/MattPickard/Project_Portfolio/blob/main/loan_fraud_detection_project/evaluation.ipynb)
+**Code:** [**Evaluation**](https://github.com/MattPickard/Project_Portfolio/blob/main/Loan_Fraud_Detection_Project/evaluation.ipynb)
 
 The model was evaluated using the following metrics: 
 
