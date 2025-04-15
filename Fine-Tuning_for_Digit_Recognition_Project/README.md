@@ -50,7 +50,7 @@ These transformations must be made for any data used as input into the model or 
 
 ## Base Model CNN Training
 <a name="cnn-training"></a>
-**Code:** [**Base Model CNN Training**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/cnn_training.ipynb)
+**Code:** [**Base Model CNN Training**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_for_Digit_Recognition_Project/cnn_training.ipynb)
 
 For the base model, a CNN was trained exclusively on digits 1-9 from the MNIST dataset, excluding digit 0. This model was then treated as the "pre-trained" model for all subsequent fine-tuning experiments.
 
@@ -68,7 +68,7 @@ After training, the model achieved an accuracy of 99.25% on the test set contain
 
 ## Experience Replay Fine-tuning
 <a name="experience-replay-fine-tuning"></a>
-**Code:** [**Replay Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/replay_fine-tuning.ipynb)  
+**Code:** [**Replay Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_for_Digit_Recognition_Project/replay_fine-tuning.ipynb)  
 
 Experience replay is a technique in which a model is fine-tuned using both new data and a subset of the original training data. This approach helps prevent catastrophic forgetting, where a model loses performance on previously learned tasks when adapting to new ones.
 
@@ -82,7 +82,7 @@ Experience replay proved to be highly effective at mitigating catastrophic forge
 
 ## Sequential Fine-tuning
 <a name="sequential-fine-tuning"></a>
-**Code:** [**Sequential Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/sequential_fine-tuning.ipynb)  
+**Code:** [**Sequential Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_for_Digit_Recognition_Project/sequential_fine-tuning.ipynb)  
 
 Sequential fine-tuning represents a more challenging scenario where only new task data (digit 0) is available for training. This may be used in situations where the original training data is no longer accessible. Sequential fine-tuning is highly susceptible to catastrophic forgetting, so it presents a delicate balance between maximizing performance on the new task and preserving performance on the old tasks. 
 
@@ -96,7 +96,7 @@ The decrease in overall accuracy from 99.31% in the experience replay experiment
 
 ## LoRA Fine-tuning
 <a name="lora-fine-tuning"></a>
-**Code:** [**LoRA Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_Techniques_for_Digit_Recognition/lora_fine-tuning.ipynb)  
+**Code:** [**LoRA Fine-tuning**](https://github.com/MattPickard/Project_Portfolio/blob/main/Fine-Tuning_for_Digit_Recognition_Project/lora_fine-tuning.ipynb)  
 
 Low-Rank Adaptation (LoRA) is a fine-tuning technique that introduces small, trainable low-rank matrices into the output of the original model's layers. This approach significantly reduces the number of trainable parameters compared to other fine-tuning methods while still allowing the model to adapt to new data. For example, by using LoRA to fine-tune the last two dense layers of this model, the number of trainable parameters compared to the other two experiments was reduced from 90,240 to 2,052, around a ~45x reduction in trainable parameters. 
 
