@@ -64,10 +64,10 @@ class StockMarketSimulation:
                 sentiment_effect = -0.02  
             
             # Generate price percent change, adjusting the center of the normal distribution based on sentiment
-            change_percent = np.random.normal(loc=sentiment_effect, scale=base_volatility)
+            percent_change = np.random.normal(loc=sentiment_effect, scale=base_volatility)
             
             # Apply the change
-            self.current_prices[stock] *= (1 + change_percent)
+            self.current_prices[stock] *= (1 + percent_change)
             
             # Ensure price doesn't go below 1.0
             self.current_prices[stock] = max(1.0, self.current_prices[stock])
