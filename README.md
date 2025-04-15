@@ -4,7 +4,7 @@ Welcome! This repository holds a few of my data science and machine learning pro
 
 ## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
 
-###### **Tags:** LLM Agents, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
+###### **Tags:** OpenAI Agents SDK, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
 
 <table style="margin: auto;">
     <tr>
