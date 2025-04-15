@@ -45,7 +45,7 @@ The daily stock price update introduces randomness while incorporating market se
 
 **updated_price = max(1.0, current_price * (1 + percent_change))**
 
-Where the percent change is determined by generating a random number from a normal distribution using numpy.random.normal. This function generates random values centered around a mean (loc) with a specific standard deviation (scale):
+Where the percent change is determined by generating a random number from a normal distribution using numpy.random.normal. This function generates random values centered around a mean (`loc`) with a specific standard deviation (`scale`):
 
 **percent_change = numpy.random.normal(loc=sentiment_effect, scale=base_volatility)**
 
@@ -74,7 +74,7 @@ Key metrics stored include:
 -   `Portfolio_Value`: Total value of cash + invested assets.
 -   `Total_Stocks_Traded`: Cumulative count of shares bought or sold across all transactions.
 
-**Core Functions:**  
+**The Core Functions:**  
 
 There are five functions that are used to interact with the simulation. Each of these functions is provided as tools to the LLM agents via the MCP server.
 
@@ -88,12 +88,13 @@ Importantly, these functions return statements that contain success status, mess
 
 ## MCP Server
 <a name="mcp-server"></a>
-**Code:** **[mcp_server.py](Portfolio/Investing%20Game/docker/mcp_server.py)**  
-**Implementation Resources:** [MCP User Guide](https://modelcontextprotocol.io/introduction) and [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+**Code: [mcp_server.py](Portfolio/Investing%20Game/docker/mcp_server.py)**  
+**Implementation Resources: [MCP User Guide](https://modelcontextprotocol.io/introduction) and [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)**
 
 MCP servers allow for services to provide context to LLMs in the form of tools, prompts, and resources. This implementation uses the FastMCP library to create a "HTTP over SSE" server that runs remotely. To set up an SSE server using FastMCP, run the FastMCP's `run_sse_async()` method using asyncio.run(). 
 
 I highly recommend using the developer tool "MCP Inspector," which can be run with `mcp dev server.py`. It allows you to test the tools, essentially allowing you to interact with the server as the LLM would, which is useful for both development and debugging.
+
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 95%;">
@@ -122,7 +123,7 @@ def buy_stock(stock_name, quantity):
 
 To host the MCP server on AWS, I used Docker for containerization, EC2 for compute, and S3 for data storage using an AWS free-tier account.
 
-### Docker
+### Docker:
 <a name="docker"></a>
 **Files:** **[Dockerfile](Portfolio/Investing%20Game/docker/Dockerfile)**, **[requirements.txt](Portfolio/Investing%20Game/docker/requirements.txt)**
 
@@ -133,7 +134,7 @@ Docker was used to package the MCP server, stock market simulation, and dependen
 -   Exposes the container on port 8080, which the MCP server listens on.
 -   Sets the container to run the mcp_server.py script when it starts.
 
-### EC2
+### EC2:
 <a name="ec2"></a>
 
 An Amazon EC2 instance was used to host the Docker container. The setup process involved the following steps:
@@ -143,6 +144,7 @@ An Amazon EC2 instance was used to host the Docker container. The setup process 
 4.  Building the Docker image on the EC2 instance using the command `docker build -t investing-sim .`.
 5.  Configuring the instance's Security Group to allow inbound TCP traffic on port 8080.
 6.  Running the Docker container:
+    
     ```bash
     docker run -d -p 8080:8080 \
       -e PORT=8080 \
@@ -152,7 +154,7 @@ An Amazon EC2 instance was used to host the Docker container. The setup process 
       investing-sim
     ```
 
-### S3
+### S3:
 <a name="s3"></a>
 
 To store the simulation data for later analysis, I utilized Amazon S3. After creating an S3 bucket, I configured the save_to_csv method in simulation.py to save the DataFrame to an in-memory text buffer using io.StringIO in CSV format. The buffer is then uploaded directly to the S3 bucket using Amazon's boto3 client's put_object method. By uploading to S3, the simulation's history is saved even if the EC2 instance or Docker container is stopped or restarted. For larger scale applications, it would be more efficient to use a relational database with Amazon RDS instead of saving to an S3 bucket.
@@ -160,17 +162,15 @@ To store the simulation data for later analysis, I utilized Amazon S3. After cre
 ## Agents
 <a name="agents"></a>
 **Code:** **[agents.py](Portfolio/Investing%20Game/docker/agents.py)**  
-**Implementation Resources:** [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
+**Implementation Resources: [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)**
 
-Three different agents were developed using the OpenAI Agents SDK to interact with the simulation via the MCP server. To explore the capabilities of smaller models and ensure efficiency, gpt-4o-mini was used as the base model for each agent. On startup, the user is prompted to choose between the three agent types. 
+Three different agents were developed using the OpenAI Agents SDK to interact with the simulation via the MCP server. To explore the capabilities of smaller models and ensure efficiency, gpt-4o-mini was used as the base model for each agent. On startup, the user is prompted to choose between the three agent types:
 
-**Agent Types:**
 1.  **Interactive Investment Advisor:** Acts as a conversational assistant, explaining its reasoning and guiding the user through investment decisions and actions.
 2.  **Human-in-the-Loop Agent:** Proactively proposes specific buy/sell actions, explains its rationale, then *waits for user confirmation* before executing trades.
 3.  **Fully Autonomous Agent:** Operates completely independently to maximize portfolio value over a set period (20 days). It checks the state, makes decisions based on sentiment, executes trades, and advances the day automatically until the target day is reached. It provides a summary at the end.
 
-**Configuration:**
-Key components of the agents include:
+**Key components of the agents include:**
 -   `Agent` Class initialized with `instructions`: `instructions` act as the system prompt defining the agent's role, goals, and operational guidelines, and given as context at each turn.
 -   A connection to the MCP server using the MCPServerSse instance.
 -   `Runner.run` Method: Used to execute the agent with a given input (initial prompt or conversation history).
@@ -183,7 +183,7 @@ Key components of the agents include:
 It's worth noting that OpenAI provides [built-in tracing functionality](https://openai.github.io/openai-agents-python/tracing/) as part of their Agents SDK. The Traces dashboard on their website breaks down each action taken by each agent. This can be useful when developing both single-agent and more complex multi-agent systems.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 95%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 75%;">
 <br>
 <em>Screenshot of the Traces Dashboard</em>
 </p>
