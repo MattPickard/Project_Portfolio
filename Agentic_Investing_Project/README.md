@@ -43,11 +43,11 @@ The core of the simulation is the StockMarketSimulation class. This class manage
 
 The daily stock price update introduces randomness while incorporating market sentiment. The updated price is calculated based on the current price using the following formula, ensuring the price never drops below $1.00:
 
-updated_price = max(1.0, current_price * (1 + percent_change))
+**updated_price = max(1.0, current_price * (1 + percent_change))**
 
 Where the percent change is determined by generating a random number from a normal distribution using numpy.random.normal. This function generates random values centered around a mean (loc) with a specific standard deviation (scale):
 
-percent_change = numpy.random.normal(loc=sentiment_effect, scale=base_volatility)
+**percent_change = numpy.random.normal(loc=sentiment_effect, scale=base_volatility)**
 
 -   `base_volatility`: Is set to 0.07
 -   `sentiment_effect`: Adjusts the mean of the random price change based on the sentiment:
@@ -57,7 +57,7 @@ percent_change = numpy.random.normal(loc=sentiment_effect, scale=base_volatility
 
 This approach means that while positive sentiment increases the likelihood of a price increase, the inherent volatility still allows for the possibility of a price decrease and vice versa.
 
-**Data:**
+**The Data:**
 
 The simulation state is maintained using a pandas DataFrame which is saved to a CSV file for later analysis. Each row of the DataFrame represents a day of the simulation. Metrics were chosen based on their usefulness for agent decision making and performance evaluation.
 
@@ -96,7 +96,9 @@ MCP servers allow for services to provide context to LLMs in the form of tools, 
 I highly recommend using the developer tool "MCP Inspector," which can be run with `mcp dev server.py`. It allows you to test the tools, essentially allowing you to interact with the server as the LLM would, which is useful for both development and debugging.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 100%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 95%;">
+<br>
+<em>Screenshot of the MCP Inspector UI</em>
 </p>
 
 **Tools:** 
@@ -181,14 +183,16 @@ Key components of the agents include:
 It's worth noting that OpenAI provides [built-in tracing functionality](https://openai.github.io/openai-agents-python/tracing/) as part of their Agents SDK. The Traces dashboard on their website breaks down each action taken by each agent. This can be useful when developing both single-agent and more complex multi-agent systems.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 100%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 95%;">
+<br>
+<em>Screenshot of the Traces Dashboard</em>
 </p>
 
 ## Power BI Dashboard
 <a name="powerbi"></a>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 100%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 95%;">
 </p>
 
 I used a Power BI dashboard to create a comprehensive visual summary of the stock market simulation and the agent's performance. The dashboard uses the simulation's CSV file to display visualizations and key metrics that help a potential developer save time evaluating and iterating on agent performance. The dashboard includes the following:
