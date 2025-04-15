@@ -97,7 +97,7 @@ I highly recommend using the developer tool "MCP Inspector," which can be run wi
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 95%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 85%;">
 <br>
 <em>Screenshot of the MCP Inspector UI</em>
 </p>
@@ -183,7 +183,7 @@ Three different agents were developed using the OpenAI Agents SDK to interact wi
 It's worth noting that OpenAI provides [built-in tracing functionality](https://openai.github.io/openai-agents-python/tracing/) as part of their Agents SDK. The Traces dashboard on their website breaks down each action taken by each agent. This can be useful when developing both single-agent and more complex multi-agent systems.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 95%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 85%;">
 <br>
 <em>Screenshot of the Traces Dashboard</em>
 </p>
@@ -192,10 +192,12 @@ It's worth noting that OpenAI provides [built-in tracing functionality](https://
 <a name="powerbi"></a>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 50%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 65%;">
+<br>
+<em>Dashboard showing the results of a 20-day autonomous agent run</em>
 </p>
 
-I used a Power BI dashboard to create a comprehensive visual summary of the stock market simulation and the agent's performance. The dashboard uses the simulation's CSV file to display visualizations and key metrics that help a potential developer save time evaluating and iterating on agent performance. The dashboard includes the following:
+I used Power BI to create a dashboard that provides a comprehensive visual summary of the stock market simulation and the agent's performance. The dashboard uses the simulation's CSV file to display visualizations and key metrics that help a potential developer save time evaluating and iterating on agent performance. The dashboard includes the following:
 
 -   **Stock Prices (Time Series):** Useful for comparing stock trends to portfolio performance and types of stocks bought.
 
