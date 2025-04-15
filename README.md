@@ -52,7 +52,7 @@ This project provides a practical machine learning framework for detecting fraud
     </tr>
 </table>
 
-In this project I demonstrate the application of various RAG (Retrieval-Augmented Generation) techniques, creating an ensemble pipeline that answers questions about my grandfather's memoir. The techniques implimented are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
+In this project I demonstrate the application of various Retrieval-Augmented Generation (RAG) techniques, creating an ensemble pipeline that answers questions about my grandfather's memoir. The techniques implimented are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
 
 
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/turbofan_engine_prognostics_project))**
