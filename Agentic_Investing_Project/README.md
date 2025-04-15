@@ -37,7 +37,7 @@ This setup would allow for rapid iteration over agent configurations and tools. 
 
 ## Stock Market Simulation
 <a name="stock-market-simulation"></a>
-**Code:** **[simulation.py](Portfolio/Investing%20Game/docker/simulation.py)**
+**Code:** **[simulation.py](https://github.com/MattPickard/Project_Portfolio/blob/main/Agentic_Investing_Project/simulation.py)**
 
 The core of the simulation is the StockMarketSimulation class. This class manages the state of the agents' portfolio and the simulation's three fictional stocks: TECH, ENERGY, and RETAIL. Each stock is randomly assigned a daily sentiment (positive, neutral, or negative) which influences the stock price update. The agents start Day 1 with an initial cash balance of $10,000 and it is their goal to help maximize the portfolio value by investing based on the market sentiments of the stocks.
 
@@ -88,7 +88,7 @@ Importantly, these functions return statements that contain success status, mess
 
 ## MCP Server
 <a name="mcp-server"></a>
-**Code: [mcp_server.py](Portfolio/Investing%20Game/docker/mcp_server.py)**  
+**Code: [mcp_server.py](https://github.com/MattPickard/Project_Portfolio/blob/main/Agentic_Investing_Project/mcp_server.py)**  
 **Implementation Resources: [MCP User Guide](https://modelcontextprotocol.io/introduction) and [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)**
 
 MCP servers allow for services to provide context to LLMs in the form of tools, prompts, and resources. This implementation uses the FastMCP library to create a "HTTP over SSE" server that runs remotely. To set up an SSE server using FastMCP, run the FastMCP's `run_sse_async()` method using asyncio.run(). 
@@ -125,7 +125,7 @@ To host the MCP server on AWS, I used Docker for containerization, EC2 for compu
 
 ### Docker:
 <a name="docker"></a>
-**Files:** **[Dockerfile](Portfolio/Investing%20Game/docker/Dockerfile)**, **[requirements.txt](Portfolio/Investing%20Game/docker/requirements.txt)**
+**Files:** **[Dockerfile](https://github.com/MattPickard/Project_Portfolio/blob/main/Agentic_Investing_Project/Dockerfile)**, **[requirements.txt](https://github.com/MattPickard/Project_Portfolio/blob/main/Agentic_Investing_Project/requirements.txt)**
 
 Docker was used to package the MCP server, stock market simulation, and dependencies into a container. This approach allows for consistent behavior across different environments. The Dockerfile defines the steps to build this container image:
 -   Specifies the base image as python:3.10-slim since the FastMCP library requires Python 3.10 or higher.
@@ -161,7 +161,7 @@ To store the simulation data for later analysis, I utilized Amazon S3. After cre
 
 ## Agents
 <a name="agents"></a>
-**Code:** **[agents.py](Portfolio/Investing%20Game/docker/agents.py)**  
+**Code:** **[agents.py](https://github.com/MattPickard/Project_Portfolio/blob/main/Agentic_Investing_Project/agents.py)**  
 **Implementation Resources: [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)**
 
 Three different agents were developed using the OpenAI Agents SDK to interact with the simulation via the MCP server. To explore the capabilities of smaller models and ensure efficiency, gpt-4o-mini was used as the base model for each agent. On startup, the user is prompted to choose between the three agent types:
