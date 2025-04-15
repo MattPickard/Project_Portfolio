@@ -192,7 +192,7 @@ It's worth noting that OpenAI provides [built-in tracing functionality](https://
 <a name="powerbi"></a>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 75%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 50%;">
 </p>
 
 I used a Power BI dashboard to create a comprehensive visual summary of the stock market simulation and the agent's performance. The dashboard uses the simulation's CSV file to display visualizations and key metrics that help a potential developer save time evaluating and iterating on agent performance. The dashboard includes the following:
