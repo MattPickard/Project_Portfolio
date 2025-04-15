@@ -37,17 +37,17 @@ This setup would allow for rapid iteration over agent configurations and tools. 
 
 ## Stock Market Simulation
 <a name="stock-market-simulation"></a>
-**Code:** [simulation.py](Portfolio/Investing%20Game/docker/simulation.py)
+**Code:** **[simulation.py](Portfolio/Investing%20Game/docker/simulation.py)**
 
 The core of the simulation is the StockMarketSimulation class. This class manages the state of the agents' portfolio and the simulation's three fictional stocks: TECH, ENERGY, and RETAIL. Each stock is randomly assigned a daily sentiment (positive, neutral, or negative) which influences the stock price update. The agents start Day 1 with an initial cash balance of $10,000 and it is their goal to help maximize the portfolio value by investing based on the market sentiments of the stocks.
 
 The daily stock price update introduces randomness while incorporating market sentiment. The updated price is calculated based on the current price using the following formula, ensuring the price never drops below $1.00:
 
-`updated_price = max(1.0, current_price * (1 + percent_change))`
+updated_price = max(1.0, current_price * (1 + percent_change))
 
-Where the percent change is determined by generating a random number from a normal distribution using numpy.random.normal. This function generates random values centered around a mean (loc) with a specific standard deviation (scale).
+Where the percent change is determined by generating a random number from a normal distribution using numpy.random.normal. This function generates random values centered around a mean (loc) with a specific standard deviation (scale):
 
-`percent_change = numpy.random.normal(loc=sentiment_effect, scale=base_volatility)`
+percent_change = numpy.random.normal(loc=sentiment_effect, scale=base_volatility)
 
 -   `base_volatility`: Is set to 0.07
 -   `sentiment_effect`: Adjusts the mean of the random price change based on the sentiment:
@@ -75,6 +75,7 @@ Key metrics stored include:
 -   `Total_Stocks_Traded`: Cumulative count of shares bought or sold across all transactions.
 
 **Core Functions:**  
+
 There are five functions that are used to interact with the simulation. Each of these functions is provided as tools to the LLM agents via the MCP server.
 
 -   `advance_day()`: Moves the simulation to the next day, updates prices and sentiments, calculates daily profit/loss, and records the new state in the DataFrame.
@@ -87,7 +88,7 @@ Importantly, these functions return statements that contain success status, mess
 
 ## MCP Server
 <a name="mcp-server"></a>
-**Code:** [mcp_server.py](Portfolio/Investing%20Game/docker/mcp_server.py)  
+**Code:** **[mcp_server.py](Portfolio/Investing%20Game/docker/mcp_server.py)**  
 **Implementation Resources:** [MCP User Guide](https://modelcontextprotocol.io/introduction) and [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
 MCP servers allow for services to provide context to LLMs in the form of tools, prompts, and resources. This implementation uses the FastMCP library to create a "HTTP over SSE" server that runs remotely. To set up an SSE server using FastMCP, run the FastMCP's `run_sse_async()` method using asyncio.run(). 
@@ -95,7 +96,7 @@ MCP servers allow for services to provide context to LLMs in the form of tools, 
 I highly recommend using the developer tool "MCP Inspector," which can be run with `mcp dev server.py`. It allows you to test the tools, essentially allowing you to interact with the server as the LLM would, which is useful for both development and debugging.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 40%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="width: 100%;">
 </p>
 
 **Tools:** 
@@ -121,7 +122,7 @@ To host the MCP server on AWS, I used Docker for containerization, EC2 for compu
 
 ### Docker
 <a name="docker"></a>
-**Files:** [Dockerfile](Portfolio/Investing%20Game/docker/Dockerfile), [requirements.txt](Portfolio/Investing%20Game/docker/requirements.txt)
+**Files:** **[Dockerfile](Portfolio/Investing%20Game/docker/Dockerfile)**, **[requirements.txt](Portfolio/Investing%20Game/docker/requirements.txt)**
 
 Docker was used to package the MCP server, stock market simulation, and dependencies into a container. This approach allows for consistent behavior across different environments. The Dockerfile defines the steps to build this container image:
 -   Specifies the base image as python:3.10-slim since the FastMCP library requires Python 3.10 or higher.
@@ -156,7 +157,7 @@ To store the simulation data for later analysis, I utilized Amazon S3. After cre
 
 ## Agents
 <a name="agents"></a>
-**Code:** [`agents.py`](Portfolio/Investing%20Game/docker/agents.py)  
+**Code:** **[agents.py](Portfolio/Investing%20Game/docker/agents.py)**  
 **Implementation Resources:** [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
 
 Three different agents were developed using the OpenAI Agents SDK to interact with the simulation via the MCP server. To explore the capabilities of smaller models and ensure efficiency, gpt-4o-mini was used as the base model for each agent. On startup, the user is prompted to choose between the three agent types. 
@@ -180,14 +181,14 @@ Key components of the agents include:
 It's worth noting that OpenAI provides [built-in tracing functionality](https://openai.github.io/openai-agents-python/tracing/) as part of their Agents SDK. The Traces dashboard on their website breaks down each action taken by each agent. This can be useful when developing both single-agent and more complex multi-agent systems.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 40%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/traces.png" style="width: 100%;">
 </p>
 
 ## Power BI Dashboard
 <a name="powerbi"></a>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 40%;">
+<img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 100%;">
 </p>
 
 I used a Power BI dashboard to create a comprehensive visual summary of the stock market simulation and the agent's performance. The dashboard uses the simulation's CSV file to display visualizations and key metrics that help a potential developer save time evaluating and iterating on agent performance. The dashboard includes the following:
