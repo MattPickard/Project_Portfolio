@@ -2,6 +2,32 @@ Welcome! This repository holds a few of my data science and machine learning pro
 
 # Projects
 
+## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
+
+###### **Tags:** LLM Agents, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
+
+<table style="margin: auto;">
+    <tr>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
+                <img src="https://www.livemint.com/lm-img/img/2025/03/31/600x338/g1c49305ef246b25d62f_1743440565533_1743440565716.jpg" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+This project demonstrates a comprehensive platform for developing and evaluating Large Language Model (LLM) agents within a simulated stock market environment. It integrates a simplified stock market simulation, an MCP server hosted on AWS (using Docker, EC2, and S3) to expose simulation functions as tools, and three types of LLM agents (Interactive, Human-in-the-Loop, and Autonomous) built with the OpenAI Agents SDK. These agents, powered by OpenAI's Agents SDK and gpt-4o-mini, interact with the simulation via the MCP server's tools to manage a portfolio, with their performance and actions tracked and visualized using a Power BI dashboard, ultimately creating a robust testbed for agentic AI development.
+
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Loan_Fraud_Detection_Project))**
 
 ###### **Tags:** Feature Engineering, Imbalanced Learning, LightGBM, Optuna Hyperparameter Tuning, Fraud Detection

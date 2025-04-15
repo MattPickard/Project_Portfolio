@@ -27,11 +27,11 @@ For this project, I built a simplified stock market simulation, three types of L
 The increasing capabilities and decreasing costs of LLMs are fueling rapid growth in agentic systems across various industries. Businesses are increasingly leveraging agentic systems to boost efficiency, cut operational expenses, and innovate new services. As a result, the ability to effectively develop, test, and evaluate these agentic solutions is becoming a critical skill.
 
 **The core components of this project include:**
-*   A Stock Market Simulation built with Python that models fictional stocks with fluctuating prices based on randomized daily sentiment.
-*   An MCP Server using the FastMCP library that acts as an interface, exposing simulation functions (like buying/selling stock, checking state) as tools for LLM agents.
-*   Three distinct LLM Agents (Interactive, Human-in-the-Loop, Autonomous) developed using the OpenAI Agents SDK and leveraging gpt-4o-mini, each showcasing different levels of user interaction and autonomy.
-*   Cloud Infrastructure utilizing AWS. The MCP server and simulation are containerized using Docker and hosted on an EC2 instance for accessibility. Simulation data is stored in an S3 bucket as a CSV file.
-*   A Power BI Dashboard that reads the CSV file, providing visual analytics and key performance indicators (KPIs) to evaluate agent performance.
+*   A simple **Stock Market Simulation** built with Python that models fictional stocks with fluctuating prices based on randomized daily sentiment.
+*   An **MCP Server** using the FastMCP library that acts as an interface, exposing simulation functions (like buying/selling stock, checking state) as tools for LLM agents.
+*   Three distinct **LLM Agents** (Interactive, Human-in-the-Loop, Autonomous) developed using the OpenAI Agents SDK and leveraging gpt-4o-mini, each showcasing different levels of user interaction and autonomy.
+*   Cloud Infrastructure utilizing **AWS**. The MCP server and simulation are containerized using Docker and hosted on an EC2 instance for accessibility. Simulation data is stored in an S3 bucket as a CSV file.
+*   A **Power BI Dashboard** that reads the CSV file, providing visual analytics and key performance indicators (KPIs) to evaluate agent performance.
 
 This setup would allow for rapid iteration over agent configurations and tools. The resulting simulation data, visualized in Power BI, offers valuable feedback for evaluating the effectiveness of agent instructions, tool design, and workflow.
 
@@ -57,7 +57,7 @@ Where the percent change is determined by generating a random number from a norm
 
 This approach means that while positive sentiment increases the likelihood of a price increase, the inherent volatility still allows for the possibility of a price decrease and vice versa.
 
-**The Data:**
+**Data and Metrics:**
 
 The simulation state is maintained using a pandas DataFrame which is saved to a CSV file for later analysis. Each row of the DataFrame represents a day of the simulation. Metrics were chosen based on their usefulness for agent decision making and performance evaluation.
 
@@ -74,7 +74,7 @@ Key metrics stored include:
 -   `Portfolio_Value`: Total value of cash + invested assets.
 -   `Total_Stocks_Traded`: Cumulative count of shares bought or sold across all transactions.
 
-**The Core Functions:**  
+**Interactive Functions:**  
 
 There are five functions that are used to interact with the simulation. Each of these functions is provided as tools to the LLM agents via the MCP server.
 
@@ -194,7 +194,7 @@ It's worth noting that OpenAI provides [built-in tracing functionality](https://
 <p align="center">
 <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="width: 65%;">
 <br>
-<em>Dashboard showing the results of a 20-day autonomous agent run</em>
+<em>Dashboard showing the result of a 20-day autonomous agent run</em>
 </p>
 
 I used Power BI to create a dashboard that provides a comprehensive visual summary of the stock market simulation and the agent's performance. The dashboard uses the simulation's CSV file to display visualizations and key metrics that help a potential developer save time evaluating and iterating on agent performance. The dashboard includes the following:
