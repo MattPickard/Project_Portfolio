@@ -22,9 +22,7 @@
 ## Introduction
 <a name="introduction"></a>
 
-For this project, I built a simplified stock market simulation, three types of Large Language Model (LLM) agents using the OpenAI Agents SDK, and a Model Context Protocol (MCP) server hosted on Amazon Web Services (AWS) that provided the tools the agents used to interact with the simulation. To evaluate the agent performance, tool use, and decision making, I designed a Power BI dashboard using the simulation data to visualize key metrics. All together, it proved to be a comprehensive platform and testbed for exploring LLM agents and MCP servers.
-
-The increasing capabilities and decreasing costs of LLMs are fueling rapid growth in agentic systems across various industries. Businesses are increasingly leveraging agentic systems to boost efficiency, cut operational expenses, and innovate new services. As a result, the ability to effectively develop, test, and evaluate these agentic solutions is becoming a critical skill.
+For this project, I built a simplified stock market simulation, three types of Large Language Model (LLM) agents using the OpenAI Agents SDK, and a Model Context Protocol (MCP) server hosted on Amazon Web Services (AWS) that provided the tools the agents used to interact with the simulation. To evaluate the agent performance, tool use, and decision making, I designed a Power BI dashboard using the simulation data to visualize key metrics. Altogether, it proved to be a comprehensive platform and testbed for exploring LLM agents and MCP servers.
 
 **The core components of this project include:**
 *   A simple **Stock Market Simulation** built with Python that models fictional stocks with fluctuating prices based on randomized daily sentiment.
@@ -33,7 +31,7 @@ The increasing capabilities and decreasing costs of LLMs are fueling rapid growt
 *   Cloud Infrastructure utilizing **AWS**. The MCP server and simulation are containerized using Docker and hosted on an EC2 instance for accessibility. Simulation data is stored in an S3 bucket as a CSV file.
 *   A **Power BI Dashboard** that reads the CSV file, providing visual analytics and key performance indicators (KPIs) to evaluate agent performance.
 
-This setup would allow for rapid iteration over agent configurations and tools. The resulting simulation data, visualized in Power BI, offers valuable feedback for evaluating the effectiveness of agent instructions, tool design, and workflow.
+This setup allows for rapid iteration over agent configurations and tools. By visualizing simulation data in Power BI, a potential developer is provided critical feedback for evaluating the effectiveness of agent instructions, tool designs, and workflows.
 
 ## Stock Market Simulation
 <a name="stock-market-simulation"></a>
@@ -84,7 +82,7 @@ There are five functions that are used to interact with the simulation. Each of 
 -   `get_current_state()`: Returns a dictionary summarizing the current simulation state, including day, cash, portfolio value, and details for each stock (price, owned shares, value, sentiment).
 -   `reset_simulation()`: Resets the simulation back to its initial Day 1 state.
 
-Importantly, these functions return statements that contain success status, messages, and updated simulation states. This feedback is essential for the LLM agents to understand the outcome of their actions after each tool use and to help them plan subsequent steps. To minimize token usage and context size, this feedback is formatted for LLM consumption using a python dictionary format which humans might find difficult to read. While testing, I found that the LLM agents were effective at reformatting the data into human-readable formats for the user.
+An important characteristic of each of these functions is that their return statements contain success status, messages, and updated simulation states. This feedback is essential for the LLM agents to understand the outcome of their actions after each tool use and to help them plan subsequent steps. To minimize token usage and context size, this feedback is formatted for LLM consumption using a python dictionary format which humans might find difficult to read. However, I found that the LLM agents were effective at reformatting the data into human-readable formats for the user.
 
 ## MCP Server
 <a name="mcp-server"></a>
@@ -235,6 +233,8 @@ I used Power BI to create a dashboard that provides a comprehensive visual summa
 ## Conclusion
 <a name="conclusion"></a>
 
-By combining a stock market simulation, an MCP server hosted on AWS (EC2, S3), various LLM agents, and a Power BI dashboard, this project provides a platform for developing, testing, and evaluating agentic workflows and tools. The setup enables rapid iteration on agent design while providing clear insights into agent behavior and effectiveness. Future enhancements could include generating synthetic news events to test sentiment analysis capabilities, integrating real-time data feeds, or adapting the system to work with real-world stocks using libraries like Alpaca-py or yfinance.
+By combining a stock market simulation, an MCP server hosted on AWS (EC2, S3), various LLM agents, and a Power BI dashboard, this project provides a platform for developing, testing, and evaluating agentic workflows and tools. The setup enables rapid iteration on agent design while providing clear insights into agent behavior and effectiveness.
 
-Ultimately, this project provided me with experience in tool design, MCP server implementation, agent creation, and cloud deployment — skills useful for building agentic AI applications. As LLM capabilities improve and costs decrease, wide-scale adoption of agentic technologies feels inevitable. In a future where human-AI collaboration is more commonplace, the ability to connect agents with business services will become increasingly valuable. MCP shows promise as a potential standard for how businesses control and facilitate agent interactions with their services.
+Future enhancements to the simulation could include generating synthetic news events to test sentiment analysis capabilities, integrating real-time data feeds, or even adapting the system to work with real-world stocks using libraries like Alpaca-py or yfinance. Ideas for exploring agentic workflows could include adding guardrails to prevent certain decisions, such as buying stocks with negative sentiment, or setting up multi-agent systems with specialized roles. It would also be possible to compare the performance of multiple agent configurations at once by having them compete within the same simulations, taking an average of their performance over multiple runs.
+
+Ultimately, this project is a demonstration of tool design, MCP server implementation, agent creation, and cloud deployment—essential skills for building modern agentic AI applications. I'm looking forward to further exploring agentic systems and anticipate an exciting future for agentic AI.
