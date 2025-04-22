@@ -25,7 +25,7 @@ This repository showcases a selection of my data science and machine learning pr
     </tr>
 </table>
 
-This project demonstrates a comprehensive platform for developing and evaluating Large Language Model (LLM) agents within a simulated stock market environment. It integrates a simplified stock market simulation, an MCP server hosted on AWS (using Docker, EC2, and S3) to expose simulation functions as tools, and three types of LLM agents (Interactive, Human-in-the-Loop, and Autonomous) built with the OpenAI Agents SDK. These agents, powered by OpenAI's Agents SDK and gpt-4o-mini, interact with the simulation via the MCP server's tools to manage a portfolio, with their performance and actions tracked and visualized using a Power BI dashboard, ultimately creating a robust testbed for agentic AI development.
+This project creates a comprehensive platform where Large Language Model (LLM) agents are developed and evaluated within a simulated stock market environment. It integrates a simplified stock market simulation, an MCP server hosted on AWS (using Docker, EC2, and S3) to expose simulation functions as tools, and three types of LLM agents (Interactive, Human-in-the-Loop, and Autonomous) built with the OpenAI Agents SDK. These agents, powered by OpenAI's Agents SDK and gpt-4o-mini, interact with the simulation via the MCP server's tools to manage a portfolio, with their performance and actions tracked and visualized using a Power BI dashboard, ultimately creating a robust testbed for agentic AI development.
 
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Turbofan_Engine_Prognostics_Project))**
 
