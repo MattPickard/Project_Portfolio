@@ -1,5 +1,4 @@
-Welcome! 
-This repository showcases a selection of my data science and machine learning projects. I hope you find them both useful and interesting!
+This repository showcases a selection of my data science and machine learning projects. I hope you find them useful and interesting!
 
 # Projects
 
