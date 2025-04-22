@@ -1,4 +1,4 @@
-# Projects
+# Project Portfolio
 This repository showcases a selection of my data science and machine learning projects. I hope you find them useful and interesting!  
 
 ## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
