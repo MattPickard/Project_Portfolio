@@ -254,8 +254,6 @@ class StockMarketSimulation:
                 print(f"Data saved to S3: s3://{self.s3_bucket}/{self.s3_key}")
             except Exception as e:
                 print(f"Error saving to S3: {e}")
-                # Fallback to local save
-                self.df.to_csv("stock_market_data.csv", index=False)
             
     def reset_simulation(self):
         """Reset the simulation to its initial state."""
