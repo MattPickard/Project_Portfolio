@@ -3,7 +3,7 @@ This repository showcases a selection of my data science and machine learning pr
 
 ## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
 
-###### **Tags:** OpenAI Agents SDK, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
+###### **Tags:** OpenAI Agents SDK, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
 
 <table style="margin: auto;">
     <tr>
@@ -25,7 +25,7 @@ This repository showcases a selection of my data science and machine learning pr
     </tr>
 </table>
 
-This project creates a comprehensive platform where Large Language Model (LLM) agents are developed and evaluated within a simulated stock market environment. It integrates a simplified stock market simulation, an MCP server hosted on AWS (using Docker, EC2, and S3) to expose simulation functions as tools, and three types of LLM agents (Interactive, Human-in-the-Loop, and Autonomous) built with the OpenAI Agents SDK. These agents, powered by OpenAI's Agents SDK and gpt-4o-mini, interact with the simulation via the MCP server's tools to manage a portfolio, with their performance and actions tracked and visualized using a Power BI dashboard, ultimately creating a robust testbed for agentic AI development.
+Imagine Wall Street run by AI. This project creates a digital arena where AI agents invest in a simulated stock market. I've built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chat bot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are tracked in real-time. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
 
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Turbofan_Engine_Prognostics_Project))**
 
@@ -51,7 +51,7 @@ This project creates a comprehensive platform where Large Language Model (LLM) 
     </tr>
 </table>
 
-This project utilizes a NASA run-to-failure dataset to develop hybrid models that predict the Remaining Useful Life (RUL) and health status of turbofan engines. By integrating one-dimensional convolutional neural networks with CatBoost models, this approach effectively captures the temporal patterns present in sensor data. The resulting predictions serve as valuable tools for engineers, enabling proactive maintenance scheduling and monitoring engine health.
+When will a jet engine fail? This project answers that critical question by turning raw sensor data into predictive intelligence. Using NASA's run-to-failure dataset, I've created hybrid models that combine the pattern-recognition power of convolutional neural networks with the predictive strength of CatBoost algorithms. The result is a system that can "listen" to an engine's vital signs and forecast both its remaining useful life and overall health status—potentially saving millions in maintenance costs and preventing catastrophic failures before they happen.
 
 ## **Querying my Grandfather's Memoir with RAG ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Memoir_Rag_Project))**
 
@@ -77,7 +77,7 @@ This project utilizes a NASA run-to-failure dataset to develop hybrid models tha
     </tr>
 </table>
 
-In this project I demonstrate the application of various Retrieval-Augmented Generation (RAG) techniques, creating an ensemble pipeline that answers questions about my grandfather's memoir. The techniques implimented are often used in the natural language processing and information retrieval applications. The findings reveal how enhancements like reranking and context enrichment through an ensemble approach can significantly improve retrieval success rates.
+How do you have a conversation with the past? In this deeply personal project, I've brought my grandfather's memoir to life using cutting-edge Retrieval-Augmented Generation (RAG) techniques. By creating an ensemble pipeline that combines vector search, reranking, and context enrichment, I've built a system that can answer questions about his life with accuracy. The project not only preserves family history but also demonstrates how modern NLP techniques can breathe new life into static documents, creating an interactive bridge between generations.
 
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Loan_Fraud_Detection_Project))**
 
@@ -103,7 +103,7 @@ In this project I demonstrate the application of various Retrieval-Augmented Gen
     </tr>
 </table>
 
-This project provides a practical machine learning framework for detecting fraudulent loan applications while minimizing false positives that could impact legitimate customers. The solution employs a mixed sampling strategy combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
+In the high-stakes world of lending, fraudsters are constantly evolving their tactics. This project creates a digital fraud detective that can spot suspicious loan applications while minimizing false alarms that could harm legitimate customers. Through clever feature engineering and a mixed sampling strategy that balances rare fraud cases with normal applications, I've trained a LightGBM model that achieves industry-competitive results. The most revealing insight? Velocity-based features and temportal metrics proved to be the strongest indicators of fraudulent behavior, highlighting patterns that human reviewers might miss.
 
 ## **Adapting Neural Networks: Fine-Tuning for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Digit_Recognition_Project))**
 
@@ -129,4 +129,4 @@ This project provides a practical machine learning framework for detecting fraud
     </tr>
 </table>
 
-This project tackles a fundamental challenge in machine learning: how to efficiently adapt pre-trained models to new data without compromising performance on previously learned tasks. Using hand-written digit recognition as a case study, I implemented and compared three distinct fine-tuning approaches—Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation (LoRA). This work demonstrates practical solutions to common machine learning challenges, such as adapting models when original training data is unavailable or when computational resources are limited.
+Can AI learn new tricks without forgetting old ones? This project tackles the "catastrophic forgetting" problem that plagues neural networks when they're retrained on new data. Using handwritten digit recognition as a testing ground, I've implemented and compared three innovative approaches: Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation. The results demonstrate practical solutions for adapting AI systems when original training data is unavailable or when computing resources are limited — a common challenge in real-world AI deployment.
