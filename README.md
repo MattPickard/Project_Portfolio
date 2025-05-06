@@ -25,7 +25,11 @@ This repository showcases a selection of my data science and machine learning pr
     </tr>
 </table>
 
+<<<<<<< HEAD
 This project creates a platform for AI agents to invest in a simulated stock market. I built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are evaluated using key performance metrics. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
+=======
+This project creates a digital arena where AI agents invest in a simulated stock market. I've built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are evaluated using key performance metrics. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
+>>>>>>> 7d689fa2d7fcd2eb06900804b56f8add5daac2b0
 
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Turbofan_Engine_Prognostics_Project))**
 
