@@ -25,7 +25,7 @@ This repository showcases a selection of my data science and machine learning pr
     </tr>
 </table>
 
-This project creates a digital arena where AI agents invest in a simulated stock market. I've built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are tracked in real-time. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
+This project creates a platform for AI agents to invest in a simulated stock market. I built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are evaluated using key performance metrics. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
 
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Turbofan_Engine_Prognostics_Project))**
 
@@ -77,7 +77,7 @@ When will a jet engine fail? This project answers that critical question by turn
     </tr>
 </table>
 
-How do you have a conversation with the past? In this deeply personal project, I've brought my grandfather's memoir to life using cutting-edge Retrieval-Augmented Generation (RAG) techniques. By creating an ensemble pipeline that combines vector search, reranking, and context enrichment, I've built a system that can answer questions about his life with accuracy. The project not only preserves family history but also demonstrates how modern NLP techniques can breathe new life into static documents, creating an interactive bridge between generations.
+How do you have a conversation with the past? In this project, I've brought my grandfather's memoir to life using cutting-edge Retrieval-Augmented Generation (RAG) techniques. By creating an ensemble pipeline that combines vector search, reranking, context enrichment, and query rewriting, I've built a system that can answer questions about his memoir with accuracy. The project not only preserves family history but also demonstrates how modern NLP techniques can breathe new life into static documents, creating an interactive bridge between generations.
 
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Loan_Fraud_Detection_Project))**
 
@@ -103,7 +103,7 @@ How do you have a conversation with the past? In this deeply personal project, I
     </tr>
 </table>
 
-In the high-stakes world of lending, fraudsters are constantly evolving their tactics. This project creates a digital fraud detective that can spot suspicious loan applications while minimizing false alarms that could harm legitimate customers. Through clever feature engineering and a mixed sampling strategy that balances rare fraud cases with normal applications, I've trained a LightGBM model that achieves industry-competitive results. The most revealing insight? Velocity-based features and temportal metrics proved to be the strongest indicators of fraudulent behavior, highlighting patterns that human reviewers might miss.
+This project tackles the challenge of detecting fraudulent loan applications while minimizing false positives that could impact honest customers. The solution employs a mixed sampling approach combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
 
 ## **Adapting Neural Networks: Fine-Tuning for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Digit_Recognition_Project))**
 
