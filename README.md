@@ -1,32 +1,6 @@
 # Project Portfolio
 This repository showcases a selection of my data science and machine learning projects. I hope you find them useful and interesting!  
 
-## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
-
-###### **Tags:** OpenAI Agents SDK, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
-
-<table style="margin: auto;">
-    <tr>
-        <td style="text-align: center;">
-            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
-                <img src="https://www.livemint.com/lm-img/img/2025/03/31/600x338/g1c49305ef246b25d62f_1743440565533_1743440565716.jpg" style="height: 150px; width: auto;"/>
-            </a>
-        </td>
-        <td style="text-align: center;">
-            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
-                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="height: 150px; width: auto;"/>
-            </a>
-        </td>
-        <td style="text-align: center;">
-            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
-                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="height: 150px; width: auto;"/>
-            </a>
-        </td>
-    </tr>
-</table>
-
-This project creates a platform for AI agents to invest in a simulated stock market. I built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are evaluated using key performance metrics. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
-
 ## **NASA Turbofan Engine Sensor Data Prognostics Models ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Turbofan_Engine_Prognostics_Project))**
 
 ###### **Tags:** Convolutional Neural Networks (CNNs), CatBoost, Engine Prognostics, TensorFlow/Keras, Feature Extraction
@@ -78,6 +52,32 @@ When will a jet engine fail? This project answers that critical question by turn
 </table>
 
 How do you have a conversation with the past? In this project, I've brought my grandfather's memoir to life using cutting-edge Retrieval-Augmented Generation (RAG) techniques. By creating an ensemble pipeline that combines vector search, reranking, context enrichment, and query rewriting, I've built a system that can answer questions about his memoir with accuracy. The project not only preserves family history but also demonstrates how modern NLP techniques can breathe new life into static documents, creating an interactive bridge between generations.
+
+## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
+
+###### **Tags:** OpenAI Agents SDK, Model Context Protocol (MCP), AWS, Docker, Power BI Dashboard
+
+<table style="margin: auto;">
+    <tr>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
+                <img src="https://www.livemint.com/lm-img/img/2025/03/31/600x338/g1c49305ef246b25d62f_1743440565533_1743440565716.jpg" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/mcp_inspector.png" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+        <td style="text-align: center;">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project">
+                <img src="https://raw.githubusercontent.com/MattPickard/Project_Portfolio/refs/heads/main/Images/powerbi_dashboard.png" style="height: 150px; width: auto;"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+This project creates a platform for AI agents to invest in a simulated stock market. I built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are evaluated using key performance metrics. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
 
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Loan_Fraud_Detection_Project))**
 
