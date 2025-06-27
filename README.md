@@ -25,7 +25,7 @@ This repository showcases a selection of my data science and machine learning pr
     </tr>
 </table>
 
-When will a jet engine fail? This project answers that critical question by turning raw sensor data into predictive intelligence. Using NASA's run-to-failure dataset, I've created hybrid models that combine the pattern-recognition power of convolutional neural networks with the predictive strength of CatBoost algorithms. The result is a system that can "listen" to an engine's vital signs and forecast both its remaining useful life and overall health status—potentially saving millions in maintenance costs and preventing catastrophic failures before they happen.
+This project addresses the critical challenge of predicting jet engine failures by transforming raw sensor data into actionable predictive intelligence. Leveraging NASA's run-to-failure dataset, I developed hybrid models that integrate the pattern-recognition capabilities of convolutional neural networks with the robust predictive power of CatBoost algorithms. This system effectively monitors engine vital signs to forecast remaining useful life and overall health status, thereby offering the potential for substantial savings in maintenance costs and proactive prevention of catastrophic failures.
 
 ## **Querying my Grandfather's Memoir with RAG ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Memoir_Rag_Project))**
 
@@ -51,7 +51,7 @@ When will a jet engine fail? This project answers that critical question by turn
     </tr>
 </table>
 
-How do you have a conversation with the past? In this project, I've brought my grandfather's memoir to life using cutting-edge Retrieval-Augmented Generation (RAG) techniques. By creating an ensemble pipeline that combines vector search, reranking, context enrichment, and query rewriting, I've built a system that can answer questions about his memoir with accuracy. The project not only preserves family history but also demonstrates how modern NLP techniques can breathe new life into static documents, creating an interactive bridge between generations.
+This project explores the innovative application of Retrieval-Augmented Generation (RAG) techniques to digitize and interact with historical documents. By developing an ensemble pipeline that integrates vector search, reranking, context enrichment, and query rewriting, I constructed a system capable of accurately answering questions about a personal memoir. This initiative not only preserves family history but also demonstrates the transformative potential of advanced Natural Language Processing (NLP) to create interactive interfaces for static textual data.
 
 ## **Agentic Investing with LLM Agents and MCP ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Agentic_Investing_Project))**
 
@@ -77,7 +77,7 @@ How do you have a conversation with the past? In this project, I've brought my g
     </tr>
 </table>
 
-This project creates a platform for AI agents to invest in a simulated stock market. I built three types of AI investors — fully autonomous, human-in-the-loop, and an interactive chatbot — all powered by OpenAI's Agents SDK and gpt-4o-mini. The agents connect to a custom-built market simulation through an AWS-hosted Model Context Protocol server, making investment decisions that are evaluated using key performance metrics. The entire system serves as a laboratory for testing how AI agents perform with tools, with all their triumphs and failures visualized through a dynamic Power BI dashboard.
+This project establishes a robust platform for AI agents to participate in a simulated stock market environment. I engineered three distinct AI investor prototypes—fully autonomous, human-in-the-loop, and an interactive chatbot—all powered by OpenAI's Agents SDK and gpt-4o-mini. These agents interface with a custom-built market simulation via an AWS-hosted Model Context Protocol server, enabling data-driven investment decisions evaluated through key performance metrics. The comprehensive system functions as a controlled laboratory for assessing AI agent performance with various tools, with all outcomes visualized via a dynamic Power BI dashboard.
 
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Loan_Fraud_Detection_Project))**
 
@@ -103,7 +103,7 @@ This project creates a platform for AI agents to invest in a simulated stock mar
     </tr>
 </table>
 
-This project tackles the challenge of detecting fraudulent loan applications while minimizing false positives that could impact honest customers. The solution employs a mixed sampling approach combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
+This project addresses the critical challenge of detecting fraudulent loan applications while minimizing false positives that could impact legitimate customers. The solution implements a sophisticated mixed sampling approach, combining SMOTENC and random undersampling, to effectively manage class imbalance. Comprehensive feature engineering, including log scaling, robust scaling, and one-hot encoding, further enhances the dataset. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance comparable to leading academic research, with velocity-based features and temporal metrics identified as the most influential predictors.
 
 ## **Adapting Neural Networks: Fine-Tuning for Computer Vision ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Computer_Vision_Project))**
 
@@ -129,4 +129,4 @@ This project tackles the challenge of detecting fraudulent loan applications whi
     </tr>
 </table>
 
-Can AI learn new tricks without forgetting old ones? This project tackles the "catastrophic forgetting" problem that plagues neural networks when they're retrained on new data. Using handwritten digit recognition as a testing ground, I've implemented and compared three innovative approaches: Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation. The results demonstrate practical solutions for adapting AI systems when original training data is unavailable or when computing resources are limited — a common challenge in real-world AI deployment.
+This project investigates the critical challenge of catastrophic forgetting in neural networks when retrained on new datasets. Using handwritten digit recognition as a controlled experimental framework, I implemented and systematically compared three advanced approaches: Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation (LoRA). The research demonstrates practical methodologies for adapting AI systems in scenarios where original training data is unavailable or computational resources are constrained—addressing a fundamental challenge in real-world AI deployment and maintenance.
