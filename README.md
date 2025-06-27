@@ -77,7 +77,7 @@ This project explores the innovative application of Retrieval-Augmented Generati
     </tr>
 </table>
 
-This project establishes a robust platform for AI agents to participate in a simulated stock market environment. I engineered three distinct AI investor prototypes—fully autonomous, human-in-the-loop, and an interactive chatbot—all powered by OpenAI's Agents SDK and gpt-4o-mini. These agents interface with a custom-built market simulation via an AWS-hosted Model Context Protocol server, enabling data-driven investment decisions evaluated through key performance metrics. The comprehensive system functions as a controlled laboratory for assessing AI agent performance with various tools, with all outcomes visualized via a dynamic Power BI dashboard.
+This project establishes a robust platform for AI agents to participate in a simulated stock market environment. I engineered three distinct AI investor prototypes: fully autonomous, human-in-the-loop, and an interactive chatbot all powered by OpenAI's Agents SDK and gpt-4o-mini. These agents interface with a custom-built market simulation via an AWS-hosted Model Context Protocol server, enabling data-driven investment decisions evaluated through key performance metrics. The comprehensive system functions as a controlled laboratory for assessing AI agent performance with various tools, with all outcomes visualized via a dynamic Power BI dashboard.
 
 ## **Loan Fraud Detection ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Loan_Fraud_Detection_Project))**
 
@@ -129,4 +129,4 @@ This project addresses the critical challenge of detecting fraudulent loan appli
     </tr>
 </table>
 
-This project investigates the critical challenge of catastrophic forgetting in neural networks when retrained on new datasets. Using handwritten digit recognition as a controlled experimental framework, I implemented and systematically compared three advanced approaches: Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation (LoRA). The research demonstrates practical methodologies for adapting AI systems in scenarios where original training data is unavailable or computational resources are constrained—addressing a fundamental challenge in real-world AI deployment and maintenance.
+This project investigates the critical challenge of catastrophic forgetting in neural networks when retrained on new datasets. Using handwritten digit recognition as a controlled experimental framework, I implemented and systematically compared three advanced approaches: Experience Replay, Sequential Fine-tuning, and Low-Rank Adaptation (LoRA). The research demonstrates practical methodologies for adapting AI systems in scenarios where original training data is unavailable or computational resources are constrained addressing a fundamental challenge in real-world AI deployment and maintenance.
