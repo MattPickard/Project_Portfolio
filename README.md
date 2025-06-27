@@ -105,24 +105,24 @@ This project creates a platform for AI agents to invest in a simulated stock mar
 
 This project tackles the challenge of detecting fraudulent loan applications while minimizing false positives that could impact honest customers. The solution employs a mixed sampling approach combining SMOTENC and random undersampling to address class imbalance, along with comprehensive feature engineering including log scaling, robust scaling, and one-hot encoding. The LightGBM model, optimized through Optuna hyperparameter tuning, achieves performance on par with academic research, with velocity-based features and temporal metrics emerging as the most influential predictors. 
 
-## **Adapting Neural Networks: Fine-Tuning for Digit Recognition ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Digit_Recognition_Project))**
+## **Adapting Neural Networks: Fine-Tuning for Computer Vision ([Link](https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Computer_Vision_Project))**
 
 ###### **Tags:** Computer Vision, Fine-Tuning, Convolutional Neural Networks (CNNs), Low-Rank Adaptation (LoRA), TensorFlow/Keras
 
 <table style="margin: auto;">
     <tr>
         <td style="text-align: center;">
-            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Digit_Recognition_Project">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Computer_Vision_Project">
                 <img src="https://awaywithideas.com/assets/images/2020/10/mnist_extended_4_0.png" style="height: 150px; width: auto;"/>
             </a>
         </td>
         <td style="text-align: center;">
-            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Digit_Recognition_Project">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Computer_Vision_Project">
                 <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/fine-tuning_comparison.png?raw=true" style="height: 150px; width: auto;"/>
             </a>
         </td>
         <td style="text-align: center;">
-            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Digit_Recognition_Project">
+            <a href="https://github.com/MattPickard/Project_Portfolio/tree/main/Fine-Tuning_for_Computer_Vision_Project">
                 <img src="https://github.com/MattPickard/Project_Portfolio/blob/main/Images/LoRa_Strength.png?raw=true" style="height: 150px; width: auto;"/>
             </a>
         </td>
